@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style type="text/css">
+            .container {
+                border: 1px solid black;
+            }
+            .center {
+                margin: auto;
+                width: 50%;
+                border: 3px solid green;
+                padding: 10px;
+
+                text-align: center;
+            }
+            .vertical {
+                padding: 70px 0;
+                border: 1px solid red;
+                text-align: center;
+            }
+            .vertical2 {
+                line-height: 200px;
+                height: 200px;
+                border: 3px solid green;
+                text-align: center;
+            }
+            .vertical2 p {
+                line-height: 1.5;
+                display: inline-block;
+                vertical-align: middle;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="center">
+                div 元素水平居中
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="vertical">
+                div 元素垂直居中
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="vertical2">
+                div 元素垂直居中
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="vertical2">
+                <p>
+                    第一行第一行第一行第一行第一行第一行第一行第一行第一行第一行
+                </p>
+            </div>
+        </div>
+
+    </body>
+</html>
