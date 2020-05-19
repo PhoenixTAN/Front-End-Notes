@@ -329,4 +329,20 @@ The **width=device-width** part sets the width of the page to follow the screen-
 The **initial-scale=1.0** part sets the initial zoom level when the page is first loaded by the browser.
 
 ## Js有哪些引入方法？放在head里面跟body里面有什么区别？放在body的开头跟结尾有什么区别？
+1. 放在head或者body的任意位置。
+2. 使用script.
+```html
+<script src="script.js"></script>
+```
 
+区别：
+- 浏览器解析html是从上到下的。
+如果把javascript放在head里的话，则先被解析,但这时候body还没有解析，所以会返回空值。一般都会绑定一个监听，当全部的html文档解析完之后，再执行代码：
+```javascript
+   windows.οnlοad=function(){
+       //这里放入执行代码
+   }
+```
+- head 部分中的脚本: 需调用才执行的脚本或事件触发执行的脚本放在HTML的head部分中。当你把脚本放在head部分中时，可以保证脚本在任何调用之前被加载。
+
+- body 部分中的脚本: 当页面被加载时执行的脚本放在HTML的body部分。放在body部分的脚本通常被用来生成页面的内容。
