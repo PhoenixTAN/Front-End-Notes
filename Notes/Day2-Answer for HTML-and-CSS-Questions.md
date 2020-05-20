@@ -41,11 +41,9 @@ Examples include:
 ### \<aside>
 The HTML <aside> element represents a portion of a document whose content is only indirectly related to the document's main content. Asides are frequently presented as sidebars or call-out boxes.
 
-### \<details>
-
 
 ### \<footer>
-
+![alt text](./images/footer.png)
 
 ## 引入CSS的方法有哪些？link和imort有哪些区别？
 1. HTML文档嵌入式使用style标签。
@@ -445,7 +443,7 @@ The **initial-scale=1.0** part sets the initial zoom level when the page is firs
 - body 部分中的脚本: 当页面被加载时执行的脚本放在HTML的body部分。放在body部分的脚本通常被用来生成页面的内容。
 
 
-
+async
 
 搜一下
 CDN
