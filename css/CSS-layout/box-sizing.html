@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style type="text/css">
+            .container {
+                border: 1px solid black;
+            }
+
+            .simple {
+                width: 500px;
+                margin: 20px auto;
+                border: 1px solid black;
+
+                /* 使得原来的盒子保持width 500px */
+                /* 继续加margin, border, padding，会挤压原来的content的空间*/
+                /* box-sizing: content-box; 是原来的box model */
+                box-sizing: border-box;
+            }
+
+            .fancy {
+                width: 500px;
+                margin: 20px auto;
+                padding: 50px;
+                border: 10px solid blue;
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            margin: auto<br>
+            max-width<br>
+            <div class="simple">
+                The original box model behavior was eventually considered unintuitive, 
+                so a new CSS property called <strong>box-sizing</strong> was created.
+            </div>
+            <div class="fancy">
+                When you set box-sizing: border-box; on an element, 
+                the padding and border of that element <strong>no longer increase its width.</strong> 
+                Here is the same example as the previous page, 
+                but with box-sizing: border-box; on both elements.
+                <br>
+                <br>
+                Since box-sizing is pretty new, 
+                <strong>you should use the -webkit- and -moz- prefixes for now.</strong>
+            </div>
+        </div>
+    </body>
+</html>
