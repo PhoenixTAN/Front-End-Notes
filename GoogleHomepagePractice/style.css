@@ -1,0 +1,185 @@
+body {
+    font-size: small;
+    background-color: #fff;
+    color: #222;
+    font-family: arial, sans-serif;
+    height: 100%;
+    margin: 0;
+
+    /* why this line */
+    /*display: block;*/
+
+    overflow: hidden;
+    /* 这个google是咋整的，待解决 */
+}
+
+
+.head {
+    display: flex;
+    justify-content: space-between;
+
+    
+    /**/
+    
+}
+
+.headleft {
+    /* vertical | horizontal */
+    /* top | right | bottom | left */
+    margin: 7px 0 0 10px;
+}
+
+.headright {
+    margin: 7px 0 0 10px;
+}
+
+.headleft>a {
+    color: #000;
+    opacity: 0.75;
+}
+
+.headright>a {
+    color: rgba(0,0,0,0.87);
+}
+
+.head a {
+    display: inline-block;
+    text-decoration: none;
+    line-height: 24px;
+    font-size: 13px;
+    padding-left: 13px;
+    
+}
+
+#viewport {
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    /* border for practice */
+    border: 1px solid black;
+
+    /* margin: 0 auto; */
+    /* search min-width */
+    /* min-width: 980px; */
+}
+
+
+#searchform {
+    position: absolute;
+    top: 311px;
+    width: 100%;
+    /* min-width: 980px; */
+
+    margin-top: 0; /**/
+}
+
+#searchform a {
+    text-decoration: none;
+}
+
+.searchtext {
+    border-radius: 24px;
+    
+    width: 482px;
+    height: 44px;
+    border: 1px solid #dfe1e5;
+
+    /*The outline CSS property is a shorthand to set various outline properties in a single declaration*/
+    outline: none;  /* 取消单击搜索框时的出现的外边框 */
+    font: 16px arial,sans-serif;
+    /*
+    line-height: 34px;
+    height: 34px !important;*/
+
+}
+
+
+.footbar {
+    display: flex;
+    justify-content: space-between;
+    
+    /*height: 35px;*/
+
+    background-color: #f2f2f2;
+
+
+    /* control the line-height of the span */
+    line-height: 40px;
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    font-size: 14px;
+
+    /* why this line */
+    /* margin-left: 27px; */
+    
+
+}
+
+.leftbar {
+    display: flex;
+    justify-content: start;
+
+}
+
+.rightbar {
+    display: flex;
+    justify-content: end;
+    
+    /* 这个google是怎么解决的 */
+    padding-right: 27px;
+}
+
+.submitbar input[type="submit"] {
+    background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
+    
+    color: #5F6368;
+    
+    border-radius: 4px;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+
+    text-align: center;
+
+    height: 36px;
+    min-width: 54px;
+
+    margin: 11px 4px;
+    padding: 0 16px;
+
+    cursor: pointer;
+
+    border-style: none;
+
+}
+
+/* 学习min-width min-height */
+
+.Fx4vi {
+    padding-left: 27px;
+    margin: 0 !important;
+}
+
+.footbar a {
+    text-decoration: none;
+    color: #5f6368;
+}
+
+/*
+#searchbtn #luckybtn {
+    background-color: #f2f2f2;
+    color: #5f6368;
+}*/
+
+.submitbar {
+    padding-top: 18px;
+    height: 70px;
+    width: 487px;
+
+    /* why this line */
+    top: 53px;
+}
