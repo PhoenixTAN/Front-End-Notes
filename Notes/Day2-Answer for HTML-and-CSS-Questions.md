@@ -138,6 +138,7 @@ div {
 3. float: left | right
 
 float可以用来布局，但是不是用来布局，float相当于用文字环绕图片。
+例如：给image的css设置成float:right.
 
 ## 让一个元素水平居中、垂直居中有哪些方法？
 1. 对于块状元素，相对定位，绝对定位配合使用。子容器使用margin.

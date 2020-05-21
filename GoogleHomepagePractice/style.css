@@ -17,10 +17,6 @@ body {
 .head {
     display: flex;
     justify-content: space-between;
-
-    
-    /**/
-    
 }
 
 .headleft {
@@ -74,6 +70,7 @@ body {
     margin-top: 0; /**/
 }
 
+
 #searchform a {
     text-decoration: none;
 }
@@ -115,8 +112,6 @@ body {
 
     /* why this line */
     /* margin-left: 27px; */
-    
-
 }
 
 .leftbar {
@@ -132,6 +127,7 @@ body {
     /* 这个google是怎么解决的 */
     padding-right: 27px;
 }
+
 
 .submitbar input[type="submit"] {
     background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
@@ -169,6 +165,7 @@ body {
     color: #5f6368;
 }
 
+
 /*
 #searchbtn #luckybtn {
     background-color: #f2f2f2;
@@ -183,3 +180,4 @@ body {
     /* why this line */
     top: 53px;
 }
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style type="text/css">
+            .container {
+                border: 1px solid black;
+            }
+
+            .clearfix {
+                overflow: auto;
+            }
+
+            /* nav {
+                float: left;
+                width: 25%;
+                border: 1px solid black;
+            }
+
+            section {
+                margin-left: 25%;
+                border: 1px solid black;
+            } */
+
+            nav {
+                color: blue;
+            }
+
+            /* when the screen is wider than or equal to 600 px */
+            @media screen and (min-width:600px) {
+                nav {
+                    float: left;
+                    width: 25%;
+                    border: 1px solid black;
+                }
+                section {
+                    margin-left: 25%;
+                    border: 1px solid black;
+                }
+            }
+
+            /* when the screen is narrower than or equal to 599 pixels */
+            @media screen and (max-width:599px) {
+                nav li {
+                    display: inline;
+                }
+                section {
+                    /*margin-left: 25%;*/
+                    border: 1px solid black;
+                }
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="container clearfix">
+
+            <nav>
+                <ul>
+                    <li><a>Home</a></li>
+                    <li><a>Taco Menu</a></li>
+                    <li><a>Draft List</a></li>
+                </ul>
+            </nav>
+            
+            <section>
+                This example works just like the last one. 
+                Notice we put a clearfix on the container. 
+                It's not needed in this example, 
+                but it would be if the nav was longer than the non-floated content.
+
+            </section>
+
+            <section>
+                When this layout is too narrow, the nav gets squished. 
+                Worse, you can't use min-width on the nav to fix it, 
+                because the right column wouldn't respect it.
+            </section>
+
+
+        </div>
+    </body>
+</html>
