@@ -1,63 +1,134 @@
 body {
     font-size: small;
-    background-color: #fff;
+    background: #fff;
     color: #222;
     font-family: arial, sans-serif;
     height: 100%;
     margin: 0;
 
-    /* why this line */
-    /*display: block;*/
+}
 
-    overflow: hidden;
-    /* 这个google是咋整的，待解决 */
+div#viewport {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+#viewport {
+    min-height: 100%;
+}
+
+.ctr-p {
+    margin: 0 auto;
+    min-width: 980px;
+}
+
+#hd {
+    top: 16px;
+    font-size: 13px;
+    position: relative;
 }
 
 
-.head {
-    display: flex;
-    justify-content: space-between;
-}
-
-.headleft {
+#headleft {
     /* vertical | horizontal */
     /* top | right | bottom | left */
     margin: 7px 0 0 10px;
+    position: absolute;
+
+    /* over the head right layer div */
+    z-index: 1000;
 }
 
-.headright {
-    margin: 7px 0 0 10px;
-}
-
-.headleft>a {
+#headleft a {
+    padding-left: 15px;
     color: #000;
     opacity: 0.75;
 }
 
-.headright>a {
+.headright {
+
+    min-width: 220px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    /* 查一下这一句 */
+    align-items: center;
+
+    display: flex;
+    justify-content: flex-end;
+
+    /* order: 1; */
+    /* The order CSS property sets the order to lay out an item in a flex or grid container. */
+}
+
+.headright a{
     color: rgba(0,0,0,0.87);
 }
 
-.head a {
-    display: inline-block;
-    text-decoration: none;
-    line-height: 24px;
-    font-size: 13px;
-    padding-left: 13px;
-    
+.head-right-left{
+    display: flex;
+    padding-right: 15px;
+    /*flex: 0 1 auto;
+    line-height: normal;
+    margin-left: 0!important;
+    margin-right: 0!important;
+    text-align: right;*/
 }
 
-#viewport {
-    position: absolute;
-    top: 0;
-    width: 100%;
+.head-right-left-elements{
+    padding-left: 15px;
+    display: inline-block;
 
-    /* border for practice */
-    border: 1px solid black;
+    /*vertical-align: middle;*/
+    /*flex: 0 0 auto;*/
+    /*line-height: normal;*/
+    /*text-align: right;*/
+}
 
-    /* margin: 0 auto; */
-    /* search min-width */
-    /* min-width: 980px; */
+.head-right-left-elements>a {
+    display: inline-block;
+    line-height: 24px;
+    /*vertical-align: middle;*/
+}
+
+.head-right-right{
+    min-width: 114px;
+    display: flex;
+    flex: 0 1 auto;
+}
+
+
+.head-right-sign-in {
+    display: inline-block;
+    padding: 0 0 0 15px;
+    /*flex: 0 0 auto;*/
+}
+
+.head-right-google-apps {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+
+#sign-in {
+    cursor: default;
+    color: #fff;
+
+    border: 1px solid #4285f4;
+    font-weight: bold;
+    outline: none;
+
+    background: -webkit-linear-gradient(top,#4387fd,#4683ea);
+    display: inline-block;
+    padding: 0 12px;
+    border-radius: 2px;
+    line-height: 28px;
+}
+
+#sign-in:hover {
+    text-decoration: none;
 }
 
 
@@ -65,9 +136,7 @@ body {
     position: absolute;
     top: 311px;
     width: 100%;
-    /* min-width: 980px; */
-
-    margin-top: 0; /**/
+    margin-top: 0; 
 }
 
 
@@ -88,36 +157,31 @@ body {
     /*
     line-height: 34px;
     height: 34px !important;*/
-
 }
 
 
-.footbar {
+#footbar {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    min-width: 980px;
+    border-top: 1px solid #e4e4e4;
+    position: absolute;
     display: flex;
     justify-content: space-between;
     
-    /*height: 35px;*/
-
     background-color: #f2f2f2;
-
 
     /* control the line-height of the span */
     line-height: 40px;
-
     position: fixed;
-    bottom: 0;
-    width: 100%;
-
     font-size: 14px;
-
-    /* why this line */
-    /* margin-left: 27px; */
 }
 
 .leftbar {
     display: flex;
     justify-content: start;
-
+    padding-left: 3px;
 }
 
 .rightbar {
@@ -125,7 +189,7 @@ body {
     justify-content: end;
     
     /* 这个google是怎么解决的 */
-    padding-right: 27px;
+    padding-right: 30px;
 }
 
 
@@ -153,24 +217,16 @@ body {
 
 }
 
-/* 学习min-width min-height */
-
 .Fx4vi {
     padding-left: 27px;
     margin: 0 !important;
 }
 
-.footbar a {
-    text-decoration: none;
+
+#footbar a {
     color: #5f6368;
 }
 
-
-/*
-#searchbtn #luckybtn {
-    background-color: #f2f2f2;
-    color: #5f6368;
-}*/
 
 .submitbar {
     padding-top: 18px;
@@ -181,3 +237,19 @@ body {
     top: 53px;
 }
 
+
+a:visited{
+    color: rgba(0,0,0,0.87);
+}
+
+a:-webkit-any-link {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
