@@ -1,4 +1,4 @@
-# BOM (Browser Object Model) Document Object Model (DOM) 
+# BOM (Browser Object Model)
 
 ## window 对象
 
