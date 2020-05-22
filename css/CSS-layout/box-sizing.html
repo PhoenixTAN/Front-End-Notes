@@ -13,19 +13,20 @@
                 border: 1px solid black;
 
                 /* 使得原来的盒子保持width 500px */
-                /* 继续加margin, border, padding，会挤压原来的content的空间*/
+                /* 继续加border, padding，会挤压原来的content的空间*/
                 /* box-sizing: content-box; 是原来的box model */
                 box-sizing: border-box;
             }
 
             .fancy {
                 width: 500px;
-                margin: 50px auto;
+                margin: 20px auto;
+
                 padding: 50px;
                 border: 10px solid blue;
                 box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box;
+                /*-webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box; */
             }
         </style>
     </head>
