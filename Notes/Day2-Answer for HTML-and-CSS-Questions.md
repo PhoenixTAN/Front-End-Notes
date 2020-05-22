@@ -147,6 +147,12 @@ float可以用来布局，但是不是用来布局，float相当于用文字环�
 
 居中是container的size固定，然后用flex居中
 
+```css
+display: flex;
+justify-content: center;
+align-items: center;
+```
+
 ```html
 <!DOCTYPE html>
 <html>

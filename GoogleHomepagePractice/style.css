@@ -1,5 +1,5 @@
 body {
-    font-size: small;
+    font-size: small;   /* 直接用字号 */
     background: #fff;
     color: #222;
     font-family: arial, sans-serif;
@@ -16,7 +16,7 @@ div#viewport {
 
 .ctr-p {
     margin: 0 auto;
-    min-width: 980px;
+    min-width: 1139px;
 }
 
 #hd {
@@ -26,9 +26,12 @@ div#viewport {
 }
 
 
+
 #headleft {
     /* vertical | horizontal */
     /* top | right | bottom | left */
+
+
     margin: 7px 0 0 10px;
     position: absolute;
 
@@ -42,6 +45,7 @@ div#viewport {
     opacity: 0.75;
 }
 
+/*z-index 一般10 100 1000 10000*/
 
 .headright {
     min-width: 220px;
@@ -63,6 +67,7 @@ div#viewport {
     color: rgba(0,0,0,0.87);
 }
 
+/*padding left*/
 .head-right-left{
     display: flex;  /* 理解一下这一句 */
     padding-right: 15px;
@@ -85,6 +90,7 @@ div#viewport {
     /*text-align: right;*/
 }
 
+/* 一般都不需要 > 效率问题 可读性 */
 .head-right-left-elements>a {
     /* display: inline-block; */
     line-height: 24px;
@@ -126,7 +132,6 @@ div#viewport {
     padding: 0 12px;
     border-radius: 2px;
     line-height: 28px;
-
 }
 
 #sign-in:hover {
@@ -166,7 +171,8 @@ div#viewport {
 
 .Fx4vi {
     padding-left: 27px;
-    margin: 0 !important;
+    /* important特别少 */
+    /* margin: 0 !important; */
 }
 
 #footbar a {
@@ -202,59 +208,192 @@ a:hover {
     position: absolute;
     top: 311px;
     width: 100%;
+    min-width: 980px;
     margin-top: 0; 
+
+    /* z-index: 127; */
 }
 
-#searchform a {
-    text-decoration: none;
+
+#submit-form {
+    margin: 0 auto;
+    width: 833px;
+    /* max-width: none; */
+}
+
+#search-bar-wrap1 {
+    /* position: relative; */
+    margin: 0 auto;
+    padding-top: 6px;
+    width: 584px;
+
+    /* border: 1px solid black; */
+}
+
+#search-bar-wrap2 {
+    background: #fff;
+    display: flex;
+    border: 1px solid #dfe1e5;
+    box-shadow: none;
+    border-radius: 24px;
+    z-index: 3;
+    height: 44px;
+    margin: 0 auto;
+    width: 582px;
+
+    /* border: 1px solid green; */
+}
+
+#search-bar-wrap3 {
+    flex: 1;
+    display: flex;
+    padding: 5px 8px 0 16px;
+    padding-left: 14px;
+
+    /* border: 1px solid blue; */
+}
+
+#search-bar-wrap4 {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    /* border: 1px solid red; */
+}
+
+#pr49ae {
+    font: 16px arial,sans-serif;
+    line-height: 34px;
+    height: 34px !important;
+
+    color: transparent;
+    flex: 100%;
+    white-space: pre;
 }
 
 .searchtext {
-    border-radius: 24px;
-    
-    width: 482px;
-    height: 44px;
-    border: 1px solid #dfe1e5;
 
-    /*The outline CSS property is a shorthand to set various outline properties in a single declaration*/
-    outline: none;  /* 取消单击搜索框时的出现的外边框 */
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    color: rgba(0,0,0,.87);
+    word-wrap: break-word;
+    outline: none;
+    display: flex;
+    flex: 100%;
+    -webkit-tap-highlight-color: transparent;
+    margin-top: -37px;
+    font-size: 16px;
     font: 16px arial,sans-serif;
-    /*
     line-height: 34px;
-    height: 34px !important;*/
+    height: 34px !important;
 }
 
+#left-icon-wrap {
+    display: flex;
+    align-items: center;
+    padding-right: 13px;
+    margin-top: -5px;
+}
+
+.left-icon {
+    margin: auto;
+}
+
+.left-icon>span {
+    display: inline-block;
+    line-height: 24px;
+    /* position: relative; */
+
+    margin-top: 3px;
+    color: #9AA0A6;
+    height: 20px;
+    width: 20px;
+}
+
+.left-icon>span>svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+#right-icon-wrap {
+    display: flex;
+    flex: 0 0 auto;
+    margin-top: -5px;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.right-icon {
+    flex: 1 0 auto;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    border: 0;
+    background: transparent;
+    outline: none;
+    padding: 0 8px;
+    width: 24px;
+    line-height: 44px;
+}
+
+.right-icon>svg {
+    height: 24px;
+    width: 24px;
+    /* display: table-cell 的时候vertical-align才有用 */
+    vertical-align: middle;
+}
 
 .submitbar {
     padding-top: 18px;
     height: 70px;
-    width: 487px;
-
-    /* why this line */
-    top: 53px;
+    width: 571px;
 }
-
 
 .submitbar input[type="submit"] {
     background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
-    
-    color: #5F6368;
-    
+    background-color: #f2f2f2;
+    border: 1px solid #f2f2f2;
     border-radius: 4px;
-
-    font-family: Arial, sans-serif;
+    color: #5F6368;
+    font-family: arial,sans-serif;
     font-size: 14px;
-
-    text-align: center;
-
-    height: 36px;
-    min-width: 54px;
-
     margin: 11px 4px;
     padding: 0 16px;
-
+    line-height: 27px;
+    height: 36px;
+    min-width: 54px;
+    text-align: center;
     cursor: pointer;
-
-    border-style: none;
-
+    user-select: none;
 }
+
+
+.submitbar input[type="submit"]:hover {
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    background-image: -webkit-linear-gradient(top,#f8f8f8,#f1f1f1);
+    background-color: #f8f8f8;
+    border: 1px solid #c6c6c6;
+    color: #222;
+}
+
+.main-image-container {
+    height: 233px;
+    margin-top: 89px;
+}
+
+
+.main-image-wrap {
+    cursor: pointer;
+    height: 200px;
+
+    width: 500px;
+
+    /* centering the image horizontally and vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}   
+

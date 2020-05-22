@@ -7,7 +7,13 @@
 </head>
 
 <body>
-    
+    <!-- 我们默认用border-box -->
+    <!-- 使用sematic tag -->
+    <!-- 可以直接写在body -->
+
+    <!-- 能少用尽量少用absolute，脱离了文档流，页面的悬浮广告 -->
+
+    <!-- 丑化代码 缩短代码 -->
     <div class="ctr-p" id="viewport">
         <div class="head" id="hd">
             <div id="headleft">
@@ -21,12 +27,12 @@
                     </div>
                     <div class="head-right-left-elements">
                         <a href="#">Images</a>
-                    </div>         
+                    </div>
                 </div>
 
                 <div class="head-right-right">
                     <div class="head-right-google-apps">
-                        <a aria-expanded="false" role="button" tabindex="0" ><img src="images/meun-icon.png" style="width: 30px; height: 30px;"></a>
+                        <a aria-expanded="false" role="button"><img src="images/meun-icon.png" style="width: 30px; height: 30px;"></a>
                     </div>  
                     <div class="head-right-sign-in">
                         <a id="sign-in" role="button">Sign in</a> 
@@ -34,43 +40,81 @@
                 </div>
             </div>
         </div>
-        <div class="content" id="main">
-            <div class="jhp" id="searchform">
-                <center>
-                    <img src="images/520_love.png" style="width: 400px; height: 200px;">
-                    <form method="GET" >
-                        <input class="searchtext" type="text">
-                        <div class="submitbar">
-                            <input id="searchbtn" type="submit" value="Google Search"></input>
-                            <input id="luckybtn" type="submit" value="I'm Feeling Lucky"></input>
-                        </div>
-                    </form>
-                    <div>Google offered in: <a href="#">中文(简体)</a></div>
-                </center>
-                
-            </div>
-            <div class="ctr-p" id="footbar">
 
+        <div class="jhp" id="searchform">
+            <form id="submit-form" method="GET">
+                <div id="search-bar-wrap1">
+                    <div id="search-bar-wrap2">
+                        <div id="search-bar-wrap3">
+                            <div id="left-icon-wrap">
+                                <!-- left search icon -->
+                                <div class="left-icon">
+                                    <span>
+                                        <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- search bar -->
+                            <div id="search-bar-wrap4">
+                                <div id="pr49ae">
+                                </div>
+                                <input class="searchtext" type="text">
+                            </div>
+                            <!-- right microphone icon -->
+                            <div id="right-icon-wrap">
+                                <div class="right-icon">
+                                    <svg class="HPVvwb" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="m12 15c1.66 0 3-1.31 3-2.97v-7.02c0-1.66-1.34-3.01-3-3.01s-3 1.34-3 3.01v7.02c0 1.66 1.34 2.97 3 2.97z" fill="#4285f4"></path><path d="m11 18.08h2v3.92h-2z" fill="#34a853"></path>
+                                        <path d="m7.05 16.87c-1.27-1.33-2.05-2.83-2.05-4.87h2c0 1.45 0.56 2.42 1.47 3.38v0.32l-1.15 1.18z" fill="#f4b400"></path>
+                                        <path d="m12 16.93a4.97 5.25 0 0 1 -3.54 -1.55l-1.41 1.49c1.26 1.34 3.02 2.13 4.95 2.13 3.87 0 6.99-2.92 6.99-7h-1.99c0 2.92-2.24 4.93-5 4.93z" fill="#ea4335"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submitbar">
+                        <!-- html 5 不支持 center了-->
+                        <center>
+                            <input id="searchbtn" type="submit" value="Google Search"></input>
+                            <input id="luckybtn" type="submit" value="I'm Feeling Lucky"></input>       
+                        </center>
+                    </div> 
+                </div>
+            </form>
+       </div>
+
+        <div class="content" id="main">
+            <div class="ctr-p">
+                <center>
+                    <div class="main-image-container">
+                        <div class="main-image-wrap">
+                            <img id="main-image" src="images/googlelogo.png">
+                        </div>
+                    </div>
+                </center>
+            </div>
+
+            <!-- 所有css都用class -->
+            <!-- 只有在get element by id 才用id -->
+            <div class="ctr-p" id="footbar">
+                <!-- 这里写成div -->
                 <span class="leftbar">
+                    <!-- 名字得换 -->
                     <a class="Fx4vi" href="#">Advertising</a>
                     <a class="Fx4vi" href="#">Business</a>
                     <a class="Fx4vi" href="#">How Search works</a>
                 </span>
-
                 <span class="rightbar">
                     <a class="Fx4vi" href="#">Privacy</a>
                     <a class="Fx4vi" href="#">Terms</a>
-                    <span style="display:inline-block; position:relative;">
-                        <a class="Fx4vi" href="#">Settings</a>
-                    </span>
-                    
+                    <a class="Fx4vi" href="#">Settings</a>
                 </span>
             </div>
         </div>
     </div>
 
-    
-    
 </body>
 
 </html>
