@@ -23,6 +23,16 @@ The flex-direction CSS property sets how flex items are placed in the flex conta
     flex-direction: row | row-reverse | column | column-reverse;
 }
 ```
+![alt text](./images/dice.png)
+
+```css
+/* for dice FOUR */
+.flex .fourth-face .vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+```
 
 ### flex-warp
 The flex-wrap CSS property sets whether flex items are forced onto one line or can wrap onto multiple lines. If wrapping is allowed, it sets the direction that lines are stacked.
@@ -71,5 +81,7 @@ This defines the alignment along the main axis.
 
 ### align-items
 
+![alt text](./images/align-items.png)
+
 ### align-self
-The align-self CSS property overrides a grid or flex item's align-items value. In Grid, it aligns the item inside the grid area. In Flexbox, it aligns the item on the cross axis.
+The align-self CSS property **overrides a grid or flex item's align-items value**. In Grid, it aligns the item inside the grid area. In Flexbox, it aligns the item on the cross axis.
