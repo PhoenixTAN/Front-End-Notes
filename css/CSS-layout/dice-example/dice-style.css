@@ -67,7 +67,7 @@
   }
   
   .flex .second-face span:nth-child(2) {
-    align-self: flex-end;
+    margin-top: auto;
   }
   
   .flex .third-face {
@@ -76,11 +76,11 @@
   }
   
   .flex .third-face span:nth-child(2) {
-    align-self: center;
+    margin: auto 0;
   }
   
   .flex .third-face span:nth-child(3) {
-    align-self: flex-end;
+    margin-top: auto;
   }
   
   .flex .fourth-face {
@@ -106,7 +106,7 @@
   }
   
   .flex .fifth-face div:nth-child(2) {
-    justify-content: center;
+    margin: auto 0;
   }
   
   .flex .sixth-face {
