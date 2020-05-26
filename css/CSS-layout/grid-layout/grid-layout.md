@@ -261,3 +261,148 @@ This property aligns the grid along the block (column) axis (as opposed to justi
 ### grid-auto-colomns & grid-auto-rows
 The grid-auto-columns CSS property specifies the size of **an implicitly-created grid column track** or pattern of tracks.
 
+什么是implicit grid
+
+```css
+.container {
+    grid-template-columns: 60px 60px;
+    grid-template-rows: 90px 90px;
+}
+```
+This creates a 2 x 2 grid.
+![alt text](./images/2by2-grid.png)
+
+But now imagine you use grid-column and grid-row to position your grid items like this:
+```css
+.item-a {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+.item-b {
+    grid-column: 5 / 6;
+    grid-row: 2 / 3;
+}
+```
+![alt text](./images/2by5-grid.png)
+
+We told .item-b to start on column line 5 and end at column line 6, **but we never defined a column line 5 or 6.**
+
+We can use grid-auto-columns and grid-auto-rows to specify the widths of these implicit tracks:
+
+主角终于出场了：
+```css
+.container {
+    grid-auto-columns: 60px;
+}
+```
+![alt text](./images/grid-auto-columns.png)
+
+
+### grid-auto-flow
+```css
+.container {
+    grid-auto-flow: row | column | row dense | column dense;
+}
+```
+
+```html
+<section class="container">
+  <div class="item-a">item-a</div>
+  <div class="item-b">item-b</div>
+  <div class="item-c">item-c</div>
+  <div class="item-d">item-d</div>
+  <div class="item-e">item-e</div>
+</section>
+```
+
+You define a grid with five columns and two rows, and set **grid-auto-flow to row (which is also the default)**:
+```css
+.container {
+    display: grid;
+    grid-template-columns: 60px 60px 60px 60px 60px;
+    grid-template-rows: 30px 30px;
+    grid-auto-flow: row;
+}
+.item-a {
+    grid-column: 1;
+    grid-row: 1 / 3;
+}
+.item-e {
+    grid-column: 5;
+    grid-row: 1 / 3;
+}
+```
+
+Because we set grid-auto-flow to row, our grid will look like this.
+
+![alt text](./images/grid-auto-flow-row.png)
+
+If we instead set grid-auto-flow to column, item-b, item-c and item-d flow down the columns:
+```css
+.container {
+    display: grid;
+    grid-template-columns: 60px 60px 60px 60px 60px;
+    grid-template-rows: 30px 30px;
+    grid-auto-flow: column;
+}
+```
+![alt text](./images/grid-auto-flow-column.png)
+
+
+
+### grid
+A shorthand for setting all of the following properties in a single declaration: grid-template-rows, grid-template-columns, grid-template-areas, grid-auto-rows, grid-auto-columns, and grid-auto-flow.
+
+
+## Properties for the Children (Grid Items)
+Note:
+float, display: inline-block, display: table-cell, vertical-align and column-* properties **have no effect on a grid item**.
+
+### grid-row/column-start/end
+Determines a grid item’s location within the grid by referring to specific grid lines.
+
+Values:
+- \<line> – can be a number to refer to a numbered grid line, or a name to refer to a named grid line
+- span \<number> – the item will span across the provided number of grid tracks
+- span \<name> – the item will span across until it hits the next line with the provided name
+- auto – indicates auto-placement, an automatic span, or a default span of one
+
+#### line number
+```css
+.item-a {
+    grid-column-start: 2;
+    grid-column-end: five;
+    grid-row-start: row1-start;
+    grid-row-end: 3;
+}
+```
+![alt text](./images/grid-row-column-line-number.png)
+
+#### how do we use span?
+```css
+.item-b {
+    grid-column-start: 1;
+    grid-column-end: span col4-start;
+    grid-row-start: 2;
+    grid-row-end: span 2;
+}
+```
+![alt text](./images/grid-row-column-span.png)
+
+If no grid-column-end/grid-row-end is declared, **the item will span 1** track by default.
+
+Items can overlap each other. You can use **z-index** to control their stacking order.
+
+### grid-column & grid-row
+Shorthand for grid-column-start + grid-column-end, and grid-row-start + grid-row-end, respectively.
+
+### grid-area
+
+Alternatively, this property can be used as an even shorter shorthand for grid-row-start + grid-column-start + grid-row-end + grid-column-end.
+
+### justify-self & align-self
+- start
+- end
+- center
+- stretch
+
