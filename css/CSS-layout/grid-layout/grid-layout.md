@@ -146,3 +146,118 @@ he grid-template-areas CSS property specifies named grid areas.
 
 
 ![alt text](./images/gird-template-areas.png)
+
+
+### grid-template
+A **shorthand** for setting grid-template-rows, grid-template-columns, and grid-template-areas in a single declaration.
+
+### gap
+- column-gap;
+- row-gap;
+- grid-column-gap;
+- grid-row-gap
+
+
+```css
+.container {
+  /* standard */
+  column-gap: <line-size>;
+  row-gap: <line-size>;
+
+  /* old */
+  grid-column-gap: <line-size>;
+  grid-row-gap: <line-size>;
+}
+```
+
+Example:
+```css
+.container {
+  grid-template-columns: 100px 50px 100px;
+  grid-template-rows: 80px auto 80px; 
+  column-gap: 10px;
+  row-gap: 15px;
+}
+```
+
+![alt text](./images/gap.png)
+
+### gap & grid-gap
+
+A **shorthand** for row-gap and column-gap.
+
+```css
+.container {
+  /* standard */
+  gap: <grid-row-gap> <grid-column-gap>;
+
+  /* old */
+  grid-gap: <grid-row-gap> <grid-column-gap>;
+}
+```
+
+### justify-items
+The CSS justify-items property defines the **default justify-self for all items** of the box, giving them all a default way of justifying each box along the appropriate axis.
+
+- start
+- end
+- center
+- stretch
+
+#### start
+```css
+.container {
+  justify-items: start;
+}
+```
+![alt text](./images/justify-items-start.png)
+
+#### end
+![alt text](./images/justify-items-end.png)
+
+#### center
+
+![alt text](./images/justify-items-center.png)
+
+#### stretch
+![alt text](./images/justify-items-stretch.png)
+
+
+### align-items
+Aligns grid items along the block (column) axis.
+
+![alt text](./images/align-items.png)
+
+
+### justify-content
+Sometimes the total size of your grid might be less than the size of its grid container. 
+
+- start
+- end
+- center
+- stretch
+- space-around
+- space-between
+- space-evenly
+
+![alt text](./images/justify-content-start-end.png)
+
+![alt text](./images/justify-content-space-evenly.png)
+
+### align-content
+Sometimes the total size of your grid might be less than the size of its grid container. 
+
+This property aligns the grid along the block (column) axis (as opposed to justify-content which aligns the grid along the inline (row) axis).
+
+- start
+- end
+- center
+- stretch
+- space-around
+- space-between
+- space-evenly
+
+
+### grid-auto-colomns & grid-auto-rows
+The grid-auto-columns CSS property specifies the size of **an implicitly-created grid column track** or pattern of tracks.
+
