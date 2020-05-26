@@ -1,122 +1,198 @@
 /* OTHER STYLES */
 
 * {
-    box-sizing: border-box;
-  }
-  
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  img {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-  }
-  
-  .dice__container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: center;
-    flex-wrap: wrap;
-    align-content: center;
-    font-family: "Open Sans", sans-serif;
-  
-    background: linear-gradient(top, #222, #333);
-  }
-  
-  [class$="face"] {
-    margin: 16px;
-    padding: 4px;
-  
-    background-color: #e7e7e7;
-    width: 104px;
-    height: 104px;
-    object-fit: contain;
-  
-    box-shadow: inset 0 5px white, inset 0 -5px #bbb, inset 5px 0 #d7d7d7,
-      inset -5px 0 #d7d7d7;
-  
-    border-radius: 10%;
-  }
-  
-  .pip {
-    display: block;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    margin: 4px;
-  
-    background-color: #333;
-    box-shadow: inset 0 3px #111, inset 0 -3px #555;
-  }
-  
-  .flex .first-face {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .flex .second-face {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .flex .second-face span:nth-child(2) {
-    margin-top: auto;
-  }
-  
-  .flex .third-face {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .flex .third-face span:nth-child(2) {
-    margin: auto 0;
-  }
-  
-  .flex .third-face span:nth-child(3) {
-    margin-top: auto;
-  }
-  
-  .flex .fourth-face {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .flex .fourth-face .vertical {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .flex .fifth-face {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .flex .fifth-face .vertical {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .flex .fifth-face div:nth-child(2) {
-    margin: auto 0;
-  }
-  
-  .flex .sixth-face {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .flex .sixth-face .vertical {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.dice__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: center;
+  flex-wrap: wrap;
+  align-content: center;
+  font-family: "Open Sans", sans-serif;
+
+  background: linear-gradient(top, #222, #333);
+}
+
+[class$="face"] {
+  margin: 16px;
+  padding: 4px;
+
+  background-color: #e7e7e7;
+  width: 104px;
+  height: 104px;
+  object-fit: contain;
+
+  box-shadow: inset 0 5px white, inset 0 -5px #bbb, inset 5px 0 #d7d7d7,
+    inset -5px 0 #d7d7d7;
+
+  border-radius: 10%;
+}
+
+.pip {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin: 4px;
+
+  background-color: #333;
+  box-shadow: inset 0 3px #111, inset 0 -3px #555;
+}
+
+/* flex layout */
+.flex .first-face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex .second-face {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex .second-face span:nth-child(2) {
+  margin-top: auto;
+}
+
+.flex .third-face {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex .third-face span:nth-child(2) {
+  margin: auto 0;
+}
+
+.flex .third-face span:nth-child(3) {
+  margin-top: auto;
+}
+
+.flex .fourth-face {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex .fourth-face .vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flex .fifth-face {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex .fifth-face .vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flex .fifth-face div:nth-child(2) {
+  margin: auto 0;
+}
+
+.flex .sixth-face {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex .sixth-face .vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* grid layout */
+
+.grid [class$="face"] {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "a b c"
+    "d e f"
+    "g h i";
+}
+
+.grid .first-face span:nth-child(1) {
+  grid-area: e;
+}
+
+.grid .second-face span:nth-child(2) {
+  grid-area: i;
+}
+
+.grid .third-face span:nth-child(2) {
+  grid-area: e;
+}
+
+.grid .third-face span:nth-child(3) {
+  grid-area: i;
+}
+
+.grid .fourth-face span:nth-child(2) {
+  grid-area: c;
+}
+
+.grid .fourth-face span:nth-child(3) {
+  grid-area: g;
+}
+
+.grid .fourth-face span:nth-child(4) {
+  grid-area: i;
+}
+
+.grid .fifth-face span:nth-child(2) {
+  grid-area: c;
+}
+
+.grid .fifth-face span:nth-child(3) {
+  grid-area: e;
+}
+
+.grid .fifth-face span:nth-child(4) {
+  grid-area: g;
+}
+
+.grid .fifth-face span:nth-child(5) {
+  grid-area: i;
+}
+
+.grid .sixth-face span:nth-child(2) {
+  grid-area: c;
+}
+
+.grid .sixth-face span:nth-child(3) {
+  grid-area: d;
+}
+
+.grid .sixth-face span:nth-child(4) {
+  grid-area: f;
+}
+
+.grid .sixth-face span:nth-child(5) {
+  grid-area: g;
+}
+
+.grid .sixth-face span:nth-child(6) {
+  grid-area: i;
+}
