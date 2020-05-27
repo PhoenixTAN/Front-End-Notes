@@ -7,7 +7,6 @@
 </head>
 
 <body>
-    
     <header>
         <div class="head-left">
             <a href="#">About</a>
@@ -20,7 +19,7 @@
             </div>
 
             <div class="head-right-icons">  
-                <a class="head-right-google-apps" aria-expanded="false" role="button">
+                <a id="head-right-google-apps" aria-expanded="false" role="button">
                     <img src="images/meun-icon.png" style="width: 30px; height: 30px;">
                 </a>
                 <a class="head-right-sign-in" role="button">
@@ -29,6 +28,152 @@
             </div>
         </div>
     </header>
+    
+    <div id="apps-modal">
+        <div id="floating-popup-apps"> 
+            <div class="google-apps-row">
+                <a href="#">
+                    <img src="images/apps-icons/account-icon.png">
+                    <span>Account</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/search-icon.png">
+                    <span>Search</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/maps-icon.png">
+                    <span>Maps</span>
+                </a>
+            </div>
+            
+            <div class="google-apps-row">
+                <a href="#">
+                    <img src="images/apps-icons/youtube-icon.png">
+                    <span>Youtube</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/play-icon.png">
+                    <span>Play</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/news-icon.png">
+                    <span>News</span>
+                </a>
+            </div>
+            
+            <div class="google-apps-row">
+                <a href="#">
+                    <img src="images/apps-icons/gmail-icon.png">
+                    <span>Gmail</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/contacts-icon.png">
+                    <span>Contacts</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/drive-icon.png">
+                    <span>Drive</span>
+                </a>
+            </div>
+            <div class="google-apps-row">
+                <a href="#">
+                    <img src="images/apps-icons/calendar-icon.png">
+                    <span>Calendar</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/translate-icon.png">
+                    <span>Translate</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/photo-icon.png">
+                    <span>Photos</span>
+                </a>
+            </div>
+            <div class="google-apps-row">
+                <a href="#">
+                    <img src="images/apps-icons/shopping-icon.png">
+                    <span>Shopping</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/duo-icon.png">
+                    <span>Duo</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/meet-icon.png">
+                    <span>Meet</span>
+                </a>
+            </div>
+
+            <span style="border-bottom: 1px solid #e8eaed; display: block;"></span>
+            
+            <div class="google-apps-row">
+                <a href="#">
+                    <img src="images/apps-icons/finance-icon.png">
+                    <span>Finance</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/docs-icon.png">
+                    <span>Docs</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/sheet-icon.png">
+                    <span>Sheets</span>
+                </a>
+            </div>
+
+            <div class="google-apps-row">
+                <a href="#">
+                    <img src="images/apps-icons/slides-icon.png">
+                    <span>Slides</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/books-icon.png">
+                    <span>Books</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/blogger-icon.png">
+                    <span>Blogger</span>
+                </a>
+            </div>
+
+            <div class="google-apps-row">
+                <a href="#">
+                    <img src="images/apps-icons/hangouts-icon.png">
+                    <span>Hangouts</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/keep-icon.png">
+                    <span>Keep</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/jamboard-icon.png">
+                    <span>Jamboard</span>
+                </a>
+            </div>
+
+            <div class="google-apps-row">
+                <a href="#">
+                    <img src="images/apps-icons/earth-icon.png">
+                    <span>Earth</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/collections-icon.png">
+                    <span>Collections</span>
+                </a>
+                <a href="#">
+                    <img src="images/apps-icons/arts-icon.png">
+                    <span>Arts and Cultures</span>
+                </a>
+            </div>
+
+            <div class="more-from-google">
+                <a href="#">
+                    More from Google
+                </a>
+            </div>
+        </div>
+    </div>
+    
 
     <main class="container">
         <div class="main-image-container">
@@ -36,20 +181,55 @@
         </div>
         
         <form class="submit-form" method="GET">
+
             <div class="search-bar-wrap">
                 <!-- left search icon -->
                 <div class="left-search-icon">
-                    
                     <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
                     </svg>
-                    
                 </div>
                 
                 <!-- search bar -->
-                
-                <input class="search-text" type="text">
-                
+                <input id="search-text" type="text">
+                <div id="search-floating-popup">
+                    <div class="try-searching-for">
+                        Try search for
+                    </div>
+                    <div class="search-history">
+                        <div class="left-search-icon">
+                            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                            </svg>
+                        </div>
+                        <a href="#">javascript floating popup window</a>
+                    </div>
+                    <div class="search-history">
+                        <div class="left-search-icon">
+                            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                            </svg>
+                        </div>
+                        <a href="#">document addEventListener</a>
+                    </div>
+                    <div class="search-history">
+                        <div class="left-search-icon">
+                            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                            </svg>
+                        </div>
+                        <a href="#">HelloWorld</a>
+                    </div>
+                    <!-- need modify?-->
+                    <div class="submitbar-wrap">
+                        <input class="google-search-btn" type="submit" value="Google Search"></input>
+                        <input class="lucky-btn" type="submit" value="I'm Feeling Lucky"></input>                 
+                    </div>
+                    <div class="report-inappropriate-predictions">
+                        <a href="#">Report inappropriate predictions</a>
+                    </div>
+                </div>
+
                 <!-- right microphone icon --> 
                 <div class="right-microphone-icon">
                     <svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -58,15 +238,26 @@
                         <path d="m12 16.93a4.97 5.25 0 0 1 -3.54 -1.55l-1.41 1.49c1.26 1.34 3.02 2.13 4.95 2.13 3.87 0 6.99-2.92 6.99-7h-1.99c0 2.92-2.24 4.93-5 4.93z" fill="#ea4335"></path>
                     </svg>
                 </div>
-                
             </div>
+
+            
             <div class="submitbar-wrap">
                 <input class="google-search-btn" type="submit" value="Google Search"></input>
                 <input class="lucky-btn" type="submit" value="I'm Feeling Lucky"></input>                 
-            </div> 
+            </div>
         </form>
         
     </main>
+    <div id="setting-floating-popup-modal">
+        <div id="setting-floating-popup">
+            <a>Search settings</a>
+            <a>Advanced search</a>
+            <a>Your data in Search</a>
+            <a>History</a>
+            <a>Search help</a>
+            <a>Send feedback</a>
+        </div>
+    </div>
 
     <footer>
         <div class="left-footbar">
@@ -77,9 +268,11 @@
         <div class="right-footbar">
             <a class="footer-link" href="#">Privacy</a>
             <a class="footer-link" href="#">Terms</a>
-            <a class="footer-link" href="#">Settings</a>
+            <a id="setting" class="footer-link" href="#">Settings</a>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 
 </body>
 
