@@ -39,3 +39,11 @@ The innerHTML property returns the text, including all spacing and inner element
 
 The textContent property returns the text with spacing, but without inner element tags.
 
+## Javascript设置class
+**Element.className**
+```javascript
+var cName = elementNodeReference.className;
+elementNodeReference.className = cName;
+```
+cName is a string variable representing the class or space-separated classes of the current element.
+
