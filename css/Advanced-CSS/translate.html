@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<style type="text/css">
+        .test {
+            width: 100px;
+            height: 200px;
+            background: #66ccff;
+            /* transform: translate(20px, 100px); */
+
+            transition: height 2s ease, width 5s linear;
+            /* 这个用scale也不会放大元素 */
+            /* 不会改变文档流 */
+        }
+
+        .test:hover {
+            height: 100px;
+            width: 50px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="test">
+        Test
+    </div>
+</body>
+
+</html>
