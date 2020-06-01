@@ -16,7 +16,7 @@ Leading zeros are prohibited. A decimal point must be followed by at least one d
 ### Any JSON text is a valid Javscript expression
 
 ### Full JSON Syntax
-```javascript
+```json
 JSON = null
     or true or false
     or JSONNumber
@@ -66,7 +66,7 @@ ArrayElements = JSON
              or ArrayElements , JSON
 ```
 
-```javascript
+```json
 {
   "browsers": {
     "firefox": {
