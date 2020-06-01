@@ -102,3 +102,270 @@ elements.map(({ length: lengthFooBArX }) => lengthFooBArX); // [8, 6, 7, 9]
 // Unpacking fields from objects passed as function parameter
 elements.map(({ length }) => length); // [8, 6, 7, 9] 
 ```
+
+## No separate this
+没懂 什么是strict mode
+```javascript
+function Person() {
+  // The Person() constructor defines `this` as an instance of itself.
+  this.age = 0;
+	document.write(this.age);
+  setInterval(function growUp() {
+    // In non-strict mode, the growUp() function defines `this`
+    // as the global object (because it's where growUp() is executed.), 
+    // which is different from the `this`
+    // defined by the Person() constructor.
+    this.age++;
+    document.write(this.age);   // NaN
+  }, 1000);
+}
+
+var p = new Person();
+```
+
+```javascript
+function Person() {
+  var that = this;
+  that.age = 0;
+	document.write(that.age);
+  setInterval(function growUp() {
+    // The callback refers to the `that` variable of which
+    // the value is the expected object.
+    that.age++;
+    document.write(that.age);
+  }, 1000);
+}
+
+var p = new Person();
+```
+
+Arrow Function
+An arrow function does not have its own this. The this value of the enclosing lexical scope is used; arrow functions follow the normal variable lookup rules. **So while searching for this which is not present in the current scope, an arrow function ends up finding the this from its enclosing scope.**
+
+Thus, in the following code, the this within the function that is passed to setInterval has the same value as the this in the lexically enclosing function:
+
+```javascript
+function Person(){
+  this.age = 0;
+
+  setInterval(() => {
+    this.age++; // |this| properly refers to the Person object
+  }, 1000);
+}
+
+var p = new Person();
+```
+
+```javascript
+var f = () => { return this; };
+f() === window; // or the global object
+
+document.write(f()===window);  // True
+```
+
+## Invoked through call or apply
+Since arrow functions do not have their own this, the methods call() and apply() can only pass in parameters. Any this argument is ignored.
+
+这个没懂：
+```javascript
+var adder = {
+  base: 1,
+
+  add: function(a) {
+    var f = v => v + this.base;
+    // 第一个v是函数的参数，
+    // 第二个v是表示 return v+this.base;
+    return f(a);
+  },
+
+  addThruCall: function(a) {
+    var f = v => v + this.base;
+    var b = {
+      base: 2
+    };
+
+    return f.call(b, a);
+  }
+};
+
+console.log(adder.add(1));         // This would log 2
+console.log(adder.addThruCall(1)); // This would log 2 still
+```
+
+The call() method calls a function with a given this value and arguments provided individually.
+```javascript
+function Product(name, price) {
+  this.name = name;
+  this.price = price;
+  console.log(this.name);	// cheese
+}
+
+function Food(name, price) {
+  Product.call(this, name, price);
+  this.category = 'food';
+}
+
+console.log(new Food('cheese', 5).name);	// cheese
+// expected output: "cheese"
+```
+
+## No binding of arguments
+Arrow functions do not have their own arguments object. Thus, in this example, arguments is simply a reference to the arguments of the enclosing scope:
+
+这里没懂：
+```javascript
+var arguments = [1, 2, 3];
+var arr = () => arguments[0];
+
+arr(); // 1
+
+function foo(n) {
+  var f = () => arguments[0] + n; // foo's implicit arguments binding. arguments[0] is n
+  return f();
+}
+
+foo(3); // 6
+```
+
+In most cases, using rest parameters is a good alternative to using an arguments object.
+```javascript
+function foo(n) { 
+  var f = (...args) => args[0] + n;
+  return f(10); 
+}
+
+foo(1); // 11
+```
+
+## Arrow functions used as methods
+
+```javascript
+'use strict';
+
+var obj = { // does not create a new scope
+  i: 10,
+  b: () => console.log(this.i, this),
+  c: function() {
+    console.log(this.i, this);
+  }
+}
+
+obj.b(); // prints undefined, Window {...} (or the global object)
+obj.c(); // prints 10, Object {...}
+```
+
+## Arrow functions cannot be used as a constructor
+```javascript
+var Foo = () => {};
+var foo = new Foo(); // TypeError: Foo is not a constructor
+```
+
+## Function body
+```javascript
+var func = x => x * x;                  
+// concise body syntax, implied "return"
+
+var func = (x, y) => { return x + y; }; 
+// with block body, explicit "return" needed
+```
+
+## Return object literals
+Keep in mind that returning object literals using the concise body syntax params => {object:literal} will not work as expected.
+
+```javascript
+var func = () => { foo: 1 };
+// Calling func() returns undefined!
+
+var func = () => { foo: function() {} };
+// SyntaxError: function statement requires a name
+```
+You must wrap the object literal in parentheses:
+```javascript
+var func = () => ({ foo: 1 });
+```
+
+## Line breaks
+An arrow function cannot contain a line break between its parameters and its arrow.
+
+```javascript
+var func = (a, b, c)
+  => 1;
+// SyntaxError: expected expression, got '=>'
+```
+
+However, this can be amended by putting the line break after the arrow or using parentheses/braces as seen below to ensure that the code stays pretty and fluffy. You can also put line breaks between arguments.
+
+```javascript
+var func = (a, b, c) => (
+  1
+);
+
+var func = (a, b, c) => {
+  return 1
+};
+
+var func = (
+  a,
+  b,
+  c
+) => 1;
+ 
+// no SyntaxError thrown
+```
+
+## Parsing order
+```javascript
+let callback;
+
+callback = callback || function() {}; // ok
+
+callback = callback || () => {};
+// SyntaxError: invalid arrow-function arguments
+
+callback = callback || (() => {});    // ok
+```
+
+## Basic usage
+```javascript
+// An empty arrow function returns undefined
+let empty = () => {};
+
+(() => 'foobar')(); 
+// Returns "foobar"
+// (this is an Immediately Invoked Function Expression)
+
+var simple = a => a > 15 ? 15 : a; 
+simple(16); // 15
+simple(10); // 10
+
+let max = (a, b) => a > b ? a : b;
+
+// Easy array filtering, mapping, ...
+
+var arr = [5, 6, 13, 0, 1, 18, 23];
+
+var sum = arr.reduce((a, b) => a + b);
+// 66
+
+var even = arr.filter(v => v % 2 == 0); 
+// [6, 0, 18]
+
+var double = arr.map(v => v * 2);
+// [10, 12, 26, 0, 2, 36, 46]
+
+// More concise promise chains
+promise.then(a => {
+  // ...
+}).then(b => {
+  // ...
+});
+
+// Parameterless arrow functions that are visually easier to parse
+setTimeout( () => {
+  console.log('I happen sooner');
+  setTimeout( () => {
+    // deeper code
+    console.log('I happen later');
+  }, 1);
+}, 1);
+```
