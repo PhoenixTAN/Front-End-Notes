@@ -5,7 +5,8 @@
  * Please write a function to implement auto resend the request until succeed.
  */
 
-// type "npm start" in terminal
+// type "npm install" in the ternimal to install dependencies.
+// type "npm start" in terminal.
 const http = require("http");
 const baidu = "http://www.baidu1.com";
 const maxRetryNumber = 3;
