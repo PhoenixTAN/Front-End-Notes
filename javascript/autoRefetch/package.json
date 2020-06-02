@@ -1,0 +1,16 @@
+{
+  "name": "autorefetch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "autofetch-practice.js",
+  "scripts": {
+    "start": "nodemon src/index.js localhost 8080"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "fetch": "^1.1.0",
+    "node-fetch": "^2.6.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
