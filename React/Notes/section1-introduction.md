@@ -9,4 +9,22 @@ React (also known as React.js or ReactJS) is an open-source JavaScript library f
 **React apps run in the browser. They don't run on the server.**
 
 
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/umd/react.production.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.1/umd/react-dom.production.min.js"></script>
+```
+
+## Two kinds of applications
+
+- Single Page Applications: 整个HTML文件在用户第一次访问服务器的时候，就返回整个HTML文件，整个HTML文件以及里面的组件Components都由React(Javascript)管理。
+
+- Multi-page Applications: 返回多个HTML pages, 例如，在example.com里面，会有example.com/user， 我们还是可以用React，但是只是create little widgets.
+
+![alt text](./images/two-kinds-of-apps.png)
+
+
+## Syllabus
+![alt text](./images/syllabus.png)
+
 
