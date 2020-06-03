@@ -105,6 +105,7 @@ elements.map(({ length }) => length); // [8, 6, 7, 9]
 
 ## No separate this
 没懂 什么是strict mode
+这里！ No more issue with the "this" keyword.
 ```javascript
 function Person() {
   // The Person() constructor defines `this` as an instance of itself.
