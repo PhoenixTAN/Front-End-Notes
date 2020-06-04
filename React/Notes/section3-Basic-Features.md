@@ -496,7 +496,7 @@ I don't understand.
 ## Adding styling with stylesheets
 给component加CSS.
 
-方法一：
+方法一：外部式
 ```css
 .Person {
     width: 60%;
@@ -565,4 +565,5 @@ render() {
   }
 ```
 
+方法三：用第三方库，写在\<head>里面
 

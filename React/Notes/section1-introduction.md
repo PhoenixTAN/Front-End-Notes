@@ -28,3 +28,7 @@ React (also known as React.js or ReactJS) is an open-source JavaScript library f
 ![alt text](./images/syllabus.png)
 
 
+## 安装
+1. 安装node.js for npm.
+2. create-react-app
+3. 第三方库Radium, styled-components
