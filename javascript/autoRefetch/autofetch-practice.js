@@ -13,7 +13,8 @@ const maxRetryNumber = 3;
 const waitTime = 2000; // ms
 
 // This is an async function that use callback to fetch data from a url
-/*const fetch = (url, callback) => {
+
+const fetch = (url, callback) => {
   http
     .get(url, resp => {
       let data = "";
@@ -23,7 +24,7 @@ const waitTime = 2000; // ms
     .on("error", err => {
       callback(err);
     });
-};*/
+};
 
 // This is an example how to use fetch
 // Fetch Success
@@ -64,37 +65,25 @@ fetch("http://www.google1234.com", (err, data) => {
  *    1. Implement the function use callback, callback function signiture is same as fetch()
  *    2. Please use fetch(url, callback) function providded above.
  */
-/*const autoRefetch = (url, maxRetryNumber, waitTime, callback) => {
+const autoRefetch = (url, maxRetryNumber, waitTime, callback) => {
   console.info("Testing autoRefetch...");
-
   let times = 0;
-
-  function delay() {
-    setTimeout(callback, waitTime, url, (err, data) => {
-      times++;
-      console.info(new Date().getSeconds());
+  const fetchWithDelay = (url, counter) => {
+    if ( counter <= 0 ) {
+      return callback(new Error("Reach maximum try times."));
+    }
+    fetch(url, (err, data) => {
+      console.info(`Fetch ${maxRetryNumber - counter + 1} time`);
       if (!err) {
-        console.info("success", data);
-        return;
+        return callback(null, data);
       }
-      console.error("error", err);
-      if (times < maxRetryNumber) {
-        delay();
-      }
+      setTimeout( () => {
+        fetchWithDelay(url, counter - 1);
+      }, waitTime);
     });
   }
-
-  callback(url, (err, data) => {
-    console.log(new Date().getSeconds());
-    if (!err) {
-      console.info("success", data);
-      return;
-    }
-    console.error("error", err);
-    times++;
-    delay(); // recursion
-  });
-};*/
+  fetchWithDelay(url, maxRetryNumber);
+};
 
 /**
  *  TASK 2: Implement the same function in TASK 1 using Promise
@@ -103,49 +92,32 @@ fetch("http://www.google1234.com", (err, data) => {
  *    1. Please implement your function use Promise.
  *    2. Please use fetch(url, callback) function providded above.
  */
-const autoRefetchPromise = (url, maxRetryNumber, waitTime) => {
-  // TODO: Write you implementation here
-  console.info("Testing autoRefetchPromise...");
-  console.info(new Date().getSeconds());
-  let fetchPromise = new Promise((resolve, reject) => {
-    // re-use fetch(url, callback)
+const fetchPromise = (url) => {
+  return new Promise((resolve, reject) => {
     fetch(url, (err, data) => {
+      console.info(new Date().getSeconds());
       if (!err) {
         resolve(data);
       }
       reject(err);
     });
   });
+};
 
-  fetchPromise.then(
-    // fulfill handler
-    data => {
-      console.info("success", data);
-    },
-    // reject handler
-    err => {
-      console.error("error", err);
-      var times = 1;
-
-      function delay() {
-        setTimeout(() => {
-          fetch(url, (err, data) => {
-            times++;
-            console.info(new Date().getSeconds());
-            if (!err) {
-              console.info("success", data);
-              return;
-            }
-            console.error("error", err);
-            if (times < maxRetryNumber) {
-              delay(); // recursion
-            }
-          });
+const autoRefetchPromise = (url, maxRetryNumber, waitTime) => {
+  if ( maxRetryNumber <= 0 ) {
+    return Promise.reject(new Error("Reach retry limit."));
+  }
+  
+  return fetchPromise(url).catch( (err) => {
+    console.info("fail", err);
+    return new Promise(resolve => {
+      setTimeout(
+        () => {
+          autoRefetchPromise(url, maxRetryNumber - 1, waitTime);
         }, waitTime);
-      }
-      delay(); // call the function above
-    }
-  );
+    });
+  });
 };
 
 /**
@@ -155,93 +127,55 @@ const autoRefetchPromise = (url, maxRetryNumber, waitTime) => {
  *    1. Please implement your function use async/await.
  *    2. Please use fetch(url, callback) function providded above.
  */
-/*const autoRefetchAsync = async (url, maxRetryNumber, timeout) => {
-  // TODO: Write you implementation here
-  console.info("Testing autoRefetchAsync...");
-  var times = 0;
 
-  function delay() {
-    setTimeout(fetch, waitTime, url, (err, data) => {
-      times++;
-      console.info(new Date().getSeconds());
-      if (!err) {
-        console.info("success", data);
-        return;
-      }
-      console.error("error", err);
-      if (times < maxRetryNumber) {
-        delay();
-      }
-    });
+const autoRefetchAsync = async (url, maxRetryNumber, timeout) => {
+  try {
+    console.info(`Fetching Start ${maxRetryNumber}`);
+    const data = await fetchPromise(url);
+    console.info(`Fetch ${maxRetryNumber} Success`, data);
   }
-  let promise = new Promise((resolve, reject) => {
-    fetch(url, (err, data) => {
-      if (!err) {
-        // console.info("success", data);
-        resolve(data);
-        return;
-      }
-      console.error("error", err);
-      times++;
-      delay();
-    });
-  });
-
-  let result = await promise;
-  console.info(result);
-};*/
-
-// autoRefetch(baidu, maxRetryNumber, waitTime, fetch);
-// autoRefetchPromise(baidu, maxRetryNumber, waitTime);
-// autoRefetchAsync(baidu, maxRetryNumber, waitTime);
-
-
-/**
- * About fetch
- */
-const fetch = require("node-fetch");
-google = "http://www.google23.com";
-
-// fetch returns a Promise.
-/*fetch(google, {method: 'GET'})
-.then(res => {
-    console.info("success", res);
-})
-.catch(err => {
-    console.error("error", err);
-});*/
-
-/*function fetch_retry(url, options, n) {
-    console.info(new Date().getSeconds());
-    return fetch(url, options)
-            .then( (result) => {
-                /* on success 
-                console.info(result);
-            })
-            .catch( (err) => {
-                console.error("error", err);
-                if (n === 1) {
-                    return ;
-                }
-                setTimeout( () => {
-                    fetch_retry(url, options, n - 1);   // recursion
-                }, 3000);
-            });
-}*/
-
-const fetch_retry = async (url, options, n) => {
-    let error;
-    for (let i = 0; i < n; i++) {
-        console.info(new Date().getSeconds());
-        try {
-            await fetch(url, options);
-        } catch (err) {
-            error = err;
-        }
+  catch (err) {
+    console.info(`Fetch ${maxRetryNumber} Failed`);
+    if ( maxRetryNumber <= 1 ) {
+      throw new Error("Reach retry limit");
     }
-    throw error;
+    return await setTimeout(() => {
+      autoRefetchAsync(url, maxRetryNumber - 1, timeout);
+    }, timeout);
+  }
 };
 
+// test autoRefetch
+/*
+autoRefetch(baidu, maxRetryNumber, waitTime, (err, data) => {
+  if (!err) {
+    console.info("success", data);
+  }
+  console.error("error", err);
+});
+*/
+
+// test autoRefetchPromise
+/*
+autoRefetchPromise(baidu, maxRetryNumber, waitTime)
+.then( data => {
+  console.info("success", data);
+} )
+.catch(
+  err => {
+    console.error("error", err);
+  }
+);*/
+
+// test autoRefetchAsync
+autoRefetchAsync(baidu, maxRetryNumber, waitTime)
+.then( data => {
+  console.info("success", data);
+} )
+.catch(
+  err => {
+    console.error("error", err);
+  }
+);
 
 
-fetch_retry(google, {method: 'GET'}, 3);
