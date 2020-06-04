@@ -23,9 +23,10 @@ Javascript被block的时候，IO操作不会被block.
 
 I/O operations can be fetching data over the internet with Ajax or over WebSocket connections, querying data from a database such as MongoDB or accessing the filesystem with the NodeJs “fs” module. 
 
-IO操作，例如：
-从网上通过Ajax或者WebSocket连接获取数据，
-从数据库或文件系统获取数据。
+所有IO操作都是异步，例如：
+1. 网上通过Ajax或者WebSocket连接获取数据，
+2. 数据库请求，
+3. 文件系统读取。
 
 **All these kind of operations are done in parallel to the execution of your code and it is not JavaScript that does these operations; to put it simply, the underlying engine does it.**
 
@@ -162,3 +163,11 @@ One thing to note here is the first argument in every callback function will con
 **This is the anti-pattern that has been named “callback hell”.**
 
 Promises就是用来解决这个问题的。
+
+
+## EventLoop
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop
+
+
+promisify
+

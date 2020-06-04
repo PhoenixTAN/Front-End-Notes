@@ -207,6 +207,14 @@ asyncThing1().then(function() {
 
 ![alt text](./images/promise-then-catch.png)
 
+## 注意
+```javascript
+const promiseA = new Promise(myExecutorFunc);
+const promiseB = promiseA.then(handleFulfilled1, handleRejected1);
+const promiseC = promiseA.then(handleFulfilled2, handleRejected2); 
+```
+如果这样写，handleRejected1就不能handleFullfilled1的错误。
+
 ## Timing
 To avoid surprises, functions passed to then() will never be called synchronously, even with an already-resolved promise:
 
