@@ -225,3 +225,81 @@ Promise.resolve().then(() => console.log(2)).then(() => console.log(3));
 console.log(1); // 1, 2, 3, 4
 ```
 
+## 高级例子
+
+https://developers.google.com/web/fundamentals/primers/promises
+
+复杂异步代码让一切变得更简单
+接下来，让我们写一些代码。 比如说，我们想要：
+
+1. 启动一个转环来提示加载
+2. 获取一个故事的 JSON，确定每个章节的标题和网址
+3. 向页面中添加标题
+4. 获取每个章节
+5. 向页面中添加故事
+6. 停止转环
+
+…但如果此过程发生错误，也要向用户显示。 我们也想在那一点停止转环，否则，它将不停地旋转、眩晕并撞上其他 UI 控件。
+
+当然，您不会使用 JavaScript 来提供故事，以 HTML 形式提供会更快，但是这种方式在处理 API 时很常见： 多次提取数据，然后在全部完成后执行其他操作。
+
+### 对 XMLHttpRequest 执行 promise
+
+```javascript
+function get(url) {
+  // Return a new promise.
+  return new Promise(function(resolve, reject) {
+    // Do the usual XHR stuff
+    var req = new XMLHttpRequest();
+    req.open('GET', url);
+
+    req.onload = function() {
+      // This is called even on 404 etc
+      // so check the status
+      if (req.status == 200) {
+        // Resolve the promise with the response text
+        resolve(req.response);
+      }
+      else {
+        // Otherwise reject with the status text
+        // which will hopefully be a meaningful error
+        reject(Error(req.statusText));
+      }
+    };
+
+    // Handle network errors
+    req.onerror = function() {
+      reject(Error("Network Error"));
+    };
+
+    // Make the request
+    req.send();
+  });
+}
+```
+
+```javascript
+get('story.json').then(function(response) {
+  console.log("Success!", response);
+}, function(error) {
+  console.error("Failed!", error);
+})
+```
+
+### Array.prototype.map() and Array.prototype.reduce()
+
+#### map()
+The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.
+```javascript
+const array1 = [1, 4, 9, 16];
+
+// pass a function to map
+const map1 = array1.map(x => x * 2);
+
+console.log(map1);
+// expected output: Array [2, 8, 18, 32]
+```
+
+#### reduce()
+
+
