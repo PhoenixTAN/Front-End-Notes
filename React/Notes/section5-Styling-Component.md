@@ -364,4 +364,12 @@ export default App;
 但这样有个问题，你只想让你的CSS class局部起作用。
 
 解决方法：
+要添加一些
+```
+// 先要把东西都git了
+$ git add .
+$ git commit
+// 然后
+$ npm run eject
+```
 
