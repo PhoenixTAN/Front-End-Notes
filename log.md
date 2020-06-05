@@ -1,4 +1,4 @@
-# log
+# Learning log
 
 ## Week 1
 
@@ -57,10 +57,16 @@ Javascript Async Programming.
 1. Javascript Programming.
 
 ### Day 3
-1. React Section 1~4.
+React Section 1~4.
+1. React introduction.
+2. New features for Javascript.
+3. Basic Syntax for React.
+4. Lists and Conditionals.
 
 ### Day 4
-1. React Section 5~7.
+1. React Section 5~7
+    1. Styling React Components & Elements.
+    2. Debugging React App.
 2. Javascript promise practice rewriting.
 
 
