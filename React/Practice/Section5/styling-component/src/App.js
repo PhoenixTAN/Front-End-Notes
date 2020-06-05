@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-// import './App.css';
+import './App.css';
 import Person from './Person/Person'
-import classes from './App.css';
+import buttonStyle from './Button.module.css';
 
 
 class App extends Component {
@@ -72,18 +72,18 @@ class App extends Component {
 
     const assignedClasses = [];
     if ( this.state.persons.length <= 2 ) {
-      assignedClasses.push(classes.red);
+      assignedClasses.push('red');
     }
     if ( this.state.persons.length <= 1 ) {
-      assignedClasses.push(classes.bold);
+      assignedClasses.push('bold');
     }
 
     return (
-        <div className={classes.App}>
+        <div className="App">
           <h1>Hi, I'm a React App</h1>
           <p className={assignedClasses.join(' ')}>This is really working!</p>
           <button 
-            className={classes.Button}
+            className={buttonStyle.Button}
             alt={this.state.showName}
             onClick={this.togglePersonsHandler}>
               Switch Name
@@ -97,6 +97,4 @@ class App extends Component {
 }
 
 export default App;
-
-
 

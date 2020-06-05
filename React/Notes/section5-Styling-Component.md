@@ -363,13 +363,38 @@ export default App;
 外部式引用CSS
 但这样有个问题，你只想让你的CSS class局部起作用。
 
-解决方法：
-要添加一些
+尝试另一种方法了：
+创建一个Button.module.css文件，注意一定要以module为后缀名。
+
+写好CSS样式。
+```css
+.Button {
+    background-color: green;
+    color: white;
+    font: inherit;
+    border: 1px solid blue;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.Button:hover {
+    background-color: lightGreen;
+    color: red
+}
 ```
-// 先要把东西都git了
-$ git add .
-$ git commit
-// 然后
-$ npm run eject
+
+在App.js里面
+```javascript
+import buttonStyle from './Button.module.css';
+<button 
+    className={buttonStyle.Button}
+    alt={this.state.showName}
+    onClick={this.togglePersonsHandler}>
+      Switch Name
+</button>
 ```
+
+那我们怎么动态改变呢？
+再建两个CSS class就好。
+
 
