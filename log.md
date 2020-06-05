@@ -69,4 +69,9 @@ React Section 1~4.
     2. Debugging React App.
 2. Javascript promise practice rewriting.
 
-
+### Day 5
+1. React Section 7 -- Diving deeper into Components & React Internals.
+    1. A better project structure.
+    2. Stateless and Stateful Components.
+    3. 
+2. React Sectiono 9.
