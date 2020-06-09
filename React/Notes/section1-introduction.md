@@ -35,3 +35,5 @@ React (also known as React.js or ReactJS) is an open-source JavaScript library f
     1. Radium: CSS
     2. styled-components: CSS
     3. prop-types: 设置应该传输的类型
+    4. Axios: http request.
+    
