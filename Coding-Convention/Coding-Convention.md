@@ -26,17 +26,33 @@
 $ npm install node-scss
 ```
 
-标签没有东西自己闭合
-多使用reander
+## 标签没有东西自己闭合
+
+## 多使用&& and ||
 
 position是fix的 放在header里面也可以
 
 ## bind this
-查一下mdn
+使得this能穿过当前function的scope.
+```javascript
+const self = this;
+document.addEventListener("click", function removePopup() {
+      self.setState({settingPopupState: false});
+      document.removeEventListener("click", removePopup);
+    });
+```
 
-动态改style，最好改className，分离CSS与HTML
+```javascript
+document.addEventListener("click", (function removePopup() {
+      this.setState({settingPopupState: false});
+      document.removeEventListener("click", removePopup);
+    }.bind(this)));
+```
 
-svg有插件 直接传成component
+
+## 动态改style，最好改className，分离CSS与HTML
+
+## svg有插件 直接传成component
 
 ## 文件结构
 
