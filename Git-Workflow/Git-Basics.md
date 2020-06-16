@@ -94,4 +94,21 @@ $ git merge bugFix
 
 ![alt text](./images/merge-pracitce.png)
 
+### git rebase
+
+![alt text](./images/git-rebase-1.png)
+
+We would like to move our work from bugFix directly onto the work from master. That way it would look like these two features were developed sequentially, when in reality they were developed in parallel.
+
+```
+$ git rebase master
+```
+
+![alt text](./images/git-rebase-2.png)
+
+```
+$ git rebase bugFix
+```
+
+![alt text](./images/git-rebase-3.png)
 

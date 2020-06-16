@@ -180,8 +180,8 @@ useEffect( () => {
         // but after the (first) render cycle!
     }, [props.persons]);
     // this useEffect() only will be executed when the [props,persons] changed
-
 ```
+这样子就直接clear了计时器，不会弹窗了。
 
 ## React batches state updates
 

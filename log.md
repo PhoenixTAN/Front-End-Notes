@@ -75,3 +75,25 @@ React Section 1~4.
     2. Stateless and Stateful Components.
     3. 
 2. React Sectiono 9.
+
+## Week 4
+1. Finish the React Study.
+2. Google Homepage Replication -- React version.
+
+## Week 5
+### Day 1
+0. Conventional meeting.
+1. Google Homepage Replication -- React version code review. 1 hour
+2. Setup VPN.
+3. Modify the Google Homepage Replication.
+4. Read `Front-end Code Review Common Problem`.
+5. Read `Naming convention`.
+6. git workflow.
+
+### Day 2
+1. Typescript.
+2. git workflow.
+3. 给gitlab配SSH.
+4. 开始看project.
+5. Read `React Design Pattern`.
+6. Read `Rounter & Single-Page-App`.
