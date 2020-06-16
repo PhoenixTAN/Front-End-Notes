@@ -4,6 +4,9 @@
 
 https://learngitbranching.js.org/
 
+https://www.liaoxuefeng.com/wiki/896043488029600
+
+
 ## Introduction
 Push data to remote repository.
 1. git add 

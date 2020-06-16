@@ -91,12 +91,14 @@ React Section 1~4.
 6. git workflow.
 
 ### Day 2
-1. Typescript.
-2. git workflow.
+
+1. git workflow.
     - branch and fork 怎么merge
     - rebase
     - reset v.s. revert
-3. 给gitlab配SSH.
+2. Setup SSH connection to gitLab/gitHub.
+
+3. Typescript.
 4. 开始看project.
 5. Read `React Design Pattern`.
 6. Read `Rounter & Single-Page-App`.

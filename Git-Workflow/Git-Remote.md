@@ -12,5 +12,15 @@ $ git clone
 
 ![alt text](./images/git-clone.png)
 
+## git fetch
+we will learn how to fetch data from a remote repository -- the command for this is conveniently named git fetch.
 
+```
+$ git fetch
+```
+
+从远程仓库获取数据。
+
+## git pull
+In fact, the workflow of fetching remote changes and then merging them is so common that git actually provides a command that does both at once! That command is git pull.
 
