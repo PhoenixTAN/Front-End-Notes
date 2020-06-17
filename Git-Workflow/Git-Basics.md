@@ -183,4 +183,17 @@ A new commit plopped down below the commit we wanted to reverse. That's because 
 
 With reverting, you can push out your changes to share with others.
 
+## git cherry-pick
+Copy a series of commits below your current location (HEAD).
+![alt text](./images/git-cherry-pickup-1.png)
+This could be accomplished through a rebase (which we have already learned), but let's see how cherry-pick performs.
+```
+$ git cherry-pick C2 C4
+```
+![alt text](./images/git-cherry-pickup-2.png)
+只提取C2和C4的更改，C3不提取？
+
+## git rebase -i HEAD~3
+用UI来拖拽调整commit的顺序。
+
 

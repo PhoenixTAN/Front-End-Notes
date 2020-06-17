@@ -73,11 +73,12 @@ React Section 1~4.
 1. React Section 7 -- Diving deeper into Components & React Internals.
     1. A better project structure.
     2. Stateless and Stateful Components.
-    3. 
 2. React Sectiono 9.
 
 ## Week 4
 1. Finish the React Study.
+    - React Hook.
+    - Form validation.
 2. Google Homepage Replication -- React version.
 
 ## Week 5
