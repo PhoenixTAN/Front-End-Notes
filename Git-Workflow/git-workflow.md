@@ -1,4 +1,5 @@
 # Git Workflow
+https://github.com/gienah-studio/Fafnir/wiki/%E7%90%A6%E5%A7%90%E7%9A%84%E5%A4%A7%E5%AE%9D%E5%89%91-%E2%80%94%E2%80%94-Git-Workflow
 
 ## fork to get your origin repo
 Deep copy a repo of someone else.

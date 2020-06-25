@@ -98,8 +98,50 @@ React Section 1~4.
     - rebase
     - reset v.s. revert
 2. Setup SSH connection to gitLab/gitHub.
+3. Setup PowerShell.
+4. Typescript.
+5. 开始看project.
 
-3. Typescript.
-4. 开始看project.
-5. Read `React Design Pattern`.
-6. Read `Rounter & Single-Page-App`.
+
+### Day 3
+1. Get familiar to the App.
+2. 做share with friend界面。
+3. Read `Rounter & Single-Page-App`.
+
+### Day 4
+1. 做share picture界面。
+2. Get familiar to the App and project.
+3. Read `React Design Pattern`.
+
+
+### Day 5
+1. 写share picture的Route.
+2. 解决iPhone 6/7/8不兼容问题。
+    1. vh vm
+    2. 少用绝对布局。
+
+## Week 6
+
+### Day 1
+1. Submit first merge request.
+2. Fix bug. Search bar should ignore case sensitive.
+3. Learn Redux basics.
+    - work flow
+
+### Day 2
+1. Modify the code in the first merge request.
+2. Fixing bug. Coupon page.
+
+### Day 3
+1. Add QR code generator to the first 
+2. Fixing bug. Deals redeem UI.
+    1. 星巴克标签变扁了。
+    2. 这里应该加入how to redeem button,见设计稿。
+    3. 把有效时间段放在第一行。
+3. Learn Redux.
+
+### Day 4
+1. Redux section 2.
+2. Coookie, Session如何保持登录状态？
+3. 浏览器缓存。
+4. 准备看ios/pinon-menu-template
