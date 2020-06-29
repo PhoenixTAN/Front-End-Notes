@@ -171,3 +171,34 @@ export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 
 ## 用actionCreators, 不要直接在reducer里面执行异步代码
 
+## Use redux-thunk to perform asyn code异步代码
+```
+npm install redux-thunk 
+```
+我们在actoin creator里面不返回new state,而是返回一个函数，这个函数返回的是一个new state.
+```javascript
+export const saveResult = ( res ) => {
+    return {
+        type: STORE_RESULT,
+        result: res
+    };
+}
+
+export const storeResult = ( res ) => {
+    return dispatch => {
+        setTimeout( () => {
+            dispatch(saveResult(res));
+        }, 2000 );
+    }
+};
+```
+## 在action里面处理数据还是Reducer处理数据
+在action里面发异步请求，
+建议在Reducer处理数据
+
+## async (dispatch, getState) => {}
+第二个参数，获取之前的state.
+
+## Utility Functions
+
+

@@ -142,6 +142,15 @@ React Section 1~4.
 
 ### Day 4
 1. Redux section 2.
-2. Coookie, Session如何保持登录状态？
-3. 浏览器缓存。
+2. How to deploy react app.
+3. Add firework animation.
 4. 准备看ios/pinon-menu-template
+
+### Day 5
+1. ios/pinon-menu-template
+2. Webpack.
+3. Coookie, Session如何保持登录状态？
+4. 浏览器缓存。
+5. Routing in share page.
+6. Add "How to redeem" button in WalletItemPage.
+

@@ -190,7 +190,7 @@ how do you extract search (also referred to as "query") **parameters** (=> ?some
 
 How do you extract the fragment (=> #something  at the end of the URL)?
 
-### Quert Params
+### Query Params
 You can pass them easily like this:
 ```javascript
 <Link to="/my-path?start=5">Go to Start</Link>
