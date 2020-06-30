@@ -154,3 +154,17 @@ React Section 1~4.
 5. Routing in share page.
 6. Add "How to redeem" button in WalletItemPage.
 
+## Week 7
+### Day 1
+1. Fix the share picture screen adaptation problem.
+2. 生成短链接，生成长链接。
+2. 写路由跳转，重定向。
+
+### Day 2
+1. code review and fix bugs.
+2. git workflow. 
+3. 怎么屏幕适配还有Bugs!!!!我疯了！！！！！
+
+### Day 3
+1. 写一下copy link和save photo.
+2. 继续搞屏幕适配。
