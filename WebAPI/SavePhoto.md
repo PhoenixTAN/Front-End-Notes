@@ -1,0 +1,27 @@
+# Save Photo in a browser
+
+参考：
+https://my.oschina.net/felumanman/blog/1586567
+
+## 方案1
+1. 将HTML ELEMENT转成，canvas. 用html2canvas.js npm.
+```javascript
+html2canvas(document.body).then(function(canvas) {
+    document.body.appendChild(canvas);
+});
+```
+2. 用canvas-to-image npm保存图片到浏览器，但没有保存到本地相册。**浏览器不支持直接下载到本地相册吧。**
+
+优点：方便。
+缺点：对于用户来说不是很友好。
+
+## 方案2
+1. 将HTML ELEMENT转成，canvas. 用html2canvas.js npm.
+2. 渲染时转成，转成img标签。
+```javascript
+const url = canvas.toDataURL();
+const imageFoo = document.createElement('img');
+imageFoo.src = url;
+```
+3. 这样长按这个img标签就能弹出浏览器自带的弹窗，保存图片到本地。
+
