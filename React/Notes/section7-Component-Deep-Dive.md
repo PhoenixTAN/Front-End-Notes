@@ -1,5 +1,7 @@
 # Component Deep Dive
 
+![alt text](./images/component-life-cycle.jpg)
+
 ## A better project structure
 多建点Component模块，不要都堆砌在App.js里面。
 

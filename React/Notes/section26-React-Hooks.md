@@ -1,4 +1,5 @@
 # React Hooks
+![alt text](./images/react-hook-lifecycle.png)
 
 ![alt text](./images/react-hooks-1.png)
 

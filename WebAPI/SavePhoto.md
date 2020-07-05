@@ -10,7 +10,7 @@ html2canvas(document.body).then(function(canvas) {
     document.body.appendChild(canvas);
 });
 ```
-2. 用canvas-to-image npm保存图片到浏览器，但没有保存到本地相册。**浏览器不支持直接下载到本地相册吧。**
+2. 用canvas-to-image npm保存图片到浏览器，但没有保存到本地相册。**浏览器不支持直接下载到本地相册吧。**或者自己写一个库。saveFile接口。
 
 优点：方便。
 缺点：对于用户来说不是很友好。
