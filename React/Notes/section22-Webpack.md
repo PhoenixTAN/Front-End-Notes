@@ -19,3 +19,5 @@ Webpack is an open-source JavaScript module bundler. It is made primarily for Ja
 4. Suport image imports
 5. Optimize Code
 
+## babel来编译javascritp新特性
+
