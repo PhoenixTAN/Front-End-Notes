@@ -168,3 +168,7 @@ React Section 1~4.
 ### Day 3
 1. 写一下copy link和save photo.
 2. 继续搞屏幕适配。
+
+### Day 4
+1. Save Photo.
+
