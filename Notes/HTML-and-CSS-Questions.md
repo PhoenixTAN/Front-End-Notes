@@ -86,6 +86,15 @@ link是html引擎先读，然后读出来的css交给css引擎去处理。
 2. link引用CSS时，在页面载入时同时加载；@import是浏览器解析CSS的时候执行的，所以是不知道什么时候执行的。
 W3C的规范。
 
+W3C:
+- The @import rule allows you to import a style sheet into another style sheet.
+
+- The @import rule must be at the top of the document (but after any @charset declaration).
+
+- So that user agents can avoid retrieving resources for unsupported media types, authors may specify media-dependent @import rules.
+
+CSS未完全加载前，会先渲染显示已解析的HTML内容，然后CSS完全加载完成后，再次渲染。**如果把样式放在底部**，浏览器逐步载入无样式的内容，等CSS载入后页面才突然展现出样式。FireFox渲染逻辑是解析HTML就会直接画到页面上，这时你会看到没有样式的内容，CSS再通过不断的解析将页面重绘一遍，也就是闪烁一下突然展现样式，这就是FOUC。
+
 知道为什么闪烁：
 所以会出现一开始没有css样式，闪烁一下出现样式后的页面(网速慢的情况下).
 

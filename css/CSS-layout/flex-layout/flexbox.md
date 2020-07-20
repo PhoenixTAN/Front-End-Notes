@@ -2,7 +2,7 @@
 
 https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
-## Basicis & Terminology
+## Basics & Terminology
 
 ![alt text](./images/container-item.png)
 

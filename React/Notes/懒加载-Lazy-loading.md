@@ -1,5 +1,7 @@
 # Lazy loading
 
+## Webpack 配置懒加载 
+
 ## 懒加载库
 ```javascript
 const savePhotoHandler = async () => {
@@ -40,3 +42,8 @@ const savePhotoHandler = async () => {
 ## 懒加载Component
 
 ## 懒加载Route
+
+## 懒加载图片
+```html
+<img src="image.jpg" loading="lazy" alt="..." />
+```
