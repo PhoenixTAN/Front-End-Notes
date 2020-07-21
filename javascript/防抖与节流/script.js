@@ -1,5 +1,5 @@
 const sendRequest = (content) => {
-  console.log(`Request ${content} ${new Date().toString()}`);
+  console.log(`Content: ${content}     ${new Date().toString()}`);
 };
 
 // 防抖前的输入
@@ -9,19 +9,35 @@ inputContent.addEventListener("keyup", (event) => {
 });
 
 // 防抖后的输入
-const debounce = (func, delay) => {
+const debounce = (handler, delay = 1000) => {
   let debounceTimer;
-  return function () {
-    const context = this;
-    const args = arguments;
+  return (content) => {
     clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    debounceTimer = setTimeout(() => handler(content), delay);
   };
-};  
+}; 
 
-const debounceAjax = debounce(sendRequest, 500);
+const debounceRequest = debounce(sendRequest);
 
 const debounceInput = document.getElementById("debounceInput");
-debounceInput.addEventListener("keyup", function (e) {
-  debounceAjax(e.target.value);
+debounceInput.addEventListener("keyup", (event) => {
+  debounceRequest(event.target.value);
 });
+
+// 节流后的输入
+const throttle = (handler, pause = 800) => {
+  
+  return (content) => {
+
+  }
+}
+
+const throttleRequest = throttle(sendRequest);
+
+const throttleInput = document.getElementById('throttleInput');
+throttleInput.addEventListener("keyup", (event) => {
+  throttleRequest(event.target.value);
+});
+
+
+
