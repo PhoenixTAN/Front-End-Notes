@@ -30,7 +30,7 @@ function(a) {
 }
 function(b) {
     return f(a, b);
-  }
+}
 3
 ```
 
@@ -58,3 +58,31 @@ console.log(multiply(2, 3, 4));
 `length` is a property of a function object, and indicates how many arguments the function expects, i.e. the number of formal parameters.
 
 The bind() method creates a new function that, when called, has its `this` keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
+
+看看这个怎么实现
+add(2,3,4).sumOf()
+add(2)(3,4).sumOf()
+add(2)(3)(4).sumOf()
+add(2,3)(4).sumOf()
+
+```javascript
+function curry(func, arity = func.length) {
+  return function (...args) {
+    if (args.length >= arity) {
+      return {
+        sumOf: () => func(...args)
+      }
+    } else {
+      return curry(func.bind(null, ...args), arity - args.length);
+    }
+  };
+}
+
+const add = curry((a, b, c) => a + b + c);
+
+console.log(add(2, 3)(4).sumOf());
+console.log(add(2)(3, 4).sumOf());
+console.log(add(2)(3)(4).sumOf());
+console.log(add(2, 3, 4).sumOf());
+console.log(add(2, 3, 4, 5).sumOf());
+```
