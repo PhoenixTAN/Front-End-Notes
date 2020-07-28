@@ -22,25 +22,18 @@ Cookie的有效期是通过setMaxAge()来设置的。
 
 ### Cookie其他细节
 1. Cookie不可跨域名性
-
     浏览器判断一个网站是否能操作另一个网站的Cookie的依据是域名。
 
 2. Cookie的安全属性
-
     HTTP协议不仅仅是无状态的，而且是不安全的！如果不希望Cookie在非安全协议中传输，可以设置Cookie的secure属性为true，浏览器只会在HTTPS和SSL等安全协议中传输该Cookie。
-
     当然了，设置secure属性不会将Cookie的内容加密。如果想要保证安全，最好使用md5算法加密。
 
-
-
 ## Session
-
 Session 是另一种记录浏览器状态的机制。不同的是**Cookie保存在浏览器中，Session保存在服务器中**。用户使用浏览器访问服务器的时候，服务器把用户的信息以某种的形式记录在服务器。
 
-Session比Cookie使用方便，Session可以解决Cookie解决不了的事情【Session可以存储对象，Cookie只能存储字符串。】。
+Session比Cookie使用方便，Session可以解决Cookie解决不了的事情【Session可以存储对象，Cookie只能存储字符串。
 
 ### Session的生命周期和有效期
-
 1. Session在用户第一次访问服务器Servlet，jsp等动态资源就会被自动创建，Session对象保存在内存里。
 2. 如果访问HTML,IMAGE等静态资源Session不会被创建。
 3. Session生成后，只要用户继续访问，服务器就会更新Session的最后访问时间，无论是否对Session进行读写，服务器都会认为Session活跃了一次。
@@ -55,3 +48,14 @@ HTTP协议是无状态的，Session不能依据HTTP连接来判断是否为同�
 
 ### Cookie被用户禁用了怎么办
 Java Web提供了解决方法：URL地址重写
+
+## Cookie常用属性值
+1. Expires 过期日期
+2. Max-age 存活时间
+3. Domain 对应的域, 可以设置以供多个同域名主机共享cookie, 或限制cookie可使用的域
+4. Path 控制哪些路径的页面可以访问cookie
+5. Secure 可以http传输或只能https, 防中间人攻击
+6. HttpOnly 设置以禁用js的Document.cookieAPI, 防XSS
+
+
+

@@ -17,3 +17,5 @@ sessionStorage.removeItem('key');
 // Remove all saved data from sessionStorage
 sessionStorage.clear();
 ```
+
+敏感账号一次性登录。

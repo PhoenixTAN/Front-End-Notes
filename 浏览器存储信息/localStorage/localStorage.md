@@ -8,3 +8,8 @@ localStorage.removeItem('myCat');
 // Clear all items
 localStorage.clear();
 ```
+
+快速加载首页资源。
+统计对某个按钮的访问次数。
+
+也可以搞账号登录。
