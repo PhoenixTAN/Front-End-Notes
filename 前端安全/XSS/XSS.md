@@ -5,7 +5,7 @@
 
 HTTP-only
 
-Content Security Policy
+Content-Security-Policy: script-src ‘self’
 - 禁止加载外域代码，防止复杂的攻击逻辑。
 - 禁止外域提交，网站被攻击后，用户的数据不会泄露到外域。
 - 禁止内联脚本执行（规则较严格，目前发现 GitHub 使用）。
