@@ -148,3 +148,28 @@ test() 目前执行完毕
 13）遇见 console 执行 “testSometing hello async”
 14）微任务执行完毕 执行异步任务，就是定时器 输出 “setTime1”
 ```
+
+```javascript
+setTimeout(()=>console.log(0),0)
+
+new Promise(res=>{
+    console.log(1);
+    res();
+}).then(()=>{
+    console.log(2);
+    Promise.resolve().then(()=>console.log(3));
+    console.log(4);
+})
+
+console.log(5);
+```
+
+```
+1
+5
+2
+4
+3
+0
+```
+

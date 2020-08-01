@@ -1,0 +1,19 @@
+.box {
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.left {
+    background-color: blue;
+    width: 200px;
+    /* height: 300px; */
+    /* float: left; */
+}
+
+.right {
+    background-color: blueviolet;
+    /* margin-left: 200px; */
+    /* flex: 1; */
+    /* max-width: 75%; */
+}
+
