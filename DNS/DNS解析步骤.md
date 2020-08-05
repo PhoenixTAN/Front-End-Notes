@@ -16,3 +16,4 @@ www.bu.edu
 
  abc.com.cn 其中 cn 是顶级域名、com 是二级域名、abc 是三级域名，如 abc.com 其中 com 为顶级域名，abc 为二级域名。
 
+![alt text](./Example_of_an_iterative_DNS_resolver.svg)
