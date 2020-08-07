@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>移动端适配</h1>
+    <p>
+      meta name="viewport" content="width=device-width, initial-scale=1.0
+    </p>
+    <div class="bar">
+      请查看此横条宽度。
+    </div>
+
+    <p>
+      https://www.cnblogs.com/yelongsan/p/7975580.html
+    </p>
+
+    <ul>
+      <li>
+        Width是用来控制viewport宽度的，如果大于device-width，就会出现横向滚动条。
+      </li>
+      <li>
+        user-scalable=no用户不能缩放
+      </li>
+      <li>
+        initial-scale 设置页面的初始缩放值，为一个数字，可以带小数
+      </li>
+      <li>
+        minimum-scale 允许用户的最小缩放值，为一个数字，可以带小数
+      </li>
+      <li>
+        maximum-scale 允许用户的最大缩放值，为一个数字，可以带小数
+      </li>
+    </ul>
+
+    <p>
+        window对象有一个devicePixelRatio属性，它的官方的定义为：设备物理像素和设备独立像素的比例，也就是 devicePixelRatio = 物理像素 / 独立像素。
+    </p>
+    <p>
+        css中的px就可以看做是设备的独立像素，所以通过devicePixelRatio，我们可以知道该设备上一个css像素代表多少个物理像素。
+        例如，在Retina屏的iphone上，devicePixelRatio的值为2，也就是说1个css像素相当于2个物理像素。
+    </p>
+    <p>
+        MDN: 建议以阅读者在一臂距离处观察到的像素密度为96 dpi的设备上的一个像素作为参考像素。
+    </p>
+
+    <p>
+        rem布局
+    </p>
+
+    <p>
+        calc与vw
+    </p>
+
+    <script>
+      console.log(window.devicePixelRatio);
+    </script>
+  </body>
+</html>

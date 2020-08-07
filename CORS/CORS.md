@@ -72,7 +72,12 @@ https://juejin.im/post/5c46b58cf265da617265c876
 **怎么解决？**
 加了 crossorigin 属性，则表明图片就一定会按照 CORS 来请求图片。而通过CORS 请求到的图片可以再次被复用到 canvas 上进行绘制。换言之，如果不加 crossorigin 属性的话，那么图片是不能再次被复用到 canvas 上去的。
 
+**你总不能让用户去disable cache吧**
+有挺多解决方法的
 
+1. 你可以让CDN回复的时候加上`cache-control: no-cache`，那么再次请求的时候就不会走cache.
+2. 防止使用缓存，ajax请求图片是加上随机参数，url = url + '?s=' + Math.random().toString()
+3. 配置CDN的CORS，使其直接返回跨域配置 （啥意思）
 
 ### 二、图片服务器设置允许跨域
 即请求图片返回的响应头中带有Access-Control-Allow-Origin切值为 *（允许所有网站跨域请求）或者当前网站域名（只允许固定域名下跨域请求）, 然后前端在加载图片是设置图片跨域属性img.crossOrigin="anonymous"。
@@ -101,4 +106,11 @@ https://portswigger.net/web-security
 - 强制弹出广告页面，刷流量等。
 - 传播跨站脚本蠕虫，网页挂马等。
 - 结合其他漏洞，如 CSRF 漏洞，实施进一步的攻击。
+
+
+### 服务器代理
+
+浏览器有跨域限制，但是服务器不存在跨域问题，所以可以由服务器请求所要域的资源再返回给客户端。
+
+一般我们在本地环境开发时，就是使用 webpack-dev-server 在本地开启一个服务进行代理访问的。
 
