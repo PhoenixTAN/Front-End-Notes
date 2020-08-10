@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" rel="stylesheet" href="styles.css" />
+    <title>BFC</title>
+  </head>
+  <body>
+    <h1>BFC</h1>
+    参考： https://juejin.im/entry/6844903496970420237
+    <h2>1. 解决垂直方向上高度坍塌的问题</h2>
+    <div>
+      <div class="wrap1">
+        <p>Haha</p>
+      </div>
+      <div class="wrap1">
+        <p>Haha</p>
+      </div>
+    </div>
+    <div>垂直方向上，用flex-direction也不行</div>
+    <hr />
+
+    <h2>2. 解决水平方向高度坍塌</h2>
+    <div class="flexbox">
+      <div class="box green"></div>
+      <div class="box blue"></div>
+      <div class="box pink"></div>
+    </div>
+    <div>
+      可以用flex box, 也可以把几个盒子变成inline-block.
+    </div>
+    <hr />
+
+    <h2>3. 嵌套元素的margin重叠 ul和li</h2>
+
+    <div class="title-box">title</div>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+    <div>
+      此时div与ul之间的垂直距离，取div、ul、li三者之间的最大外边距。
+      如果把ul变成inline-block就可以了， li用padding不就好了吗？
+      注意，如果给ul设置了padding，li的margin就不会穿出ul.
+    </div>
+    <hr />
+
+    <h2>4. 内部浮动元素导致父元素高度坍塌</h2>
+
+    <div class="par">
+      <div class="child"></div>
+      <div class="child"></div>
+    </div>
+
+    <div>
+      如果不给这两个浮动的盒子加上bfc属性，那父盒子计算高度的时候，就不会考虑这两个浮动的盒子，所以父元素会坍缩成一条线。
+    </div>
+
+    <hr />
+  </body>
+</html>

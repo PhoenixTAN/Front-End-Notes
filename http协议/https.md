@@ -69,3 +69,11 @@ CA拥有非对称加密的公钥C和私钥C.
 5. 浏览器使用对称加密的方法，生成密钥X，用公钥A对密钥X进行加密，发送给服务器。
 6. 服务器用私钥A解密，得到密钥X.
 7. 浏览器和服务器使用密钥X进行加密数据传输。
+
+
+## TLS与SSL在七层模型里面的会话层
+### TLS Transport Layer Security
+Transport Layer Security (TLS), and its now-deprecated predecessor, Secure Sockets Layer (SSL), are cryptographic protocols designed to provide communications security over a computer network.
+
+### SSL Secure Sockets Layer
+
