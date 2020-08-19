@@ -48,3 +48,7 @@ const throttleInput = document.getElementById("throttleInput");
 throttleInput.addEventListener("keyup", (event) => {
   throttleRequest(event.target.value);
 });
+
+window.addEventListener("scroll", (event) => {
+  throttleRequest("scrolling...");
+});
