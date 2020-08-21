@@ -4,47 +4,6 @@ Ziqi
 
 ---
 
-## HTML 语义化标签(Sementic tags)是什么，为什么需要？
-
-https://developer.mozilla.org/en-US/docs/Glossary/Semantics
-1. 交给浏览器解析并显示给用户。
-    accessibility 阅读模式 盲人模式 产品面向什么人群
-
-    Web Accessibility (A11Y) refers to best practices for keeping a website usable despite physical and technical restrictions.
-2. 给搜索引擎提供方便。
-
-具体有哪些？
-```html
-<article>
-<aside>
-<details>
-<figcaption>
-<figure>
-<footer>
-<header>
-<main>
-<mark>
-<nav>
-<section>
-<summary>
-<time>
-```
-
-### \<article>
-The HTML \<article> element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., in syndication). 
-
-Examples include: 
-- a forum post, 
-- a magazine or newspaper article, 
-- or a blog entry.
-
-### \<aside>
-The HTML <aside> element represents a portion of a document whose content is only indirectly related to the document's main content. Asides are frequently presented as sidebars or call-out boxes.
-
-
-### \<footer>
-![alt text](./images/footer.png)
-
 ## 引入CSS的方法有哪些？link和imort有哪些区别？
 1. HTML文档嵌入式使用style标签。
 ```html
@@ -458,10 +417,5 @@ The **initial-scale=1.0** part sets the initial zoom level when the page is firs
 
 - body 部分中的脚本: 当页面被加载时执行的脚本放在HTML的body部分。放在body部分的脚本通常被用来生成页面的内容。
 
-
-async
-
-搜一下
-CDN
 
 
