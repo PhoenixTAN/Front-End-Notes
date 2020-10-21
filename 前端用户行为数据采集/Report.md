@@ -18,6 +18,8 @@ Ziqi Tan
 6. 生成页面点击的热力图。
 
 
+点了哪里，看了什么，看了多长时间
+
 ## 技术方案
 
 ### 前端
@@ -26,24 +28,69 @@ Ziqi Tan
 2. 数据记录
 ```json
 {
-    "user_id": "unique_user_id",  // 已经登录的使用userId, 没有登录的使用设备id
+    "user_id": "unique_user_id",  // 已经登录的使用userId, 没有登录的使用设备id，cookie
     "happenedAt":  "1434556935000", // 事件发生时间
 
     "event_id": "unique_user_id+1434556935000", // 用户的uid串联发生时间
+    "windowNavigator": ""
     "properties": {
         "type": "ViewPage",     // view menu, add item to cart, view
         "last_event_id":  "unique_user_id+1434556922000", // 上一个事件的id，用于追踪
-        "isLogin": true, 
-        "city":"NYC",
+
+        "city":"NYC",   // 网站需要弹窗给用户请求
 		"state": "NY",
 
-		"ip":"180.79.35.65",
+		"ip": "180.79.35.65",   // 能否获取
         "url": "m.pinon.io/junzi",
         "referrer": "d.pinon.io",
 		"user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/58.0.3029.113 Mobile/14F89 Safari/602.1",
     }
 }
 ```
+
+**写一个type assertion**
+```typescript
+Event:
+{
+    "action": string,
+    "happenedAt": string,   // 事件发生时间
+    "pathname": string,
+    "userAgent": string,
+    "geoLocation": {},
+    "property": {
+        "property1": string,
+        "property2": string,
+        ...
+    }
+}
+```
+
+```typescript
+EventChain:
+{
+    "sendTime": string
+    "userAgent": string,
+    "geolocation": {},
+    "events": [
+            event1, 
+            event2,
+            event3,
+            ...
+        ]
+}
+```
+
+
+
+如果是游客登录，一直用no-touch menu呢
+
+"click--dine-in"
+
+如果是曝光类事件，怎么存last_event_id
+
+experimentalDecorators
+
+The return type of a property decorator function must be either 'void' or 'any'.
 
 3. 前端数据发送
 ```javascript
@@ -55,7 +102,7 @@ const TrackedApp = track(
     dispatch: data => {
       console.log(data);
       
-      new Image().src =`./haorooms.gif?${userId}=${data}&${Math.random()} `;
+      new Image().src = `./haorooms.gif?${happenedAt}=${data}&${Math.random()}`;
       // 这个用Axios还是gif
       
       (window.dataLayer = window.dataLayer || []).push(data);   // 用于事件链的发送
@@ -68,10 +115,10 @@ const TrackedApp = track(
 
     以下情况，需要将window.dataLayer的所有数据，一次性发到后台，到此，就算是一个事件链的结尾。将
 
-    1. 如果跳转到其他url，例如从d.pinon.io跳到了google;
-    2. 如果手机退出了浏览器，苹果上滑动清除后台程序;
-    3. 如果页面跑崩了;
-    4. 如果手机切出了浏览器;
+    1. 如果跳转到其他url，例如从d.pinon.io跳到了google; didUnmount
+    2. 如果手机退出了浏览器，苹果上滑动清除后台程序; visibility change
+    3. 如果页面跑崩了; react error boundary
+    4. 如果手机切出了浏览器; visibility change
     5. 用户logout;
 
 
@@ -160,3 +207,9 @@ https://codesandbox.io/s/reacttracking-example-qk30j4x1zj?file=/src/index.js:146
 
 
 https://www.haorooms.com/post/css_data_up
+
+
+
+## 目前所能够记录的动作
+
+
