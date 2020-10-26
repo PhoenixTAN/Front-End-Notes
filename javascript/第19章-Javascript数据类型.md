@@ -1,8 +1,10 @@
 # Javascript数据类型
 
+Javascript的数据类型分为原始类型和对象类型。
+
 The latest ECMAScript standard defines nine types:
 
-## Primitives
+## Primitives 原始类型
 Six Data Types that are primitives, checked by typeof operator:
 - `undefined` : typeof instance === "undefined"
 - `Boolean` : typeof instance === "boolean"
