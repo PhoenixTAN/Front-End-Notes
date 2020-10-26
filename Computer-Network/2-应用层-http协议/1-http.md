@@ -25,7 +25,7 @@ residing on the same server can be sent from the server to the same client over 
 Most recently,**HTTP/2** [RFC 7540] builds on HTTP 1.1 by allowing multiple requests and replies to be interleaved in the same connection, and a mechanism for prioritizing HTTP message requests and replies within this connection.
 
 
-# http 1.0 vs http 1.1
+## http 1.0 vs http 1.1
 
 1. Caching
 2. Bandwidth optimization
@@ -36,10 +36,10 @@ Most recently,**HTTP/2** [RFC 7540] builds on HTTP 1.1 by allowing multiple requ
 7. Security, integrity, and authentication
 8. Content negotiation
 
-## Caching
+### Caching
 Cache-Control是新header.
 
-## Bandwidth optimization
+### Bandwidth optimization
 - new status code: 100
 
 Some HTTP requests (for example, the PUT or
