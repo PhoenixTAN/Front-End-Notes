@@ -20,9 +20,9 @@ response. Subsequent requests and responses between the same client and server c
 the same connection. 
 
 In particular, an entire Web page (in the example above, the base HTML file and the 10 images) can be sent over a single persistent TCP connection. Moreover, multiple Web pages
-residing on the same server can be sent from the server to the same client over a single persistent TCP connection. These requests for objects can be made back-to-back, **without waiting for replies to pending requests (pipelining)**. Typically, the HTTP server closes a connection when it isn’t used for a certain time (a configurable timeout interval). When the server receives the back-to-back requests, it sends the objects back-to-back. **The default mode of HTTP uses persistent connections with pipelining.** 
+residing on the same server can be sent from the server to the same client over a single persistent TCP connection. These requests for objects can be made back-to-back, **without waiting for replies to pending requests (pipelining)**. （pipeline是指一堆请求发过去）Typically, the HTTP server closes a connection when it isn’t used for a certain time (a configurable timeout interval). When the server receives the back-to-back requests, it sends the objects back-to-back. **The default mode of HTTP uses persistent connections with pipelining.** 
 
-Most recently,**HTTP/2** [RFC 7540] builds on HTTP 1.1 by allowing multiple requests and replies to be interleaved in the same connection, and a mechanism for prioritizing HTTP message requests and replies within this connection.
+Most recently,**HTTP/2** [RFC 7540] builds on HTTP 1.1 by allowing multiple requests and replies to be **interleaved in the same connection**, and a mechanism for prioritizing HTTP message requests and replies within this connection.
 
 
 ## http 1.0 vs http 1.1

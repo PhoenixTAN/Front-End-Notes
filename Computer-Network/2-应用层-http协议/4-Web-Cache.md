@@ -1,4 +1,8 @@
-# HTTP Cache
+# Web Cache
+
+![alt text](./images/web-cache-1.png)
+
+![alt text](./images/institutional-cache.png)
 
 https://zhuanlan.zhihu.com/p/44789005
 
