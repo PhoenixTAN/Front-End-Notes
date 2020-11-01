@@ -2,4 +2,6 @@
 
 https://blog.csdn.net/yaopeng_2005/article/details/7064869
 
-![alt text](./image/OSI-7-level-model.gif)
+![alt text](./images/OSI-7-level-model.gif)
+
+
