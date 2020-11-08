@@ -2,15 +2,16 @@ import math
 
 print('helloWorld')
 
-raw = '''85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=1 ttl=63 time=11.2 ms
-85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=2 ttl=63 time=11.3 ms
-85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=3 ttl=63 time=11.3 ms
-85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=4 ttl=63 time=11.2 ms
-85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=5 ttl=63 time=11.0 ms
-85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=6 ttl=63 time=11.3 ms
-85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=7 ttl=63 time=11.3 ms
-85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=8 ttl=63 time=11.1 ms
-85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=10 ttl=63 time=11.3 ms'''
+raw = '''85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=1 ttl=63 time=21.4 ms
+85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=2 ttl=63 time=21.2 ms
+85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=3 ttl=63 time=21.3 ms
+85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=4 ttl=63 time=21.0 ms
+85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=5 ttl=63 time=21.0 ms
+85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=6 ttl=63 time=21.0 ms
+85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=7 ttl=63 time=21.3 ms
+85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=8 ttl=63 time=21.3 ms
+85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=9 ttl=63 time=21.4 ms
+85 bytes from PC2-link-1 (10.10.2.2): icmp_seq=10 ttl=63 time=21.1 ms'''
 
 # calculate throughput
 
@@ -37,7 +38,7 @@ MSS = 1460 * 8
 
 rtt = ave / 1000
 
-plr = 0.07
+plr = 0.1
 
 throughput = 1.22 * MSS / (rtt * math.sqrt(plr))
 

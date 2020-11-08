@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0107)https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure#IPv4RoutingAssignment -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+      GENIEducation/SampleAssignments/IPRouting/Procedure – GENI: geni
+    </title>
+      
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if IE]><script type="text/javascript">
+      if (/^#__msie303:/.test(window.location.hash))
+        window.location.replace(window.location.hash.replace(/^#__msie303:/, '#'));
+    </script><![endif]-->
+          <link rel="search" href="https://groups.geni.net/geni/search">
+          <link rel="help" href="https://groups.geni.net/geni/wiki/TracGuide">
+          <link rel="alternate" href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure?format=txt" type="text/x-trac-wiki" title="Plain Text">
+          <link rel="up" href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting" title="View parent page">
+          <link rel="start" href="https://groups.geni.net/geni/wiki">
+          <link rel="stylesheet" href="./GENIEducation_SampleAssignments_IPRouting_Procedure – GENI_ geni_files/trac.css" type="text/css">
+          <link rel="stylesheet" href="./GENIEducation_SampleAssignments_IPRouting_Procedure – GENI_ geni_files/wiki.css" type="text/css">
+          <link rel="icon" href="https://groups.geni.net/geni/chrome/common/geni/geni.ico" type="image/x-icon">
+    
+      <link type="application/opensearchdescription+xml" rel="search" href="https://groups.geni.net/geni/search/opensearch" title="Search GENI: geni">
+      <script type="text/javascript" charset="utf-8" src="./GENIEducation_SampleAssignments_IPRouting_Procedure – GENI_ geni_files/jquery.js.download"></script>
+      <script type="text/javascript" charset="utf-8" src="./GENIEducation_SampleAssignments_IPRouting_Procedure – GENI_ geni_files/babel.js.download"></script>
+      <script type="text/javascript" charset="utf-8" src="./GENIEducation_SampleAssignments_IPRouting_Procedure – GENI_ geni_files/trac.js.download"></script>
+      <script type="text/javascript" charset="utf-8" src="./GENIEducation_SampleAssignments_IPRouting_Procedure – GENI_ geni_files/search.js.download"></script>
+      <script type="text/javascript" charset="utf-8" src="./GENIEducation_SampleAssignments_IPRouting_Procedure – GENI_ geni_files/folding.js.download"></script>
+    <script type="text/javascript">
+      jQuery("#trac-noscript").remove();
+      jQuery(document).ready(function($) {
+        $(".trac-autofocus").focus();
+        $(".trac-target-new").attr("target", "_blank");
+        if ($.ui) { /* is jquery-ui added? */
+          $(".trac-datepicker:not([readonly])").prop("autocomplete", "off").datepicker();
+          $(".trac-datetimepicker:not([readonly])").prop("autocomplete", "off").datetimepicker();
+          $("#main").addClass("trac-nodatetimehint");
+        }
+        $(".trac-disable").disableSubmit(".trac-disable-determinant");
+        setTimeout(function() { $(".trac-scroll").scrollToTop() }, 1);
+        $(".trac-disable-on-submit").disableOnSubmit();
+      });
+    </script>
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("#content").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $("#content").find(".wikianchor").each(function() {
+          $(this).addAnchor(babel.format(_("Link to #%(id)s"), {id: $(this).attr('id')}));
+        });
+        $(".foldable").enableFolding(true, true);
+      });
+    </script>
+  </head>
+  <body data-new-gr-c-s-check-loaded="14.983.0">
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://www.geni.net/"><img src="./GENIEducation_SampleAssignments_IPRouting_Procedure – GENI_ geni_files/header.gif" alt="GENI Wiki"></a>
+      </div>
+      <form id="search" action="https://groups.geni.net/geni/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="">
+          <input type="submit" value="Search">
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="https://groups.geni.net/geni/login">Login</a></li><li><a href="https://groups.geni.net/geni/prefs">Preferences</a></li><li><a href="https://groups.geni.net/geni/wiki/TracGuide">Help/Guide</a></li><li class="last"><a href="https://groups.geni.net/geni/about">About Trac</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="last first active"><a href="https://groups.geni.net/geni/wiki">Wiki</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="pagepath" class="noprint">
+  <a class="pathentry first" title="View WikiStart" href="https://groups.geni.net/geni/wiki">wiki:</a><a class="pathentry" href="https://groups.geni.net/geni/wiki/GENIEducation" title="View GENIEducation">GENIEducation</a><span class="pathentry sep">/</span><a class="pathentry" href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments" title="View GENIEducation/SampleAssignments">SampleAssignments</a><span class="pathentry sep">/</span><a class="pathentry" href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting" title="View GENIEducation/SampleAssignments/IPRouting">IPRouting</a><span class="pathentry sep">/</span><a class="pathentry" href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure" title="View GENIEducation/SampleAssignments/IPRouting/Procedure">Procedure</a>
+</div>
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+        <ul>
+          <li class="first"><a href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting">Up</a></li><li><a href="https://groups.geni.net/geni/wiki/WikiStart">Start Page</a></li><li><a href="https://groups.geni.net/geni/wiki/TitleIndex">Index</a></li><li class="last"><a href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure?action=history">History</a></li>
+        </ul>
+        <hr>
+      </div>
+    <div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          <div id="wikipage" class="trac-content"><p>
+</p><div class="wiki-toc">
+<ol>
+  <li>
+    <a href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure#IPv4RoutingAssignment">IPv4 Routing Assignment</a>
+  </li>
+  <li>
+    <a href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure#Tips">Tips</a>
+  </li>
+</ol>
+</div><p>
+</p>
+<h1 id="IPv4RoutingAssignment">IPv4 Routing Assignment<a class="anchor" href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure#IPv4RoutingAssignment" title="Link to this section"> ¶</a></h1>
+<table border="0">
+ <tbody><tr>
+    <td width="350" valign="top">
+<h3 align="left"> <u>Overview: </u> </h3>
+In this experiment you will learn how to set up static routing with the <em>route</em> command. We will use the following network topology for this experiment:
+<br>
+<img border="0" src="./GENIEducation_SampleAssignments_IPRouting_Procedure – GENI_ geni_files/routetopology.png" alt="route topology" align="center" width="350" title="route topology">
+     </td>
+ <td> <pre>   </pre> </td>
+    <td width="350" valign="top">
+<h3 align="left"> <u>Prerequisites: </u></h3>
+ For this tutorial you need :
+   <ul>
+       <li> <b> access to the <a href="https://portal.geni.net/"> GENI Experimenter Portal </a></b> and be a <b> member of a GENI project </b>. <br>Please see the <a href="https://groups.geni.net/geni/wiki/SignMeUp"> Sign Me Up page for more information. </a></li>
+       <li> <b>be familiar with reserving resources in GENI based on an rspec</b>. <br>If you are not familiar you should first do the <a href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/RunHelloGENI"> Hello GENI </a> or <a href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/LabZero/Procedure"> Lab Zero </a> </li>
+       <li>  be familiar with <b><a href="https://groups.geni.net/geni/wiki/HowTo/LoginToNodes"> logging in to GENI resources </a> </b> </li>
+       <li> be familiar with <b> IPv4 addressing and routing </b> </li>
+   </ul>
+</td>
+  </tr>
+  <tr>
+    <td width="350" valign="top">
+<h3 align="left"> <u>Tools: </u></h3>
+All the tools will already be installed on your nodes. For your reference we are going to use:
+<ul><li><a href="http://www.hscripts.com/tutorials/linux-commands/route.html"> the route linux command </a> </li> </ul>
+</td>
+ <td> <pre>   </pre> </td>
+    <td width="350" valign="top">
+    <h3 align="left"> <u>Where to get help: </u></h3>
+      <ul>
+           <li> Take a look at the <a href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure#Tips">Tips</a> section in the end of the exercise </li>
+           <li> Contact your TA and/or Professor for help. If you are doing this exercise outside the context of a course, please email <a> help@geni.net </a> </li>
+      </ul>
+    </td>
+  </tr>
+</tbody></table>
+<hr>
+<table border="0" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+     <td valign="top" align="left">
+  <img src="./GENIEducation_SampleAssignments_IPRouting_Procedure – GENI_ geni_files/design.png" width="150" alt="Design/Setup"></td></tr></tbody></table>
+      
+         <h3><u>1. Verify your Environment Setup: </u></h3>
+   This exercise assumes you have already setup your account at the GENI Portal. In particular ensure that:
+   <ol>
+      <li> You can login to the <a href="https://portal.geni.net/"> GENI Portal </a></li>
+       <li> You are a member of a GENI Project (there is at least one project listed under the <a href="https://portal.geni.net/secure/projects.php">''Projects''</a> tab) </li>
+        <li> You have setup your ssh keys (there is at least one key listed under the <a href="https://portal.geni.net/secure/profile.php#ssh">''Profile-&gt;SSH Keys''</a> tab) </li>
+    </ol>
+<h3><u> 2. Setup the Topology: </u></h3>
+   <ol>
+      <li> Login to the <a href="https://portal.geni.net/"> GENI Portal </a> </li>
+       <li> Reserve resources from an ExoGENI rack using the <a href="https://raw.githubusercontent.com/GENI-NSF/geni-tutorials/master/IPRouting/EG-3nodes-mesh.rspec"> EG-3nodes-mesh </a> RSpec (In Portal: "IP Routing exercise (EG)"; URL: https://raw.githubusercontent.com/GENI-NSF/geni-tutorials/master/IPRouting/EG-3nodes-mesh.rspec)</li>
+    </ol>
+           <b>Action:Take a screenshot of your slice when all the nodes are ready and include it in your write up</b>
+          
+<p>
+<br>
+</p>
+<table border="0" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+     <td valign="top" align="left">
+  <img src="./GENIEducation_SampleAssignments_IPRouting_Procedure – GENI_ geni_files/execute.png" height="150" alt="Execute"></td></tr></tbody></table>
+      
+         <h3><u> 3. Setup the routing </u></h3>
+         The goal of this exercise is to setup the routing as indicated in <a href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure#IPv4RoutingAssignment">Figure 1</a>; i.e.  packets from A sent to IP address 192.168.2.12 on node C should be routed via node B. In order to create this routing behavior you will need to modify the routing tables in your nodes using the linux
+<a href="http://www.hscripts.com/tutorials/linux-commands/route.html"> route command </a>
+         <h4> Questions: </h4>
+             <ol>
+              <li> <b>What happens when you traceroute from A to IP address 192.168.2.12 before you setup the static routes? Why? </b> <br>Include the output of the traceroute in your writeup</li>
+              <li> <b>Setup the routing from A to 192.68.2.12 so that it goes through B. Was it enough to just modify the routing tables? What else  did you need to change in order for the traffic to flow? Ensure that you have connectivity by running a ping from A to 192.168.2.12</b> <br>In your writeup include all the commands you ran and a screenshot of the routing configuration</li>
+              <li> <b>What happens when you traceroute from A to IP address 192.168.2.12 after you setup the static routes? </b> <br>In your writeup include a screenshot of the traceroute output.</li>
+             </ol>
+          
+<p>
+<br>
+</p>
+<table border="0" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+     <td valign="top" align="left">
+  <img src="./GENIEducation_SampleAssignments_IPRouting_Procedure – GENI_ geni_files/finish.png" width="150" alt="Finish"></td></tr></tbody></table>
+       
+               <h3><u> 4. Cleanup </u></h3>
+           After you are done with the exercise and you have captured everything requested for the writeup, you should release your resources so that other experimenters can use
+them. In order to cleanup your slice :
+              <ol type="a">
+                 <li>In Flack, press the <b>Delete</b> button in the bottom of your canvas </li>
+                 <li> Select <b>Delete at used managers</b> and <b>confirm</b> your selection. </li>
+              </ol>
+Wait and after a few moments all the resources will have been released and you will have an empty canvas again. Notice that your slice is still there. There is no way to delete a slice, it will be removed automatically after its expiration date, but remember that a slice is just an empty container so it doesn't take up any resources.
+              <h3><u> What to hand in: </u></h3>
+                 <ol>
+                   <li> A screenshot of your slice when all the nodes are ready.</li>
+                   <li> The answers to questions 1-3. </li>
+                   <li> Screenshots of the output of the traceroute command invoked on Node A for IP 192.168.2.2 <b>before</b> and <b>after</b> the setup of static routes. </li>
+                   <li> Screenshots of the route table of Nodes A, B and C </li>
+                 </ol>
+          
+<hr>
+<p>
+<a style="padding:0; border:none" href="https://groups.geni.net/geni/attachment/wiki/GENIExperimenter/Tutorials/Graphics/tip.png"><img width="40" style="float:left" src="./GENIEducation_SampleAssignments_IPRouting_Procedure – GENI_ geni_files/tip.png"></a>
+</p>
+<h1 id="Tips">Tips<a class="anchor" href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure#Tips" title="Link to this section"> ¶</a></h1>
+<ul><li>If you get a "Command not found " error when executing standard commands like <code>ifconfig</code> add <code>sbin</code> to your path:
+<pre class="wiki">   export PATH=$PATH:/sbin
+</pre></li><li>Remember that you can use “ifconfig” to determine which Ethernet interface (e.g., eth0) is bound to what IP address at each of the nodes.
+</li><li>In order to enable IP forwarding of packets on a node you have to execute the following command:
+<pre class="wiki">sudo sh -c 'echo 1 &gt; /proc/sys/net/ipv4/ip_forward'
+</pre></li><li>A new slice will always be in its initial state with NO routing set up!
+</li><li>A useful tool to debug the packet flow is <a class="ext-link" href="http://www.tcpdump.org/"><span class="icon">​</span>tcpdump</a>. In order to install it run:
+<pre class="wiki">   sudo apt-get install tcpdump
+</pre></li></ul></div>
+          
+          <div class="trac-modifiedby">
+            <span><a href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure?action=diff&amp;version=49" title="Version 49 by Hussamuddin Nasir">Last modified</a> <a class="timeline" href="https://groups.geni.net/geni/timeline?from=2019-05-28T12%3A36%3A56-04%3A00&amp;precision=second" title="See timeline at 05/28/19 12:36:56">18 months ago</a></span>
+            <span class="trac-print">Last modified on 05/28/19 12:36:56</span>
+          </div>
+        
+        
+      </div>
+      
+    <div id="attachments" class="collapsed">
+        <h3 class="foldable"><a id="no1" href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure#no1">Attachments <span class="trac-count">(1)</span></a></h3>
+        <div>
+          <ul>
+            <li>
+    <a href="https://groups.geni.net/geni/attachment/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure/routetopology.png" title="View attachment">routetopology.png</a><a href="https://groups.geni.net/geni/raw-attachment/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure/routetopology.png" class="trac-rawlink" title="Download">​</a> (<span title="108835 bytes">106.3 KB</span>) - added by <span class="trac-author">nriga@bbn.com</span> <a class="timeline" href="https://groups.geni.net/geni/timeline?from=2013-09-10T11%3A39%3A56-04%3A00&amp;precision=second" title="See timeline at 09/10/13 11:39:56">7 years ago</a>.
+            </li>
+          </ul>
+          <p>
+            Download all attachments as: <a rel="nofollow" href="https://groups.geni.net/geni/zip-attachment/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure/">.zip</a>
+          </p>
+        </div>
+    </div>
+
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="last first">
+          <a rel="nofollow" href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/IPRouting/Procedure?format=txt">Plain Text</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr>
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="./GENIEducation_SampleAssignments_IPRouting_Procedure – GENI_ geni_files/trac_logo_mini.png" height="30" width="107" alt="Trac Powered"></a>
+      <p class="left">Powered by <a href="https://groups.geni.net/geni/about"><strong>Trac 1.2.3</strong></a><br>
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">GENI Home Page<br><a href="http://www.geni.net/">http://www.geni.net/</a></p>
+    </div>
+  
+</body></html>
