@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0075)https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+      GENIExperimenter/Tutorials/OpenFlowNFVNAT – GENI: geni
+    </title>
+      
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if IE]><script type="text/javascript">
+      if (/^#__msie303:/.test(window.location.hash))
+        window.location.replace(window.location.hash.replace(/^#__msie303:/, '#'));
+    </script><![endif]-->
+          <link rel="search" href="https://groups.geni.net/geni/search">
+          <link rel="help" href="https://groups.geni.net/geni/wiki/TracGuide">
+          <link rel="alternate" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT?format=txt" type="text/x-trac-wiki" title="Plain Text">
+          <link rel="up" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials" title="View parent page">
+          <link rel="start" href="https://groups.geni.net/geni/wiki">
+          <link rel="stylesheet" href="./GENIExperimenter_Tutorials_OpenFlowNFVNAT – GENI_ geni_files/trac.css" type="text/css">
+          <link rel="stylesheet" href="./GENIExperimenter_Tutorials_OpenFlowNFVNAT – GENI_ geni_files/wiki.css" type="text/css">
+          <link rel="icon" href="https://groups.geni.net/geni/chrome/common/geni/geni.ico" type="image/x-icon">
+    
+      <link type="application/opensearchdescription+xml" rel="search" href="https://groups.geni.net/geni/search/opensearch" title="Search GENI: geni">
+      <script type="text/javascript" charset="utf-8" src="./GENIExperimenter_Tutorials_OpenFlowNFVNAT – GENI_ geni_files/jquery.js.download"></script>
+      <script type="text/javascript" charset="utf-8" src="./GENIExperimenter_Tutorials_OpenFlowNFVNAT – GENI_ geni_files/babel.js.download"></script>
+      <script type="text/javascript" charset="utf-8" src="./GENIExperimenter_Tutorials_OpenFlowNFVNAT – GENI_ geni_files/trac.js.download"></script>
+      <script type="text/javascript" charset="utf-8" src="./GENIExperimenter_Tutorials_OpenFlowNFVNAT – GENI_ geni_files/search.js.download"></script>
+      <script type="text/javascript" charset="utf-8" src="./GENIExperimenter_Tutorials_OpenFlowNFVNAT – GENI_ geni_files/folding.js.download"></script>
+    <script type="text/javascript">
+      jQuery("#trac-noscript").remove();
+      jQuery(document).ready(function($) {
+        $(".trac-autofocus").focus();
+        $(".trac-target-new").attr("target", "_blank");
+        if ($.ui) { /* is jquery-ui added? */
+          $(".trac-datepicker:not([readonly])").prop("autocomplete", "off").datepicker();
+          $(".trac-datetimepicker:not([readonly])").prop("autocomplete", "off").datetimepicker();
+          $("#main").addClass("trac-nodatetimehint");
+        }
+        $(".trac-disable").disableSubmit(".trac-disable-determinant");
+        setTimeout(function() { $(".trac-scroll").scrollToTop() }, 1);
+        $(".trac-disable-on-submit").disableOnSubmit();
+      });
+    </script>
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("#content").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $("#content").find(".wikianchor").each(function() {
+          $(this).addAnchor(babel.format(_("Link to #%(id)s"), {id: $(this).attr('id')}));
+        });
+        $(".foldable").enableFolding(true, true);
+      });
+    </script>
+  </head>
+  <body data-new-gr-c-s-check-loaded="14.984.0" data-gr-ext-installed="">
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://www.geni.net/"><img src="./GENIExperimenter_Tutorials_OpenFlowNFVNAT – GENI_ geni_files/header.gif" alt="GENI Wiki"></a>
+      </div>
+      <form id="search" action="https://groups.geni.net/geni/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="">
+          <input type="submit" value="Search">
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="https://groups.geni.net/geni/login">Login</a></li><li><a href="https://groups.geni.net/geni/prefs">Preferences</a></li><li><a href="https://groups.geni.net/geni/wiki/TracGuide">Help/Guide</a></li><li class="last"><a href="https://groups.geni.net/geni/about">About Trac</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="last first active"><a href="https://groups.geni.net/geni/wiki">Wiki</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="pagepath" class="noprint">
+  <a class="pathentry first" title="View WikiStart" href="https://groups.geni.net/geni/wiki">wiki:</a><a class="pathentry" href="https://groups.geni.net/geni/wiki/GENIExperimenter" title="View GENIExperimenter">GENIExperimenter</a><span class="pathentry sep">/</span><a class="pathentry" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials" title="View GENIExperimenter/Tutorials">Tutorials</a><span class="pathentry sep">/</span><a class="pathentry" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT" title="View GENIExperimenter/Tutorials/OpenFlowNFVNAT">OpenFlowNFVNAT</a>
+</div>
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+        <ul>
+          <li class="first"><a href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials">Up</a></li><li><a href="https://groups.geni.net/geni/wiki/WikiStart">Start Page</a></li><li><a href="https://groups.geni.net/geni/wiki/TitleIndex">Index</a></li><li class="last"><a href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT?action=history">History</a></li>
+        </ul>
+        <hr>
+      </div>
+    <div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          <div id="wikipage" class="trac-content"><h1 id="OpenFlowNATRouter"><a class="wiki" href="https://groups.geni.net/geni/wiki/OpenFlow">OpenFlow</a> NAT Router<a class="anchor" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT#OpenFlowNATRouter" title="Link to this section"> ¶</a></h1>
+<p>
+TinyUrl: <a class="ext-link" href="http://tinyurl.com/geni-nfv-nat"><span class="icon">​</span>http://tinyurl.com/geni-nfv-nat</a>
+</p>
+<table border="0">
+ <tbody><tr>
+    <td width="350" valign="top">
+<h3 align="left"> <u>Overview: </u> </h3>
+In this tutorial you will learn <b> how to build a router for a network with a private address space that needs a one-to-many NAT </b> (IP Masquerade) using OpenFlow. We will use the following network topology for this experiment. You will also learn how to <b> take advantage of kernel L3 routing while using OVS </b>.
+<img border="0" src="./GENIExperimenter_Tutorials_OpenFlowNFVNAT – GENI_ geni_files/GENI-NFV-NAT.png" alt="route topology" align="center" width="350" title="nat topology">
+</td>
+ <td> <pre>   </pre> </td>
+    <td width="350" valign="top">
+<h3 align="left"> <u>Prerequisites: </u></h3>
+ For this tutorial you need :
+   <ul>
+       <li> <b> access to the <a href="https://portal.geni.net/"> GENI Experimenter Portal </a></b> and be a <b> member of a GENI project </b>. <br>Please see the <a href="https://groups.geni.net/geni/wiki/SignMeUp"> Sign Me Up page for more information. </a></li>
+       <li> <b>be familiar with reserving resources in GENI based on an rspec</b>. <br>If you are not familiar you should first do the <a href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/RunHelloGENI"> Hello GENI </a> or <a href="https://groups.geni.net/geni/wiki/GENIEducation/SampleAssignments/LabZero/Procedure"> Lab Zero </a> </li>
+       <li>  be familiar with <b><a href="https://groups.geni.net/geni/wiki/HowTo/LoginToNodes"> logging in to GENI resources </a> </b> </li>
+       <li> be familiar with <b> OpenFlow concepts </b> </li>
+   </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="350" valign="top">
+<h3 align="left"> <u>Tools: </u></h3>
+All the tools will already be installed at your nodes. For your reference we are going to use <b>a Ryu controller</b>.
+     </td>
+ <td> <pre>   </pre> </td>
+    <td width="350" valign="top">
+    <h3 align="left"> <u>Where to get help: </u></h3>
+      For any questions or problem with the tutorial please email <a> geni-users@googlegroups.com </a>
+    </td>
+  </tr>
+</tbody></table>
+<hr>
+<table border="0" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+     <td valign="top" align="left">
+  <img src="./GENIExperimenter_Tutorials_OpenFlowNFVNAT – GENI_ geni_files/design.png" width="150" alt="Design/Setup"></td></tr></tbody></table>
+      
+         <h3> If you already have reserved the topology for the <a href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVFirewall"> NFV Firewall tutorial </a> you can move to Execute. </h3>
+         <h3><u>1. Verify your Environment Setup: </u></h3>
+   This exercise assumes you have already setup your account at the GENI Portal. In particular ensure that:
+   <ol>
+      <li> You can login to the <a href="https://portal.geni.net/"> GENI Portal </a></li>
+      <li> You are a member of a GENI Project (there is at least one project listed under the <a href="https://portal.geni.net/secure/projects.php">''Projects''</a> tab) </li>
+      <li> You have setup your ssh keys (there is at least one key listed under the <a href="https://portal.geni.net/secure/profile.php#ssh">''Profile-&gt;SSH Keys''</a> tab) </li>
+    </ol>
+<h3><u> 2. Setup the Topology: </u></h3>
+   <ol>
+      <li> Login to the <a href="https://portal.geni.net/"> GENI Portal </a> </li>
+       <li> Reserve:
+           <ol type="a">
+            <li>  the topology from an InstaGENI rack using the <a href="https://raw.githubusercontent.com/GENI-NSF/geni-tutorials/master/OpenFlowNAT/openflowovs-all-xen.rspec.xml"> OpenFlow OVS all XEN </a> RSpec (In Portal: "OpenFlow OVS all XEN"; URL: https://raw.githubusercontent.com/GENI-NSF/geni-tutorials/master/OpenFlowNAT/openflowovs-all-xen.rspec.xml)</li>
+            <li> at a <b>different InstaGENI rack</b> reserve a <a href="https://raw.githubusercontent.com/GENI-NSF/geni-tutorials/master/OpenFlowCtrls/Controllers_all.xml"> XEN OpenFlow Controller</a> RSpec (In Portal: "XEN OpenFlow Controllers"; URL: https://raw.githubusercontent.com/GENI-NSF/geni-tutorials/master/OpenFlowCtrls/Controllers_all.xml)</li>
+    </ol>
+          </li></ol>
+<p>
+<br>
+</p>
+<table border="0" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+     <td valign="top" align="left">
+  <img src="./GENIExperimenter_Tutorials_OpenFlowNFVNAT – GENI_ geni_files/execute.png" height="150" alt="Execute"></td></tr></tbody></table>
+      
+ 
+<h2 id="a3.Testreachabilitybeforestartingcontroller">3. Test reachability before starting controller<a class="anchor" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT#a3.Testreachabilitybeforestartingcontroller" title="Link to this section"> ¶</a></h2>
+<h3 id="a3.1Logintoyourhosts">3.1 Login to your hosts<a class="anchor" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT#a3.1Logintoyourhosts" title="Link to this section"> ¶</a></h3>
+<p>
+To start our experiment we need to ssh into all the hosts (controller, ovs, host1, host2, host3). Depending on which tool and OS you are using there is a slightly different process for logging in. If you don't know how to SSH to your reserved hosts take a look in <a class="wiki" href="https://groups.geni.net/geni/wiki/HowTo/LoginToNodes">this page.</a> Once you have logged in, follow the rest of the instructions. 
+</p>
+<h3 id="a3.1aConfigureOVS">3.1a Configure OVS<a class="anchor" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT#a3.1aConfigureOVS" title="Link to this section"> ¶</a></h3>
+<ol class="lowerroman"><li>Write down the interface names that correspond to the connections to your hosts (use ifconfig). The correspondence is:
+<ul><li><strong>h1_if</strong>: Interface with IP <em>10.10.1.11</em> to host1  - ethX
+</li><li><strong>h2_if</strong>: Interface with IP <em>10.10.1.12</em> to host2 - ethY
+</li><li> <strong>h3_if</strong>: Interface with IP <em>10.10.1.13</em> to host3 - ethZ
+</li></ul></li><li>In the OVS node run: 
+<pre class="wiki">wget https://raw.githubusercontent.com/GENI-NSF/geni-tutorials/master/OpenFlowNAT/ovs-nat-conf.sh 
+chmod +x ovs-nat-conf.sh
+sudo ./ovs-nat-conf.sh &lt;h1_if&gt; &lt;h2_if&gt; &lt;h3_if&gt; &lt;controller_ip&gt;
+</pre>The controller_ip is the public IP of your controller node, look at the end for a tip on how to get the IP of a node. 
+</li><li>Look around to see what the script did: 
+<pre class="wiki">  sudo ovs-vsctl show
+  ifconfig
+</pre></li></ol><h3 id="a3.1bConfigurehosts">3.1b Configure hosts<a class="anchor" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT#a3.1bConfigurehosts" title="Link to this section"> ¶</a></h3>
+<p>
+The hosts in your topology are all in the same subnet, 10.10.1.0/24. We will move host3 to a different subnet: 
+</p>
+<ol class="lowerroman"><li><strong>host3</strong>: Assign 128.128.128.128 to host3.
+<pre class="wiki"> sudo ifconfig eth1 128.128.128.128/24
+</pre></li><li><strong>host1, host2</strong>: Setup routes at <code>host1</code> and <code>host1</code> to 128.128.128.0/24 subnet: 
+<pre class="wiki"> sudo route add -net 128.128.128.0 netmask 255.255.255.0 gw 10.10.1.100
+</pre></li></ol><h3 id="a3.2Testreachability">3.2 Test reachability<a class="anchor" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT#a3.2Testreachability" title="Link to this section"> ¶</a></h3>
+<ol class="loweralpha"><li>First we start a ping from <code>ihost1</code> to <code>host2</code>, which should work since they are both inside the same LAN.
+<pre class="wiki">host1:~$ ping 10.10.1.2 -c 10
+</pre></li></ol><ol class="loweralpha" start="2"><li>Then we start a ping from <code>host3</code> to <code>host1</code>, which should timeout as there is no routing information in its routing table. You can use <code>route -n</code> to verify that. 
+<pre class="wiki">host3:~$ ping 10.10.1.2 -c 10
+</pre></li></ol><ol class="loweralpha" start="3"><li>Similarly, we cannot ping from <code>host1</code> to <code>host3</code>.
+</li></ol><ol class="loweralpha" start="4"><li>You can also use Netcat (<code>nc</code>) to test reachability of TCP and UDP. The behavior should be the same.
+</li></ol><h2 id="a4StartcontrollertoenableNAT">4 Start controller to enable NAT<a class="anchor" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT#a4StartcontrollertoenableNAT" title="Link to this section"> ¶</a></h2>
+<h3 id="a4.1AccessaserverfrombehindtheNAT">4.1 Access a server from behind the NAT<a class="anchor" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT#a4.1AccessaserverfrombehindtheNAT" title="Link to this section"> ¶</a></h3>
+<p>
+You can try to write your own controller to implement NAT. However, we a provide you a functional controller. 
+</p>
+<ol class="loweralpha"><li>Download the NAT Ryu module. At your controller node run:
+<pre class="wiki">cd /tmp/ryu/
+wget https://github.com/GENI-NSF/geni-tutorials/raw/master/OpenFlowNAT/ryu-nat.tar.gz
+tar xvfz ryu-nat.tar.gz
+</pre></li></ol><ol class="loweralpha" start="2"><li>Start the controller on <code>controller</code> host:
+<pre class="wiki"> cd /tmp/ryu/; ./bin/ryu-manager ryu-nat.py
+</pre></li></ol><p>
+You should see output similar to following log after the switch is connected to the controller
+</p>
+<pre class="wiki">loading app ryu-nat.py
+loading app ryu.controller.dpset
+loading app ryu.controller.ofp_handler
+instantiating app ryu.controller.dpset of DPSet
+instantiating app ryu.controller.ofp_handler of OFPHandler
+instantiating app ryu-nat.py of NAT
+switch connected &lt;ryu.controller.controller.Datapath object at 0x2185210&gt;
+</pre><ol class="loweralpha" start="3"><li>On <code>host3</code>, we start a nc server:
+<pre class="wiki">host3:~$ nc -l 6666
+</pre></li></ol><p>
+and we start a nc client on <code>host1</code> to connect it:
+</p>
+<pre class="wiki">host1:~$ nc 128.128.128.128 6666
+</pre><ol class="loweralpha" start="4"><li>Now send message between each other and try the same thing between <code>host3</code> and <code>host2</code>.
+</li></ol><ol class="loweralpha" start="5"><li>On the terminal of <code>controller</code>, in which you started your controller, you should see a log similar to:
+<pre class="wiki">Created mapping 10.10.1.1 31596 to 128.128.128.100 59997
+</pre></li></ol><p>
+Note that there should be only one log per connection, because the rest of the communication will re-use the mapping.
+</p>
+<h2 id="a5HandleARPandICMP">5 Handle ARP and ICMP<a class="anchor" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT#a5HandleARPandICMP" title="Link to this section"> ¶</a></h2>
+<p>
+One of very common mistakes that people make, when writing OF controller, is forgetting to handle ARP and ICMP message and finding their controller does not work as expected.
+</p>
+<h3 id="a5.1ARP">5.1 ARP<a class="anchor" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT#a5.1ARP" title="Link to this section"> ¶</a></h3>
+<p>
+As we mentioned before, we should insert rules into the OF switch that allow ARP packets to go through, probably after the switch is connected.
+</p>
+<h3 id="a5.2ICMP">5.2 ICMP<a class="anchor" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT#a5.2ICMP" title="Link to this section"> ¶</a></h3>
+<p>
+Handling ARP is trivial as NAT does not involve ARP. However, it's not the case for ICMP. If you only process translation for TCP/UDP, you will find you cannot ping between <code>host3</code> and <code>host1</code> while nc is working properly. Handling ICMP is even not as straightforward as for TCP/UDP. Because for ICMP, you cannot get port information to bind with. Our provided solution makes use of ICMP echo identifier. You may come up with different approach involves ICMP sequence number or others.
+</p>
+<ol class="loweralpha"><li>On <code>host1</code>, start a ping to <code>host3</code>.
+<pre class="wiki">host1:~$ ping 128.128.128.128
+</pre></li></ol><ol class="loweralpha" start="2"><li>Do the same thing on <code>host2</code>.
+<pre class="wiki">host2:~$ ping 128.128.128.128
+</pre></li></ol><p>
+You should see both pinging are working.
+</p>
+<ol class="loweralpha" start="3"><li>On <code>host3</code>, use <code>tcpdump</code> to check the packets it receives.
+<pre class="wiki">host3:~$ sudo tcpdump -i eth1 -n icmp
+</pre></li></ol><p>
+You should see it's receiving two groups of icmp packets, differentiated by id.
+</p>
+<p>
+<strong>Make sure to delete the bridges especially if you are using the same topology for another tutorial.</strong>
+</p>
+<pre class="wiki">  sudo ovs-vsctl del-br OVS1
+  sudo ovs-vsctl del-br OVS2
+</pre><p>
+<br>
+</p>
+<table border="0" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+     <td valign="top" align="left">
+  <img src="./GENIExperimenter_Tutorials_OpenFlowNFVNAT – GENI_ geni_files/finish.png" width="150" alt="Finish"></td></tr></tbody></table>
+       
+               <h3><u> 6. Cleanup </u></h3>
+           After you are done with the exercise and you have captured everything requested for the writeup, you should release your resources so that other experimenters can use
+them. In order to cleanup your slice :
+              <ol type="a">
+                 <li>In Portal, press the <b>Delete</b> button in the bottom of your canvas </li>
+                 <li> Select <b>Delete at used managers</b> and <b>confirm</b> your selection. </li>
+              </ol>
+Wait and after a few moments all the resources will have been released and you will have an empty canvas again. Notice that your slice is still there. There is no way to delete a slice, it will be removed automatically after its expiration date, but remember that a slice is just an empty container so it doesn't take up any resources.
+          
+<hr>
+<p>
+<a style="padding:0; border:none" href="https://groups.geni.net/geni/attachment/wiki/GENIExperimenter/Tutorials/Graphics/tip.png"><img width="40" style="float:left" src="./GENIExperimenter_Tutorials_OpenFlowNFVNAT – GENI_ geni_files/tip.png"></a>
+</p>
+<h1 id="Tips">Tips<a class="anchor" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT#Tips" title="Link to this section"> ¶</a></h1>
+<ul><li>Remember that you can use “ifconfig” to determine which Ethernet interface (e.g., eth0) is bound to what IP address at each of the nodes.
+</li><li>In order to enable IP forwarding of packets on a node you have to execute the following command:
+<pre class="wiki">sudo sh -c 'echo 1 &gt; /proc/sys/net/ipv4/ip_forward'
+</pre></li></ul></div>
+          
+          <div class="trac-modifiedby">
+            <span><a href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT?action=diff&amp;version=34" title="Version 34 by Hussamuddin Nasir">Last modified</a> <a class="timeline" href="https://groups.geni.net/geni/timeline?from=2019-05-28T12%3A45%3A01-04%3A00&amp;precision=second" title="See timeline at 05/28/19 12:45:01">18 months ago</a></span>
+            <span class="trac-print">Last modified on 05/28/19 12:45:01</span>
+          </div>
+        
+        
+      </div>
+      
+
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="last first">
+          <a rel="nofollow" href="https://groups.geni.net/geni/wiki/GENIExperimenter/Tutorials/OpenFlowNFVNAT?format=txt">Plain Text</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr>
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="./GENIExperimenter_Tutorials_OpenFlowNFVNAT – GENI_ geni_files/trac_logo_mini.png" height="30" width="107" alt="Trac Powered"></a>
+      <p class="left">Powered by <a href="https://groups.geni.net/geni/about"><strong>Trac 1.2.3</strong></a><br>
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">GENI Home Page<br><a href="http://www.geni.net/">http://www.geni.net/</a></p>
+    </div>
+  
+</body></html>
