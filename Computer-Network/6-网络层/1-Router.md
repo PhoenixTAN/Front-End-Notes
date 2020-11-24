@@ -1,3 +1,16 @@
+# Data Plane
+
+- Router
+- IPv4
+    - datagram format
+    - addressing
+    - subnetting
+    - CIDR
+    - DHCP
+    - NAT
+- IPv6
+- Generalized-Forwarding and Software-Defined Netword
+
 # Router
 
 A high-level view of a generic router architecture is shown in Figure 4.4. Four router components can be
