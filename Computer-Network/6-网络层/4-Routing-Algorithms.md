@@ -7,9 +7,47 @@
 - SNMP (Simple Network Management Protocol)
 
 ## Overview
+这一章节，我们将学习forwarding table和flow table是怎么计算、维持和更新的。
+
+- **Per-router control**.下图展示了路由算法是运行在每个路由器中的。这种方法在互联网中已经使用了几十年。后面讲到的OSPF和BGP协议都是基于这种方法的。
+
+![alt text](./images/per-router-control.png)
+
+- **Logically centralized control**. 下图展示的是Software-Defined Networking方法，由remote controller来计算flow table (在这种方法里面路由表叫做flow table). Controller跟每个路由器中的control agent (CA)对话，来配置管理路由器的flow table.
+
+![alt text](./images/logically-centralized-control.png)
+
+谷歌，微软，中国电信，中国联通，AT&T都采用了这样的技术。
+
+Recall that Section 4.2.1 characterized destination-based forwarding as the two steps of looking up a destination IP address (“match”), then sending the packet into the switching fabric to the specified output port (“action”). 
+
+Let’s now consider a significantly more general **“match-plus-action” paradigm**, where the “match” can be made over multiple header fields associated with different protocols at different layers in the protocol stack. The “action” can **include forwarding the packet** to one or more output ports (as in destination-based forwarding), load balancing packets across multiple outgoing interfaces that lead to a service (as in **load balancing**), rewriting header values (as in **NAT**), purposefully blocking/dropping a packet (as in a **firewall**), sending a packet to a special server for further processing and action (as in DPI), and more.
 
 ![alt text](./images/generalized-forwarding.png)
 
 # Routing Algorithms
+这个小节的目标是找一个好的路由路径，是的我们的包能够以最小的代价穿过网络到达目的地。实际上还有别的约束，比如说Y公司的包就不要通过Z公司的路由器转发了。
 
+我们先确定数据结构，再讲算法。
+
+网络是一个带权无向图(Weighted undirected graph)。
+
+![alt text](./images/abstract-graph-model-of-a-computer-network.png)
+
+用G=(N, E)表示图，其中N表示节点(nodes)的集合，E表示边(edges)的集合，边用N中的某对节点来表示。节点表示路由器，边表示链路，边的权重表示通过这条链路的代价，取决于这条链路的带宽和物理长度。
+
+我们的目标是找最小代价路径(least-cost path). 
+
+其实看到这里读者一定很好奇Logically centralized control是怎么计算路由表的？暴力计算所有路径是其中一种方法，因为这种方案拥有整个网络的完整信息。
+
+一般来说，我们可以把路由算法分成两类：centralized or decentralized.
+
+- A **centralized routing algorithm**使用complete, global knowledge about the network来计算least-cost path. 这个计算可以在controller进行，or could be replicated in the routing component of each router. **关键是是否拥有全局信息**。这样的算法我们通常又叫做**Link-State (LS) algorithms**.
+- **Decentralized routing algorithm**. **The calculation is carried out in an iterative, distributed manner by the routers**. 每个路由器只有自己直接相连的边的信息，通过迭代，与邻居交换信息，就能逐步得到最小代价路径。我们后面会讲解**distance-vector (DV) algorithm**.
+
+另一种分类方法就是**静态路由算法与动态路由算法**。**静态**算法通常适用于路由器基本不会有变化的网络，通常是人工配置。**动态**算法会随着网络负载和拓扑的变化而变化。这也通常会导致routing loops and route oscillation.
+
+也可以根据是否负载敏感来区分。load-sensitive中，链路的当前带宽也表明了当前链路的拥挤情况。load-**in**sensitive algorithm的例子有RIP, OSPF和BGP,因为这里link cost并不直接表明当前的拥堵情况。
+
+## Link-State (LS) Routing Algorithm
 
