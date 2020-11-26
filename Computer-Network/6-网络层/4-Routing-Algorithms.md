@@ -51,3 +51,61 @@ Let’s now consider a significantly more general **“match-plus-action” para
 
 ## Link-State (LS) Routing Algorithm
 
+在LS算法中，网络的拓扑和链路代价都是知道的。实际应用中，这是每个节点都广播自己的link-state packets to all other nodes in the network,某个节点发送哦的link-state packets是包含着自己与邻居之间链路的代价（状态）。
+
+迪杰斯特拉算法(Dijkstra)是由荷兰计算机科学家狄克斯特拉于1959年提出的，迪杰斯特拉算法主要特点是从起始点开始，采用贪心算法的策略，每次遍历到始点距离最近且未访问过的顶点的邻接节点，直到扩展到终点为止。
+
+Notations:
+- D(v): cost of the least-cost path from the source node to destination v as of this iteration of the algorithm.
+- p(v): previous node (neighbor of v) along the current least-cost path from the source to v.
+- N': subset of nodes; v is in N' if the least-cost path from the source to v is definitively known.
+
+算法包含初始化和循环两部分，循环次数等于网络节点数，算法输出是从source node u 出发，到达任意节点的最短路径。
+
+```
+Initialization:
+    N' = {u}
+    for all nodes v
+        if v is a neighbor of u
+            D(v) = c(u, v)  // cost from u to v
+        else
+            D(v) = infinity
+
+Loop
+    // 找到当前从N'集合中任意节点出发，与外界代价最小的邻居w
+    find w not in N' such that D(w) is a minimum    
+    
+    // 将邻居w加到集合N'
+    add w to N' 
+
+    // 更新w到达它所有邻居的代价（这些邻居不能是N'中的邻居）
+    update D(v) for each neighbor v of w and not in N':
+        D(v) = min(D(v), D(w) + c(w, v))
+
+Until N' = N
+```
+
+![alt text](./images/abstract-graph-model-of-a-computer-network.png)
+
+|   Iteration    | N'     | D(v), p(v) | D(w), p(w) | D(x), p(x) | D(y), p(y) | D(z), p(z) |
+|----------------|--------|------------|------------|------------|------------|------------|
+| Initialization | u      | 2, u       | 5, u       | 1, u       | Infinity   | Infinity   |
+| 1              | ux     | 2, u       | 4, x       |            | 2, x       | Infinity   |
+| 2              | uxy    | 2, u       | 3, y       |            |            | 4, y       |
+| 3              | uxyv   |            | 3, y       |            |            | 4, y       |
+| 4              | uxyvw  |            |            |            |            | 4, y       |
+| 5              | uxyvwz |            |            |            |            |            |
+
+如上表，到v的最短路径为uv; 到w最短路径为uxyw, 到x最短路径为ux,到y最短路径为uxy,到z最短路径为uxyz.于是我们就能轻易得出，下一跳路由表，如图Figure 5.4
+
+再过一遍算法过程。初始化的时候，把u作为起点加入集合N', 计算从u出发到其所有邻居的代价，记录到当前最小的代价是到邻居x，只需要代价1. 开始进入循环，将当前所记录到的邻居x加入到集合N'中，更新x到其所有邻居的代价（这些邻居不在集合N'中），u->x->v的距离为1+2，比原来的2要大，不更新；u->x->w的距离为1+3，比原来的5要小，更新最短路径为u->x->w, 距离为4；u->x->y的距离为1+1，比原来的正无穷要小，更新最短路径为u-x->y, 距离为2.
+
+现在我们实际上已经得到了表中的前两行数据：Initialization和1. 在D(v)=2, D(w)=4, D(y)=2, D(z)=Infinity中，最小的是D(v)和D(y)，随便选一个，例如我们选择y继续进行计算。将y加入集合N',更新y->w，y->z, y->v的距离...
+
+![alt text](./images/least-cost-path-forwarding-table.png)
+
+算法时间复杂度分析：V是节点数，E是边的数量。首先这个循环是需要进行V次，每次循环要对当前不在集合的邻居进行更新，第i次迭代就要查看V-i个邻居，这么看来时间复杂度应该就是O(V^2). 但是算法导论说用优先队列可以优化成O((V+E)logE)，用斐波那契最小堆还能优化成O( E + VlogV ).
+
+## Distance-Vector (DV) Routing Algorithm
+
+
