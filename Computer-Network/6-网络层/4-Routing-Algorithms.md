@@ -106,6 +106,54 @@ Until N' = N
 
 算法时间复杂度分析：V是节点数，E是边的数量。首先这个循环是需要进行V次，每次循环要对当前不在集合的邻居进行更新，第i次迭代就要查看V-i个邻居，这么看来时间复杂度应该就是O(V^2). 但是算法导论说用优先队列可以优化成O((V+E)logE)，用斐波那契最小堆还能优化成O( E + VlogV ).
 
+### 路由震荡 Route Oscillation
+
+在讲DV算法前，我们讲讲路由震荡。下图的网络拓扑，link costs是等于这条链路的负载，在这个例子中，link costs不是对称的，c(u, v) = c(v, u)当且仅当这两个方向的负载时相等的。
+
+![alt text](./images/oscillation1.png)
+
+图a中，
+- node z originates a unit of traffic destined for w.
+- node x originates a unit of traffic destined for w.
+- node y injects an amount of traffic equal to e, also destined for w. 
+
+图a根据链路负载标注了链路代价。
+图a就是我们用来跑LS算法的图，LS算法结束的时候，节点z会选择顺时针方向发送，节点y会选择顺时针发送，节点x也会选择顺时针发送，因为顺时针方向的负载最小。于是如果真这么走了，链路负载就会发生变化，变成了图b.
+
+![alt text](./images/oscillation2.png)
+
+那现在，逆时针方向的负载才是最小的，那我们跑LS算法之后，所有节点的路由表又会发生变化。
+
+![alt text](./images/oscillation3.png)
+
+![alt text](./images/oscillation4.png)
+
+那我们怎么弄才能避免路由震荡呢(which can occur in any algorithm, not just an LS algorithm that uses a congestion or delay-based link metric)？ 
+- One solution would be to mandate that link costs not depend on the amount of traffic carried -- an unacceptable solution since one goal of routing is to avoid highly congested (for example, high-delay) links. 
+- Another solution is to ensure that not all routers run the LS algorithm at the same time. 
+
+
 ## Distance-Vector (DV) Routing Algorithm
+这个算法在现实中被广泛应用。LS algorithm使用全局信息，但是DV algorithm is iterative, asynchronous and distributed.
+
+- **Distributed**. 每个节点从一个或多个邻居接收信息，然后进行计算，然后将结果返回给邻居。
+- **Iterative**. 每个节点一旦从邻居接收到新信息就会运行算法，知道没有新信息。有趣的是，the algorithm is also self-terminating -- there is no signal that the computation should stop; it just stops.
+- **Asynchronous**. It does not require all of the nodes to operate in lockstep with each other.
+
+
+不着急，我们先来讨论一下least-cost paths. Let dx(y) be the cost of the least-cost path from node x to node y.
+
+接下来时著名的Bellman-Ford equation.
+
+dx(y) = minv{x(x, v) + dv(y)}
+
+其中， minv会包括所有x的邻居，用v来表示x的邻居。很明显，从x的任意邻居v出发，取最短路径到y，这个代价在加上从x到v的代价，再取这些代价的最小值，那就是从x到y的最小值。
+
+```
+Initialization:
+    for all destinations y in N:
+        Dx(y) = c(x, y)     // 如果
+```
+
 
 

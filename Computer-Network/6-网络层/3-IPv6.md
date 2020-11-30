@@ -26,7 +26,7 @@ IPv6有几个新特性。
 
 
 
-## transition from IPv4 to IPv6
+## Transition from IPv4 to IPv6
 问题自然而然就来了，IPv6如何向后兼容IPv4 (backward-compatible).
 
 这个问题书上也没有讲得特别清楚。特别说是这个tunneling技术，他的IPv4路由器又怎么能寻址IPv6呢？

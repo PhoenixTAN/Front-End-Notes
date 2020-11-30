@@ -45,7 +45,7 @@ Fragment the payload in the IP datagram into two or more smaller IP datagrams, e
 
 - 发送端会给一个数据包加上identification number，每发一个包这个数就加一。当一个路由器需要把这个包分割的时候，每个分割后的包，还是会使用这个包原来的identification number.
 
-- 接收端如何知道所有fragments的正确顺序呢？offset属性是用来识别某个fragment的顺序。
+- 接收端如何知道所有fragments的正确顺序呢？offset属性是用来识别某个fragment的顺序。In IPv4, the fragmentation-offset field is expressed in multiple of 8 bytes.
 - 接收端如何知道已经接收到最后一个fragments？最后一个包flag属性是0，其他的包flag属性是1.
 
 ![alt text](./images/ipv4-datagram-format.png)
