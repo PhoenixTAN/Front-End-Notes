@@ -145,15 +145,138 @@ Until N' = N
 
 接下来时著名的Bellman-Ford equation.
 
-dx(y) = minv{x(x, v) + dv(y)}
+dx(y) = minv{c(x, v) + dv(y)}
 
 其中， minv会包括所有x的邻居，用v来表示x的邻居。很明显，从x的任意邻居v出发，取最短路径到y，这个代价在加上从x到v的代价，再取这些代价的最小值，那就是从x到y的最小值。
 
+那这个算法什么时候被出发呢？当前路由器如果相邻链路的代价改变或者接收到邻居的distance-vector update的时候，算法就会被触发。
+
 ```
+// At each node, x:
+
 Initialization:
+    // Initially，当前节点只知道自己与邻居通信的代价
     for all destinations y in N:
-        Dx(y) = c(x, y)     // 如果
+        Dx(y) = c(x, y)     // 如果y不是x的邻居，则c(x,y) = infinity
+
+    // 每个邻居到目的节点的距离是未知的
+    for each neighbor w:
+        Dw(y) = undefined   for all destinations y in N
+
+    // 给每个邻居发自己的Dx表，告知每个邻居我的跟所有邻居的链路状态
+    for each neighbor w:
+        send distance vector Dx = [Dx(y) : y in N] to w
+
+
+Loop:
+
+    wait until I see a link cost change to some neighbor w or
+         until I receive a distance vector from some neighbor w
+
+    // 更新distance vector
+    for each y in N:
+        Dx(y) = minv{c(x, y) + Dv(y)}   
+        // v这里是所有邻居，找到最小值的时候，也会相应更新路由表下一跳
+
+    // 如果Dx(y)发生了改变，则告诉所有邻居
+    if Dx(y) changed for any destination y
+        send distance vector Dx = [Dx(y) : y in N] to all neighbors
+
+Forever
 ```
 
 
+举个例子，一下这些表，都是记录的最短距离。
+
+![alt text](./images/dv-algorithm.png)
+
+1. 初始化。
+
+| Router x  | to x | to y | to z |
+|-----------|------|------|------|
+| from x    |  0   |  2   |   7  |
+| from y    | inf  | inf  | inf  |
+| from z    | inf  | inf  | inf  |
+
+| Router x  | to x | to y | to z |
+|-----------|------|------|------|
+| Next hop  |  --  |  y   |   z  |
+
+
+| Router y  | to x | to y | to z |
+|-----------|------|------|------|
+| from x    | inf  | inf  | inf  |
+| from y    | 2    | 0    | 1    |
+| from z    | inf  | inf  | inf  |
+
+| Router y  | to x | to y | to z |
+|-----------|------|------|------|
+| Next hop  |  x   |  --  |   z  |
+
+| Router z  | to x | to y | to z |
+|-----------|------|------|------|
+| from x    | inf  | inf  | inf  |
+| from y    | inf  | inf  | inf  |
+| from z    | 7    | 1    | 0    |
+
+| Router x  | to x | to y | to z |
+|-----------|------|------|------|
+| Next hop  |  x  |  y   |  --  |
+
+2. 大家都广播自己的表格，接收到邻居表格后更新自己的表格，别人家的distance vector要照抄，要根据别人家的distance vector来更新自己的distance vector.
+
+| Router x  | to x | to y | to z |
+|-----------|------|------|------|
+| from x    |  0   |  2   |   3  |
+| from y    |  2   |  0   |   1  |
+| from z    |  7   |  1   |   0  |
+
+| Router x  | to x | to y | to z |
+|-----------|------|------|------|
+| Next hop  |  --  |  y   |   y  |
+
+路由器x发现自己的distance vector（from x那一行）有变化，广播自己的distance vector.
+
+| Router y  | to x | to y | to z |
+|-----------|------|------|------|
+| from x    | 0    | 2    | 7    |
+| from y    | 2    | 0    | 1    |
+| from z    | 7    | 1    | 0    |
+
+| Router x  | to x | to y | to z |
+|-----------|------|------|------|
+| Next hop  |  x   |  --  |   z  |
+
+| Router z  | to x | to y | to z |
+|-----------|------|------|------|
+| from x    | 0    | 2    | 7    |
+| from y    | 2    | 0    | 1    |
+| from z    | 3    | 1    | 0    |
+
+| Router x  | to x | to y | to z |
+|-----------|------|------|------|
+| Next hop  |  y   |  y   |  --  |
+
+路由器z发现自己的distance vector有更新，广播。
+
+3. 大家接收更新。
+
+| Router x  | to x | to y | to z |
+|-----------|------|------|------|
+| from x    |  0   |  2   |   3  |
+| from y    |  2   |  0   |   1  |
+| from z    |  3   |  1   |   0  |
+
+| Router y  | to x | to y | to z |
+|-----------|------|------|------|
+| from x    |  0   |  2   |   3  |
+| from y    |  2   |  0   |   1  |
+| from z    |  3   |  1   |   0  |
+
+
+| Router z  | to x | to y | to z |
+|-----------|------|------|------|
+| from x    |  0   |  2   |   3  |
+| from y    |  2   |  0   |   1  |
+| from z    |  3   |  1   |   0  |
 
