@@ -49,6 +49,8 @@ Let’s now consider a significantly more general **“match-plus-action” para
 
 也可以根据是否负载敏感来区分。load-sensitive中，链路的当前带宽也表明了当前链路的拥挤情况。load-**in**sensitive algorithm的例子有RIP, OSPF和BGP,因为这里link cost并不直接表明当前的拥堵情况。
 
+The **Routing Information Protocol (RIP)** uses a single routing metric to measure the distance between the source and the destination network.
+
 ## Link-State (LS) Routing Algorithm
 
 在LS算法中，网络的拓扑和链路代价都是知道的。实际应用中，这是每个节点都广播自己的link-state packets to all other nodes in the network,某个节点发送哦的link-state packets是包含着自己与邻居之间链路的代价（状态）。
@@ -280,3 +282,5 @@ Forever
 | from y    |  2   |  0   |   1  |
 | from z    |  3   |  1   |   0  |
 
+
+## TODO Routing Loop
