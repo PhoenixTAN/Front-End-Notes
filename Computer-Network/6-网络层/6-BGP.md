@@ -64,13 +64,49 @@ BGP会按顺序执行下面的elimination rules，直到只剩下一条路径：
 1. 选择拥有highest local preference value的路径。有可能有很多条路径都有这个最大值。local preference是路径(route)的其中一个attribute. The local preference of a route could have been set by the router or could have been learned from another router in the same AS. The value of the local preference attribute is a **policy decision (后面会讲)** that is left entirely **up to the AS’s network administrator**. 
 2. 最短路径。The route with the **shortest AS-PATH** is selected.  If this rule were the only rule for route selection, then BGP would
 be using a **DV algorithm** for path determination, where the distance metric uses the number of **AS hops** rather than the number of router hops.
-3. 如果还不行。Hot potato routing is used, that is, the route with the closest NEXT-HOP router is selected.
+3. 如果还不行。**Hot potato routing** is used, that is, the route with the closest NEXT-HOP router is selected.
 4. If more than one route still remains, the router uses **BGP identifiers** to select the route.
 
-## IP-Anycast Service
+## IP-anycast Service
+
+在讲任播(anycast)之前，先讲解单播，多播，广播的概念。
+
+### 单播 Unicast
+In computer networking, unicast is a one-to-one transmission from one point in the network to another point; that is, one sender and one receiver, each identified by a network address.
+
+![alt text](./images/unicast.png)
+
+Internet Protocol unicast delivery methods such as Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) are typically used.
+
+### 多播 Multicast
+
+![alt text](./images/multicast.png)
+
+### 广播 Broadcast
+
+### 任播 Anycast
+BGP除了是用作inter-AS routing protocol，还经常用来实现IP-anycast service, which is commonly used in DNS. 还记得IPv4提过anycast address这个概念吗？
+
+为什么要提出IP-anycast这个概念呢？
+- 很多应用需要在不同服务器放同样的内容，这些服务器放在不同地方；
+- 让每个用户发请求的时候，我们是让距离用户最近的服务器回复的。
+
+例如，a CDN may replicate videos and other objects on servers in different countries. Similarly, the DNS system can replicate DNS records on DNS servers throughout the world.
+
+![alt text](./images/ip-anycast-cdn.png)
+
+看图中的文字。
+
 
 ## Routing Policy
 
-## Putting the Pieces Together
+![alt text](./images/bgp-policy.png)
+
+- ABC是backbone provider networks. ABC directly send traffic to each other, and provide full BGP information to their customer network.
+- **All traffic entering an ISP access network must be destined for that network**.
+- **All traffic leaving an ISP access network must have originated in that network**.
+- W and Y are clearly access ISPs. X is a **multi-homed access ISP**，也叫stub AS，也不会给别人当free rider.
+- 总而言之，ISP不想给别的ISP当free rider.
+
 
 
