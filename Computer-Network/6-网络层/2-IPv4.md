@@ -148,7 +148,7 @@ The ISP (Fly-By-Night-ISP) advertises to the outside world that it should be sen
 一般向ISP申请，那么ISP的大网络又是从哪申请的？ICANN (Internet Corporation for Assigned Names and Numbers) 是个全球性的组织，管理IP地址和DNS根服务器。
 
 
-### DHCP (Dynamic Host Configuration Protocol) Obtaining a Host Address
+### DHCP over UDP (Dynamic Host Configuration Protocol) Obtaining a Host Address
 获得了a block of addresses后，这就需要为路由器和主机分配IP了。当然可以由管理员手动分配，但是一般是使用DHCP协议完成的。**DHCP allows a host to obtain (be allocated) an IP address automatically**. DHCP可以配置成这样：同一台主机接入这个网络时，每次都是获得相同的IP地址，也可以每次都分配给这台主机一个临时的IP地址。
 
 DHCP还有其他功能：
@@ -171,10 +171,10 @@ DHCP有四个步骤。下图中的yiaddr表示(your Internet address)将要分�
 
 ![alt text](./images/dhcp-client-server-interaction.png)
 
-- **DHCP server discovery**. 新来的主机会发UDP包(端口67) DHCP discover message(附带transaction id)，来使用广播地址255.255.255.255和一个"this host" source IP address of 0.0.0.0. 
-- **DHCP server offer(s)**. DHCP server也会使用广播地址，发UDP包(端口68) DHCP offer message，**由于同一个子网上还可能存在多个DHCP服务器**，为了区分这个message是哪个server发的，会加上一个transaction id.这个报文还有the proposed IP address for the client, the network mask and an IP address lease time -- the amount of time for which the IP will be valid.
-- **DHCP request**. 新来的主机会选择一个offer message附带上configuration parameters来回复一个DHCP request message. 告诉相应服务器，我选择了你给我的IP.
-- **DHCP ACK**. The server responds to the DHCP request message with a DHCP ACK message, confirming the requested parameters.
+- **DHCP server discovery**. 新来的主机会发UDP包(端口67) DHCP discover message(附带transaction id)，来使用**广播**地址255.255.255.255和一个"this host" source IP address of 0.0.0.0. 
+- **DHCP server offer(s)**. DHCP server也会使用**广播**地址，发UDP包(端口68) DHCP offer message，**由于同一个子网上还可能存在多个DHCP服务器**，为了区分这个message是哪个server发的，会加上一个transaction id.这个报文还有the proposed IP address for the client, the network mask and an IP address lease time -- the amount of time for which the IP will be valid.
+- **DHCP request**. 新来的主机会选择一个offer message附带上configuration parameters来**广播**回复一个DHCP request message. 告诉相应服务器，我选择了你给我的IP.
+- **DHCP ACK**. The server responds to the DHCP request message with a DHCP ACK message, confirming the requested parameters.**还是广播**.
 
 **如此看来，DHCP的短板也是明显的，因为更换IP地址，就会使得TCP连接无法维持。在后面从章节（数据链路层），我们会讲解mobile IP -- an extension to the IP infrastructure that allows a mobile node to use a single permanent address as it moves between subnets.**
 

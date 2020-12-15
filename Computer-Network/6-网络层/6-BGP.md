@@ -83,6 +83,7 @@ Internet Protocol unicast delivery methods such as Transmission Control Protocol
 ![alt text](./images/multicast.png)
 
 ### 广播 Broadcast
+![alt text](./images/boardcast.png)
 
 ### 任播 Anycast
 BGP除了是用作inter-AS routing protocol，还经常用来实现IP-anycast service, which is commonly used in DNS. 还记得IPv4提过anycast address这个概念吗？
@@ -109,4 +110,16 @@ BGP除了是用作inter-AS routing protocol，还经常用来实现IP-anycast se
 - 总而言之，ISP不想给别的ISP当free rider.
 
 
+AS被分为以下三类：
+1. Stub AS: an AS that has only a single connection to one other AS; such an AS will only carry local traffic.
+2. Multihomed AS: an AS that has connections to more than one other AS, but refuses to carry transit traffic.
+3. Transit AS: an AS that has connections to more than one other AS, and is designed to carry both transit and local traffic.
 
+
+这里谁是谁不重要,看题目意思.
+
+![alt text](./images/problem3-bgp.png)
+
+这里由于w和x都是在P的地址范围内,所以对于Q来说,没有必要知道P的内网细节,就保存一个目的地址P就行,所有要发到w和x的包都发到P就行了.
+
+但是对于R来说,R也会告诉Q,自己能发东西到X,为什么呢?因为X首先是R的customer,其次X不在R的地址范围内, Q接收到R的这个Advertise后就会根据最长匹配(跟P那条路由比较)规则,把发往X的包都发给R.
