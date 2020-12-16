@@ -1,5 +1,10 @@
 # Switched Local Area Networks
 
+- Link-layer addressing
+- ARP
+- Switch
+- VLAN
+
 ![alt text](./images/network-connected-by-four-switches.png)
 
 如图，两个服务器，一个路由器，四个交换机。交换机工作在Link-layer，并不认识什么IP地址和路由算法，它使用Link-layer address来发送link-layer frame.
@@ -89,13 +94,47 @@ In the early 2000s Ethernet experienced yet another major evolutionary change. E
 
 ## Link-Layer Swithes
 
+We’ll see that the switch itself is **transparent** to the hosts and routers in the subnet; that is, a host/router addresses a frame to another host/router (rather than addressing the frame to the switch) and happily sends the frame into the LAN, unaware that a switch will be receiving the frame and forwarding it. 
+
 ### Forwarding and Filtering
+- **Filtering** is the switch function that determines whether a frame should be forwarded to some interface or should just be dropped. 
+- **Forwarding** is the switch function that determines the interfaces to which a frame should be directed, and then moves the frame to those interfaces.
+
+![alt text](./images/switch-table.png)
+
+Switch filtering and forwarding are done with a switch table.  The switch table contains entries for some, but not necessarily all, of the hosts and routers on a LAN. An entry in the switch table contains 
+- (1) a MAC address, 
+- (2) the switch interface that leads toward that MAC address, 
+- (3) the time at which the entry was placed in the table.
+
+How does switch work?
+先来假定一个场景. A frame with destination address DD-DD-DD-DD-DD-DD arrives at the switch on interface x. The switch indexes its table with the MAC address. There are three possible cases:
+- There is **no entry in the table** for DD-DD-DD-DD-DD-DD. The switch **broadcasts** the frame.
+- There is an **entry** in the table, **associating DD-DD-DD-DD-DD-DD with interface x**. In this case, the frame is coming from a LAN segment that contains adapter DD-DD-DD-DD-DD-DD. There being no need to forward the frame to any of the other interfaces, the switch performs the **filtering function by discarding the frame**.
+- There is an entry in the table, associating DD-DD-DD-DD-DD-DD **with interface y != x**. In this case, the frame needs to be forwarded to the LAN segment attached to interface y. The switch performs its **forwarding function** by putting the frame in an output buffer that precedes interface y.
+
 
 ### Self-Learning
 
+How does this **switch table get configured** in the first
+place?
+
+A switch has the wonderful property (particularly for the already-overworked network administrator) that its table is built automatically, dynamically, and autonomously—without any intervention from a network administrator or from a configuration protocol. In other words, switches are **self-learning**. This capability is accomplished as follows:
+
+1. The switch table is initially empty.
+2. For each incoming frame received on an interface, the switch stores in its table (1) the MAC address in the frame’s source address field, (2) the interface from which the frame arrived, and (3) the current time. In this manner the switch records in its table the LAN segment on which the sender resides. If every host in the LAN eventually sends a frame, then every host will eventually get recorded in the table.
+3. The switch deletes an address in the table if no frames are received with that address as the source address after some period of time (the **aging time**).
+
 ### Properties of Link-Layer Switching
 
+- **Elimination of collisions**. In a LAN built from switches (and without hubs), there is no wasted bandwidth due to collisions! The switches buffer frames and never transmit more than one frame on a segment at any one time. As with a router, the maximum aggregate throughput of a switch is the sum of all the switch interface rates. Thus, switches provide a significant performance improvement over LANs with broadcast links.
+- **Heterogeneous links**. Because a switch isolates one link from another, the different links in the LAN can operate at **different speeds** and can run over **different media**. For example, the uppermost switch in Figure 6.15 might have three1 Gbps 1000BASE-T copper links, two 100 Mbps 100BASEFX fiber links, and one 100BASE-T copper link. Thus, a switch is ideal for mixing legacy equipment with new equipment.
+- **Management**. In addition to providing enhanced security (see sidebar on Focus on Security), a switch also eases network management. For example, if an adapter malfunctions and continually sends Ethernet frames (called a jabbering adapter), a switch can detect the problem and internally disconnect the malfunctioning adapter. With this feature, the network administrator need not get out of bed and drive back to work in order to correct the problem. Similarly, a cable cut disconnects only that host that was using the cut cable to connect to the switch. In the days of coaxial cable, many a network manager spent hours “walking the line” (or more accurately, “crawling the floor”) to find the cable break that brought down the entire network. Switches also gather statistics on bandwidth usage, collision rates, and traffic types, and make this information available to the network manager.
 
-### Switches Versus Routers
 
 ## Virtual Local Area Networks (VLANS)
+
+![alt text](./images/network-connected-by-four-switches.png)
+
+
+
