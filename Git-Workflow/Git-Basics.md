@@ -50,6 +50,12 @@ Now we need to learn some kind of way of **combining the work from two different
 This will allow us to branch off, develop a new feature, and then combine it back in.
 
 ### git merge
+背景：把开发好的新的feature分支合并到dev分支。
+```
+$ git checkout dev
+$ git merge feature
+```
+
 Merging in Git creates a special commit that has two unique parents. 
 
 A commit with two parents essentially means "I want to include all the work from this parent over here and this one over here, and the set of all their parents."
