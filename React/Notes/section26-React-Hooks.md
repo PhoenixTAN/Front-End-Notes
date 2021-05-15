@@ -25,6 +25,8 @@ Now how do you recognize react hooks?
 ![alt text](./images/what-are-react-hooks.png)
 
 ## useState
+**setState之后，整个函数都会重新执行一遍。**
+
 ```javascript
 import React, {useState} from 'react';
 
@@ -140,15 +142,6 @@ The Event interface's `preventDefault()` method tells the user agent that if the
 
 详细看Practice Section 26的代码！
 
-## useCallback
-```javascript
-const filteredIngredientsHandler = useCallback(filteredIngredients => {
-    setUserIngredients(filteredIngredients);
-  }, []);
-```
-
-useCallback() caches the function for every re-render cycle.
-
 ## useRef
 用来实时获取当前某个标签的value.
 ```javascript
@@ -183,6 +176,11 @@ useEffect( () => {
     // this useEffect() only will be executed when the [props,persons] changed
 ```
 这样子就直接clear了计时器，不会弹窗了。
+
+### useEffect 执行时机
+1. 首次执行hook函数/首次进入页面，必然会执行。
+2. 如果监控列表没有参数，只会首次执行函数时执行。
+3. 监控列表里面有参数，参数发生变化时会执行。
 
 ## React batches state updates
 
@@ -244,6 +242,23 @@ useContext(AuthContext);
 
 ```
 
+
+## useCallback
+```javascript
+const filteredIngredientsHandler = useCallback(filteredIngredients => {
+    setUserIngredients(filteredIngredients);
+  }, []);
+```
+
+useCallback() caches the function for every re-render cycle.
+
+Pass an inline callback and an array of dependencies. useCallback will return a memoized version of the callback that only changes if one of the dependencies has changed. 
+
+This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. shouldComponentUpdate).例如，子组件需要用到父组件的一个函数，父子通过props传参来进行通信，如果父组件re-render，子组件props必然发生改变从而引起子组件的re-render, 如果用useCallback, 那么这个`filteredIngredientsHandler`引用是永远不会变的，就不会引起子组件的re-render.
+
+useCallback(fn, deps) is equivalent to useMemo(() => fn, deps).
+
+
 ## useMemo for optimization
 Section 7.
 类似useCallback.
@@ -251,7 +266,59 @@ Section 7.
 - useCallback caches a function.
 - useMemo caches a component.
 
-React.Memo()也可以cache a component.
+React.memo()也可以cache a component.
+```javascript
+const MyComponent = React.memo(function MyComponent(props) {
+  /* render using props */
+});
+```
+
+React.memo is a higher order component.
+
+If your component renders the same result given the same props, you can wrap it in a call to React.memo for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
+
+React.memo only checks for prop changes. If your function component wrapped in React.memo has a useState, useReducer or useContext Hook in its implementation, it will still rerender when state or context change.
+
+By default it will only shallowly compare complex objects in the props object. If you want control over the comparison, you can also provide a custom comparison function as the second argument.
+
+```javascript
+function MyComponent(props) {
+  /* render using props */
+}
+function areEqual(prevProps, nextProps) {
+  /*
+  return true if passing nextProps to render would return
+  the same result as passing prevProps to render,
+  otherwise return false
+  */
+}
+export default React.memo(MyComponent, areEqual);
+```
+
+```javascript
+// 例子1
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+
+// 例子2
+const isCurrentUser = useMemo(() => {
+    return !!user && currentUserCode === user.userCode;
+}, [user, currentUserCode]);
+```
+
+返回值：Returns a memorized value.
+
+参数：Pass a “create” function and an array of dependencies.
+
+`useMemo` will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.
+
+记住，传入 useMemo 的函数会在渲染期间执行。请不要在这个函数内部执行与渲染无关的操作，诸如副作用这类的操作属于 useEffect 的适用范畴，而不是 useMemo。
+
+如果没有提供依赖项数组，useMemo 在每次渲染时都会计算新的值。
+
+你可以把 useMemo 作为性能优化的手段，但不要把它当成语义上的保证。将来，React 可能会选择“遗忘”以前的一些 memoized 值，并在下次渲染时重新计算它们，比如为离屏组件释放内存。先编写在没有 useMemo 的情况下也可以执行的代码 —— 之后再在你的代码中添加 useMemo，以达到优化性能的目的。
+
+个人理解：跟useEffect对比起来，useMemo更倾向于计算，useEffect更倾向于发请求。
+
 
 ## Custom Hooks
 比如做一个http hook.
