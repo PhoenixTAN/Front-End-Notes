@@ -1,4 +1,4 @@
-# Typescript
+# Typescript Introduction
 
 TypeScript is an open-source programming language developed and maintained by Microsoft.
 
@@ -31,3 +31,5 @@ const ShareWithFriends: React.FC<IShareWithFriendsProps> = ({
     return (<div></div>);
 }
 ```
+
+

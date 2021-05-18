@@ -7,8 +7,8 @@ const getRealtime = () => {
   const date = new Date();
   console.log(date);
   const year = date.getFullYear();
-  const month = date.getMonth();
-  const day = date.getUTCDay();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
   const hour = date.getHours();
   const minute =
     date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
