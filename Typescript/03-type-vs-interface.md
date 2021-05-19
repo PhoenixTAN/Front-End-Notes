@@ -38,3 +38,25 @@ class SomePartialPoint implements PartialPoint {
     y = 2; 
 } 
 ```
+
+怎么定义一个字典类型？
+```ts
+type themeType = {
+  foreground: string;
+  background: string;
+};
+
+type themesType = { [key: string]: themeType };
+
+const themes: themesType = {
+  light: {
+    foreground: "#000000",
+    background: "#eeeeee"
+  },
+  dark: {
+    foreground: "#ffffff",
+    background: "#222222"
+  }
+};
+
+```
