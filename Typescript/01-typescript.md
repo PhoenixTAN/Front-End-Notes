@@ -1,5 +1,13 @@
 # Typescript Introduction
 
+总则：进行类型的定义声明，使得js变成一门静态类型语言，使得大多数错误能在编译期间发现。
+
+1. 不允许使用ts-ignore.
+2. 使用as代替类型转换。
+3. 函数参数和返回值都要进行类型声明。
+4. 如果某个interface定义的值间接或直接导出了，那么interface也需要导出。如果一个值导出，但定义它的interface没有导出，在开启declaration=true的时候会导致一个TS4023的错误，如果不想导出这个interface，就改成type.
+5. 不允许使用any.
+
 ## Introduction 
 
 TypeScript is an open-source programming language developed and maintained by Microsoft.
@@ -32,8 +40,6 @@ const ShareWithFriends: React.FC<IShareWithFriendsProps> = ({
 }
 ```
 
-<<<<<<< Updated upstream:Typescript/Typescript-Introduction.md
-=======
 # The Basics
 
 ## Static type-checking
@@ -70,5 +76,4 @@ message();	// 这一行会飘红
 ## strictNullChecks
 
 
->>>>>>> Stashed changes:Typescript/01-typescript.md
 
