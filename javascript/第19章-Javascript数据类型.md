@@ -17,6 +17,16 @@ Six Data Types that are primitives, checked by typeof operator:
 - `Object` : typeof instance === "object". Special non-data but structural type for any constructed object instance also used as data structures: new Object, new Array, new Map, new Set, new WeakMap, new WeakSet, new Date and almost everything made with new keyword;
 - `Function` non data structure, though it also answers for typeof operator: typeof instance === "function". This answer is done as a special shorthand for Functions, though every Function constructor is derived from Object constructor.
 
+**原始值是不可更改的，请特别注意字符串是一个原始值，在这里不是对象，看代码：**
+```javascript
+let s = "hello";    
+s.toUpperCase(); // 返回"HELLO"，但是s本身并没有改变
+s   // "hello"
+```
+
+## 对象类型(引用类型reference type)
+
+
 ## Symbol
 
 ### 测试用例
