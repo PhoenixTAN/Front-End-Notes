@@ -161,6 +161,8 @@ let s = "hello";
 let n: typeof s;
 ```
 
+This isn’t very useful for basic types, but combined with other type operators, you can use `typeof` to conveniently express many patterns. For an example, let’s start by looking at the predefined type `ReturnType<T>`. It takes a *function type* and produces its return type:
+
 ```typescript
 function f() {
   return { x: 10, y: 3 };
@@ -168,9 +170,79 @@ function f() {
 type P = ReturnType<typeof f>;
 ```
 
+## Indexed Access Types
+
+We can use an *indexed access type* to look up a specific property on another type:
+
+```typescript
+type Person = { age: number; name: string; alive: boolean };
+type Age = Person["age"];	// 想获取Person类型中age属性的值的类型
+// type Age = number
+```
 
 
 
+The indexing type is itself a type, so we can use unions, `keyof`, or other types entirely:
+
+```typescript
+type I1 = Person["age" | "name"];
+// 想获取Person中属性age和属性name的值的类型
+// type I1 = string | number
+
+type I2 = Person[keyof Person];
+// 想获取Person中所有属性的值的类型  
+// type I2 = string | number | boolean
+ 
+type AliveOrName = "alive" | "name";
+type I3 = Person[AliveOrName];
+     
+// type I3 = string | boolean
+```
+
+
+
+## Conditional Types
+
+很奇怪，这个extends去作为条件表达式有什么用呢？
+
+*Conditional types* help describe the relation between the types of inputs and outputs.
+
+```typescript
+interface Animal {
+  live(): void;
+}
+interface Dog extends Animal {
+  woof(): void;
+}
+ 
+type Example1 = Dog extends Animal ? number : string;
+// type Example1 = number
+ 
+type Example2 = RegExp extends Animal ? number : string;    
+// type Example2 = string
+```
+
+From the examples above, conditional types might not immediately seem useful - we can tell ourselves whether or not `Dog extends Animal` and pick `number` or `string`! But the power of conditional types comes from using them with generics.
+
+从刚刚的例子可以看出来，extends来写个问号表达式没什么了不起的。extends的真正魅力在使用泛型的时候。
+
+For example, let’s take the following `createLabel` function:
+
+```typescript
+interface IdLabel {
+  id: number /* some fields */;
+}
+interface NameLabel {
+  name: string /* other fields */;
+}
+ 
+function createLabel(id: number): IdLabel;
+function createLabel(name: string): NameLabel;
+function createLabel(nameOrId: string | number): IdLabel | NameLabel;
+function createLabel(nameOrId: string | number): IdLabel | NameLabel {
+  throw "unimplemented";
+}
+```
 
 
 
