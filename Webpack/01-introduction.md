@@ -1,6 +1,6 @@
 # Webpack Introduction
 
-![](D:\Front-End-Notes\Webpack\images\webpack-concept.png)
+![](.\images\webpack-concept.png)
 
 本章节会简单介绍Webpack的一些基本概念。
 
