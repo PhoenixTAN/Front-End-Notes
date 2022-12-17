@@ -246,6 +246,248 @@ function createLabel(nameOrId: string | number): IdLabel | NameLabel {
 
 
 
+## Mapped Types
+
+```typescript
+type OnlyBoolsAndHorses = {
+  [key: string]: boolean | Horse;
+};
+ 
+const conforms: OnlyBoolsAndHorses = {
+  del: true,
+  rodney: false,
+};
+```
+
+A mapped type is a generic type which uses a union of `PropertyKey`s (frequently created [via a `keyof`](https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html)) to iterate through keys to create a type:
+
+```typescript
+type OptionsFlags<Type> = {
+  [Property in keyof Type]: boolean;
+};
+```
+
+In this example, `OptionsFlags` will take all the properties from the type `Type` and change their values to be a `boolean`.
+
+```typescript
+type FeatureFlags = {
+  darkMode: () => void;
+  newUserProfile: () => void;
+};
+type FeatureOptions = OptionsFlags<FeatureFlags>;
+// type FeatureOptions = {  darkMode: boolean;  newUserProfile: boolean; }
+
+```
+
+
+
+### Mapping Modifiers
+
+There are two additional modifiers which can be applied during mapping: `readonly` and `?` which affect mutability and optionality respectively.
+
+You can remove or add these modifiers by prefixing with `-` or `+`. If you don’t add a prefix, then `+` is assumed.
+
+```typescript
+// Removes 'readonly' attributes from a type's properties
+type CreateMutable<Type> = {
+  -readonly [Property in keyof Type]: Type[Property];	// 减号就是把readonly属性去掉
+};
+
+type LockedAccount = {
+  readonly id: string;
+  readonly name: string;
+};
+
+type UnlockedAccount = CreateMutable<LockedAccount>;
+           
+type UnlockedAccount = {
+    id: string;
+    name: string;
+}
+
+```
+
+
+
+```typescript
+// Removes 'optional' attributes from a type's properties
+type Concrete<Type> = {
+  [Property in keyof Type]-?: Type[Property];	// 把optional属性去掉
+};
+ 
+type MaybeUser = {
+  id: string;
+  name?: string;
+  age?: number;
+};
+ 
+type User = Concrete<MaybeUser>;
+      
+// type User = {
+//     id: string;
+//     name: string;
+//     age: number;
+// }
+```
+
+
+
+### Key Remapping via`as`
+
+You can re-map keys in mapped types with an `as` clause in a mapped type:
+
+```typescript
+type MappedTypeWithNewProperties<Type> = {
+    [Properties in keyof Type as NewKeyType]: Type[Properties]
+}
+```
+
+You can leverage features like [template literal types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html) to create new property names from prior ones:
+
+```typescript
+type Getters<Type> = {
+    [Property in keyof Type as `get${Capitalize<string & Property>}`]: () => Type[Property]
+};
+ 
+interface Person {
+    name: string;
+    age: number;
+    location: string;
+}
+ 
+type LazyPerson = Getters<Person>;
+         
+type LazyPerson = {
+    getName: () => string;
+    getAge: () => number;
+    getLocation: () => string;
+}
+```
+
+You can filter out keys by producing `never` via a conditional type:
+
+```typescript
+// Remove the 'kind' property
+type RemoveKindField<Type> = {
+    [Property in keyof Type as Exclude<Property, "kind">]: Type[Property]
+};
+ 
+interface Circle {
+    kind: "circle";
+    radius: number;
+}
+ 
+type KindlessCircle = RemoveKindField<Circle>;
+           
+// type KindlessCircle = {
+//     radius: number;
+// }
+```
+
+You can map over arbitrary unions, not just unions of `string | number | symbol`, but unions of any type:
+
+```typescript
+type EventConfig<Events extends { kind: string }> = {
+    [E in Events as E["kind"]]: (event: E) => void;
+}
+
+type SquareEvent = { kind: "square", x: number, y: number };
+type CircleEvent = { kind: "circle", radius: number };
+
+type Config = EventConfig<SquareEvent | CircleEvent>
+
+// type Config = {
+//     square: (event: SquareEvent) => void;
+//     circle: (event: CircleEvent) => void;
+// }
+```
+
+### Further Exploration
+
+Mapped types work well with other features in this type manipulation section, for example here is [a mapped type using a conditional type](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html) which returns either a `true` or `false` depending on whether an object has the property `pii` set to the literal `true`:
+
+```typescript
+type ExtractPII<Type> = {
+  [Property in keyof Type]: Type[Property] extends { pii: true } ? true : false;
+};
+ 
+type DBFields = {
+  id: { format: "incrementing" };
+  name: { type: string; pii: true };
+};
+ 
+type ObjectsNeedingGDPRDeletion = ExtractPII<DBFields>;
+                 
+// type ObjectsNeedingGDPRDeletion = {
+//     id: false;
+//     name: true;
+// }
+```
+
+
+
+## Template Literal Types
+
+```typescript
+type World = "world";
+ 
+type Greeting = `hello ${World}`;
+```
+
+When a union is used in the interpolated position, the type is the set of every possible string literal that could be represented by each union member:
+
+```typescript
+type EmailLocaleIDs = "welcome_email" | "email_heading";
+type FooterLocaleIDs = "footer_title" | "footer_sendoff";
+ 
+type AllLocaleIDs = `${EmailLocaleIDs | FooterLocaleIDs}_id`;
+          
+type AllLocaleIDs = "welcome_email_id" | "email_heading_id" | "footer_title_id" | "footer_sendoff_id"
+```
+
+For each interpolated position in the template literal, the unions are cross multiplied:
+
+```typescript
+type AllLocaleIDs = `${EmailLocaleIDs | FooterLocaleIDs}_id`;
+type Lang = "en" | "ja" | "pt";
+ 
+type LocaleMessageIDs = `${Lang}_${AllLocaleIDs}`;
+            
+type LocaleMessageIDs = "en_welcome_email_id" | "en_email_heading_id" | "en_footer_title_id" | "en_footer_sendoff_id" | "ja_welcome_email_id" | "ja_email_heading_id" | "ja_footer_title_id" | "ja_footer_sendoff_id" | "pt_welcome_email_id" | "pt_email_heading_id" | "pt_footer_title_id" | "pt_footer_sendoff_id"
+```
+
+We generally recommend that people use ahead-of-time generation for large string unions, but this is useful in smaller cases.
+
+### String Unions in Types
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
