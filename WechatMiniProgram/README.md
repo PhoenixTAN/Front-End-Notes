@@ -39,3 +39,193 @@ https://juejin.cn/post/6930897871529213966
 - event 通过 Native 传递给逻辑层
 - 逻辑层收到触发某个事件,并通过一系列的逻辑处理、数据请求、接口调用等工作将加工好的数据通过 setData 的方法传递给渲染层
 - 渲染层将 data 渲染为可视化的 UI
+
+## 小程序代码构成
+### 小程序配置 app.json
+app.json 是当前小程序的全局配置，包括了小程序的所有页面路径、界面表现、网络超时时间、底部 tab 等。QuickStart 项目里边的 app.json 配置内容如下：
+
+```json
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle":"black"
+  }
+}
+```
+
+我们简单说一下这个配置各个项的含义:
+
+1. `pages`字段 —— 用于描述当前小程序所有页面路径，这是为了让微信客户端知道当前你的小程序页面定义在哪个目录。
+2. `window`字段 —— 定义小程序所有页面的顶部背景颜色，文字颜色定义等。
+
+
+### WXML 模板
+从事过网页编程的人知道，网页编程采用的是 HTML + CSS + JS 这样的组合，其中 HTML 是用来描述当前这个页面的结构，CSS 用来描述页面的样子，JS 通常是用来处理这个页面和用户的交互。
+
+同样道理，在小程序中也有同样的角色，其中 WXML 充当的就是类似 HTML 的角色。打开 `pages/index/index.wxml`，你会看到以下的内容:
+```html
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}"> 获取头像昵称 </button>
+    <block wx:else>
+      <image src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>
+```
+和 HTML 非常相似，WXML 由标签、属性等等构成。但是也有很多不一样的地方，我们来一一阐述一下：
+
+1. 标签名字有点不一样
+
+    往往写 HTML 的时候，经常会用到的标签是 div, p, span，开发者在写一个页面的时候可以根据这些基础的标签组合出不一样的组件，例如日历、弹窗等等。换个思路，既然大家都需要这些组件，为什么我们不能把这些常用的组件包装起来，大大提高我们的开发效率。
+
+    从上边的例子可以看到，小程序的 WXML 用的标签是 view, button, text 等等，这些标签就是小程序给开发者包装好的基本能力，我们还提供了地图、视频、音频等等组件能力。
+
+
+2. 多了一些 wx:if 这样的属性以及 {{ }} 这样的表达式
+
+    在网页的一般开发流程中，我们通常会通过 JS 操作 DOM (对应 HTML 的描述产生的树)，以引起界面的一些变化响应用户的行为。例如，用户点击某个按钮的时候，JS 会记录一些状态到 JS 变量里边，同时通过 DOM API 操控 DOM 的属性或者行为，进而引起界面一些变化。当项目越来越大的时候，你的代码会充斥着非常多的界面交互逻辑和程序的各种状态变量，显然这不是一个很好的开发模式，因此就有了 MVVM 的开发模式（例如 React, Vue），提倡把渲染和逻辑分离。简单来说就是不要再让 JS 直接操控 DOM，JS 只需要管理状态即可，然后再通过一种模板语法来描述状态和界面结构的关系即可。
+
+    小程序的框架也是用到了这个思路，如果你需要把一个 Hello World 的字符串显示在界面上。
+
+    WXML 是这么写 :
+```html
+<text>{{msg}}</text>
+```
+JS 只需要管理状态即可:
+```html
+this.setData({ msg: "Hello World" })
+```
+通过 {{ }} 的语法把一个变量绑定到界面上，我们称为数据绑定。仅仅通过数据绑定还不够完整的描述状态和界面的关系，还需要 if/else, for等控制能力，在小程序里边，这些控制能力都用 wx: 开头的属性来表达。
+
+
+
+### WXSS 样式
+WXSS 具有 CSS 大部分的特性，小程序在 WXSS 也做了一些扩充和修改。
+
+1. 新增了尺寸单位。在写 CSS 样式时，开发者需要考虑到手机设备的屏幕会有不同的宽度和设备像素比，采用一些技巧来换算一些像素单位。WXSS 在底层支持新的尺寸单位 `rpx` ，开发者可以免去换算的烦恼，只要交给小程序底层来换算即可，由于换算采用的浮点数运算，所以运算结果会和预期结果有一点点偏差。
+
+2. 提供了全局的样式和局部样式。和前边 `app.json`, `page.json` 的概念相同，你可以写一个 app.wxss 作为全局样式，会作用于当前小程序的所有页面，局部页面样式 page.wxss 仅对当前页面生效。
+
+3. 此外 WXSS 仅支持部分 CSS 选择器
+
+
+### JS 逻辑交互
+一个服务仅仅只有界面展示是不够的，还需要和用户做交互：响应用户的点击、获取用户的位置等等。在小程序里边，我们就通过编写 JS 脚本文件来处理用户的操作。
+```html
+<view>{{ msg }}</view>
+<button bindtap="clickMe">点击我</button>
+```
+点击 `button` 按钮的时候，我们希望把界面上 `msg` 显示成 `"Hello World"`，于是我们在 `button` 上声明一个属性: `bindtap` ，在 JS 文件里边声明了 `clickMe` 方法来响应这次点击操作：
+```js
+Page({
+  clickMe: function() {
+    this.setData({ msg: "Hello World" })
+  }
+})
+```
+响应用户的操作就是这么简单。
+
+此外你还可以在 JS 中调用小程序提供的丰富的 API，利用这些 API 可以很方便的调起微信提供的能力，例如获取用户信息、本地存储、微信支付等。在前边的 QuickStart 例子中，在 `pages/index/index.js` 就调用了 `wx.getUserInfo` 获取微信用户的头像和昵称，最后通过 `setData` 把获取到的信息显示到界面上。
+
+
+## 程序与页面
+微信客户端在打开小程序之前，会把整个小程序的代码包下载到本地。
+
+紧接着通过 `app.json` 的 pages 字段就可以知道你当前小程序的所有页面路径:
+```json
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ]
+}
+```
+这个配置说明在 QuickStart 项目定义了两个页面，分别位于 `pages/index/index` 和 `pages/logs/logs`。而写在 pages 字段的第一个页面就是这个小程序的首页（打开小程序看到的第一个页面）。
+
+于是微信客户端就把首页的代码装载进来，通过小程序底层的一些机制，就可以渲染出这个首页。
+
+小程序启动之后，在 app.js 定义的 App 实例的 onLaunch 回调会被执行:
+```js
+App({
+  onLaunch: function () {
+    // 小程序启动之后 触发
+  }
+})
+```
+**整个小程序只有一个 App 实例，是全部页面共享的。**
+
+接下来我们简单看看小程序的一个页面是怎么写的。
+
+你可以观察到 `pages/logs/logs` 下其实是包括了4种文件的，微信客户端会先根据 `logs.json` 配置生成一个界面，顶部的颜色和文字你都可以在这个 `json` 文件里边定义好。紧接着客户端就会装载这个页面的 `WXML` 结构和 `WXSS` 样式。最后客户端会装载 `logs.js`，你可以看到 `logs.js` 的大体内容就是:
+```js
+Page({
+  data: { // 参与页面渲染的数据
+    logs: []
+  },
+  onLoad: function () {
+    // 页面渲染后 执行
+  }
+})
+```
+`Page` 是一个页面构造器，这个构造器就生成了一个页面。在生成页面的时候，小程序框架会把 `data` 数据和 `index.wxml` 一起渲染出最终的结构，于是就得到了你看到的小程序的样子。
+
+在渲染完界面之后，页面实例就会收到一个 `onLoad` 的回调，你可以在这个回调处理你的逻辑。
+
+有关于 `Page` 构造器更多详细的文档参考 注册页面 `Page` 。
+
+### 组件
+小程序提供了丰富的基础组件给开发者，开发者可以像搭积木一样，组合各种组件拼合成自己的小程序。
+
+就像 HTML 的 div, p 等标签一样，在小程序里边，你只需要在 WXML 写上对应的组件标签名字就可以把该组件显示在界面上，例如，你需要在界面上显示地图，你只需要这样写即可：
+```html
+<map></map>
+```
+使用组件的时候，还可以通过属性传递值给组件，让组件可以以不同的状态去展现，例如，我们希望地图一开始的中心的经纬度是广州，那么你需要声明地图的 longitude（中心经度） 和 latitude（中心纬度）两个属性:
+```html
+<map longitude="广州经度" latitude="广州纬度"></map>
+```
+组件的内部行为也会通过事件的形式让开发者可以感知，例如用户点击了地图上的某个标记，你可以在 js 编写 markertap 函数来处理：
+```html
+<map bindmarkertap="markertap" longitude="广州经度" latitude="广州纬度"></map>
+```
+当然你也可以通过 style 或者 class 来控制组件的外层样式，以便适应你的界面宽度高度等等。
+
+
+### API
+为了让开发者可以很方便的调起微信提供的能力，例如获取用户信息、微信支付等等，小程序提供了很多 API 给开发者去使用。
+
+要获取用户的地理位置时，只需要：
+```js
+wx.getLocation({
+  type: 'wgs84',
+  success: (res) => {
+    var latitude = res.latitude // 纬度
+    var longitude = res.longitude // 经度
+  }
+})
+```
+调用微信扫一扫能力，只需要：
+```js
+wx.scanCode({
+  success: (res) => {
+    console.log(res)
+  }
+})
+```
+需要注意的是：多数 API 的回调都是异步，你需要处理好代码逻辑的异步问题。
+
+
+
+
+
